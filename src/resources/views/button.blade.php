@@ -9,12 +9,13 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string $color
  */
 
+$attributes = $attributes->merge(['class' => "btn btn-$color"]);
 
 ?>
 
 
 @empty($href)
-    <button type="{{$type}}" {{$attributes->merge(['class' => "btn btn-$color"])}}>{{$slot}}</button>
+    <button type="{{$type}}" {{$attributes}}>{{$slot}}</button>
 @else
     <a href="{{$href}}" {{$attributes}}>{{$slot}}</a>
 @endempty

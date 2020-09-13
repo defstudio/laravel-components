@@ -6,7 +6,6 @@ use Illuminate\View\ComponentAttributeBag;
  * @var ComponentAttributeBag $attributes
  * @var string $name
  * @var string $label
- * @var string $autocomplete
  */
 
 ?>
@@ -15,7 +14,6 @@ use Illuminate\View\ComponentAttributeBag;
     <div class="input-group">
         {{h()->text($name)
          ->attributes($attributes->merge(['class'=>'form-control']))
-         ->attribute('autocomplete', $autocomplete)
          ->attributeIf(!$slot->isEmpty(), 'value', $slot)
         }}
 

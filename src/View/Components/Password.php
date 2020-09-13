@@ -10,13 +10,11 @@ class Password extends Component
 {
     public string $name;
     public string $label;
-    public string $autocomplete;
 
-    public function __construct(string $name, string $label='', string $autocomplete='off')
+    public function __construct(string $name, string $label='')
     {
         $this->name = $name;
         $this->label = $label;
-        $this->autocomplete = $autocomplete;
     }
 
     /**
