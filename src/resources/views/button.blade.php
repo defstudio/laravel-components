@@ -1,18 +1,20 @@
 <?php
 
+use Illuminate\View\ComponentAttributeBag;
+
 /**
- * @var string $href;
- * @var string $color;
- * @var string $type;
+ * @var ComponentAttributeBag $attributes
+ * @var string $href
+ * @var string $color
+ * @var string $color
  */
+
 
 ?>
 
-@dd($attributes)
-
 
 @empty($href)
-    <button type="{{$type}}" {{$attributes->merge(['class' => "btn btn-$color"]}}>{{$slot}}</button>
+    <button type="{{$type}}" {{$attributes->merge(['class' => "btn btn-$color"])}}>{{$slot}}</button>
 @else
     <a href="{{$href}}" {{$attributes}}>{{$slot}}</a>
 @endempty
