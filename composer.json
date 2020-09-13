@@ -1,0 +1,50 @@
+{
+    "name": "defstudio/laravel-components",
+    "description": "A collection of laravel blade components",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabio Ivona",
+            "email": "fabio.ivona@defstudio.it",
+            "homepage": "https://defstudio.it",
+            "role": "Developer"
+        },
+        {
+            "name": "Daniele Romeo",
+            "email": "danieleromeo@defstudio.it",
+            "homepage": "https://defstudio.it",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/support": "^8.0",
+        "defstudio/laravel-html": "master"
+    },
+    "autoload": {
+        "psr-4": {
+            "DefStudio\\Components\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DefStudio\\Components\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DefStudio\\Component\\ComponentServiceProvider"
+            ]
+        }
+    }
+}
