@@ -22,6 +22,6 @@ class Button extends \Illuminate\View\Component
      */
     public function render()
     {
-        return view('def-components:button');
+        return view('def-components::button');
     }
 }
