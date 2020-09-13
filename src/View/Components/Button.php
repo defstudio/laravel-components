@@ -4,7 +4,9 @@
 namespace DefStudio\Components\View\Components;
 
 
-class Button extends \Illuminate\View\Component
+use Illuminate\View\Component;
+
+class Button extends Component
 {
     public string $href;
     public string $color;
