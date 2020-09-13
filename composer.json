@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DefStudio\\Component\\ComponentServiceProvider"
+                "DefStudio\\Components\\ComponentServiceProvider"
             ]
         }
     }
