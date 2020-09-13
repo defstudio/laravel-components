@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * @var string $href;
+ * @var string $color;
+ * @var string $type;
+ */
 
-
-
-$attributes = )
 ?>
+
+@dd($attributes)
+
 
 @empty($href)
     <button type="{{$type}}" {{$attributes->merge(['class' => "btn btn-$color"]}}>{{$slot}}</button>
