@@ -20,7 +20,7 @@ use Illuminate\View\ComponentAttributeBag;
     @endif
     {{h()->custom_checkbox($name, $slot, $checked, $value, $id)->classIf($inline, 'custom-control-inline')}}
 @else
-    <div class="form-group">
+    <div {{$attributes->merge(['class' => 'form-group'])}}>
         @if(is_array($value))
             <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
             <?php $value = $value[0] ?>
