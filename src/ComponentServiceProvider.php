@@ -11,6 +11,7 @@ use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Datatable;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
+use DefStudio\Components\View\Components\Multiselect;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Text;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,7 @@ class ComponentServiceProvider extends ServiceProvider
             Datatable::class,
             Hidden::class,
             Icon::class,
+            Multiselect::class,
             Password::class,
             Text::class,
         ]);

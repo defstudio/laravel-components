@@ -8,14 +8,23 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string $id
  * @var string $value
  * @var bool $checked
+ * @var bool $inline
  *
  */
 ?>
 
-<div class="form-group">
+@if($inline)
     @if(is_array($value))
         <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
-       <?php $value=$value[0] ?>
+        <?php $value = $value[0] ?>
     @endif
-    {{h()->custom_checkbox($name, $slot, $checked, $value, $id)}}
-</div>
+    {{h()->custom_checkbox($name, $slot, $checked, $value, $id)->classIf($inline, 'custom-control-inline')}}
+@else
+    <div class="form-group">
+        @if(is_array($value))
+            <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
+            <?php $value = $value[0] ?>
+        @endif
+        {{h()->custom_checkbox($name, $slot, $checked, $value, $id)->classIf($inline, 'custom-control-inline')}}
+    </div>
+@endif
