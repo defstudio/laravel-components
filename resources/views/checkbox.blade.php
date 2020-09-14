@@ -18,7 +18,9 @@ use Illuminate\View\ComponentAttributeBag;
         <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
         <?php $value = $value[0] ?>
     @endif
-    {{h()->custom_checkbox($name, $slot, $checked, $value, $id)->classIf($inline, 'custom-control-inline')}}
+    {{h()->custom_checkbox($name, $slot, $checked, $value, $id)
+         ->attributes($attributes)
+         ->classIf($inline, 'custom-control-inline')}}
 @else
     <div {{$attributes->merge(['class' => 'form-group'])}}>
         @if(is_array($value))
