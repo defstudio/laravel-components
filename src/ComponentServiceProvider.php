@@ -16,7 +16,7 @@ use Illuminate\Support\ServiceProvider;
 class ComponentServiceProvider extends ServiceProvider
 {
     public function boot(){
-        $this->loadViewsFrom(__DIR__."/resources/views", 'def-components');
+
         $this->loadViewComponentsAs('def', [
             Button::class,
             Datatable::class,
@@ -26,5 +26,14 @@ class ComponentServiceProvider extends ServiceProvider
             Checkbox::class,
             CheckboxSwitch::class,
         ]);
+
+        $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
+
+
+        $this->publishes([
+            __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
+        ]);
+
+
     }
 }
