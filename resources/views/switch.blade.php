@@ -5,7 +5,6 @@ use Illuminate\View\ComponentAttributeBag;
 /**
  * @var ComponentAttributeBag $attributes
  * @var string $name
- * @var string $label
  * @var string $id
  * @var string $value
  * @var bool $checked
@@ -18,5 +17,5 @@ use Illuminate\View\ComponentAttributeBag;
         <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
         <?php $value=$value[0] ?>
     @endif
-    {{h()->custom_switch($name, $label, $checked, $value, $id)}}
+    {{h()->custom_switch($name, $slot, $checked, $value, $id)}}
 </div>
