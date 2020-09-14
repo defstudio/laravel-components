@@ -19,8 +19,8 @@ use Illuminate\View\ComponentAttributeBag;
         <?php $value = $value[0] ?>
     @endif
     {{h()->custom_switch($name, $slot, $checked, $value, $id)
-         ->classIf($inline, 'custom-control-inline')
-         ->attributes($attributes)}}
+         ->attributes($attributes)
+         ->classIf($inline, 'custom-control-inline')}}
 @else
     <div {{$attributes->merge(['class' => 'form-group'])}}>
         @if(is_array($value))
