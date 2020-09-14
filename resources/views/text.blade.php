@@ -9,11 +9,11 @@ use Illuminate\View\ComponentAttributeBag;
  */
 
 ?>
-<div class="form-group">
+<div {{$attributes->merge(['class'=>'form-group'])}}>
     {{h()->label($label, $name)}}
     <div class="input-group">
         {{h()->text($name)
-         ->attributes($attributes->merge(['class'=>'form-control']))
+         ->class('form-control')
          ->attributeIf(!$slot->isEmpty(), 'value', $slot)
         }}
 
