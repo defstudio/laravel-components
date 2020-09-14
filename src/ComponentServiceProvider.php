@@ -5,9 +5,11 @@ namespace DefStudio\Components;
 
 
 use DefStudio\Components\View\Components\Button;
+use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Datatable;
+use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Text;
@@ -19,12 +21,14 @@ class ComponentServiceProvider extends ServiceProvider
 
         $this->loadViewComponentsAs('def', [
             Button::class,
-            Datatable::class,
-            Icon::class,
-            Text::class,
-            Password::class,
+            Card::class,
             Checkbox::class,
             CheckboxSwitch::class,
+            Datatable::class,
+            Hidden::class,
+            Icon::class,
+            Password::class,
+            Text::class,
         ]);
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
