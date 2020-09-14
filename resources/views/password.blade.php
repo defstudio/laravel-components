@@ -10,11 +10,11 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<div class="form-group">
+<div {{$attributes->merge(['class' => 'form-group'])}}>
     {{h()->label($label, $name)}}
     <div class="input-group">
         {{h()->password($name)
-             ->attributes($attributes->merge(['class'=>'form-control']))
+             ->class('form-control')
         }}
         @isset($append)
             <div class="input-group-append">
