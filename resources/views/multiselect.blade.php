@@ -12,7 +12,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<div class="form-group">
-    {{h()->multiselect($name, $options, $value)}}
+<div {{$attributes->merge(['class' => 'form-group'])}}>
+    {{h()->multiselect($name, $options, $value)->class('form-control')}}
 </div>
 
