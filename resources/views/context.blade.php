@@ -1,0 +1,3 @@
+{{$slot}}
+
+<?php $context()->pop() ?>

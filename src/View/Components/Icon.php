@@ -4,7 +4,7 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
+use Illuminate\Support\Str;
 
 class Icon extends Component
 {
@@ -15,6 +15,10 @@ class Icon extends Component
     {
         $this->name = $name;
         $this->type = $type;
+
+        if (!Str::startsWith($this->name, 'fa-')) {
+            $this->name = "fa-{$this->name}";
+        }
     }
 
     /**

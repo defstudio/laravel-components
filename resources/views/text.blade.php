@@ -10,12 +10,15 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 <div {{$attributes->merge(['class'=>'form-group'])}}>
-    {{h()->label($label, $name)}}
+
+    @unless(empty($label))
+        <label for="#{{$dashed_field_name()}}">{{$label}}</label>
+    @endunless
+
+
     <div class="input-group">
-        {{h()->text($name)
-         ->class('form-control')
-         ->attributeIf(!$slot->isEmpty(), 'value', $slot)
-        }}
+
+        <input id="{{$dashed_field_name()}}" type="text" name="{{$name}}" class="form-control" value="{{$computed_value($slot)}}">
 
         @isset($append)
             <div class="input-group-append">
@@ -25,5 +28,4 @@ use Illuminate\View\ComponentAttributeBag;
             </div>
         @endisset
     </div>
-
 </div>

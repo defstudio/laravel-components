@@ -4,11 +4,13 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
+use DefStudio\Components\Traits\HasName;
+use DefStudio\Components\Traits\HasValue;
 
 class Hidden extends Component
 {
-    public string $name;
+    use HasValue;
+    use HasName;
 
     public function __construct(string $name)
     {

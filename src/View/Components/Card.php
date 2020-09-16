@@ -4,7 +4,6 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
 
 class Card extends Component
 {

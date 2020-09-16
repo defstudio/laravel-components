@@ -4,25 +4,34 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
+use DefStudio\Components\Traits\HasName;
+use DefStudio\Components\Traits\HasValue;
 
 class Checkbox extends Component
 {
-    public ?string $id;
-    public string $name;
-    public ?bool $checked;
+
+    use HasName;
+    use HasValue;
+
+    public $custom_class = 'custom-checkbox';
+    private bool $checked;
     public bool $inline;
+    public $value_unchecked;
+    public $value_checked;
 
-    /** @var array|string */
-    public $value;
 
-    public function __construct(string $name, $value = '1', ?string $id = null, ?bool $checked = null, bool $inline = false)
+    public function __construct(string $name, $value = '1', ?bool $checked = false, bool $inline = false)
     {
         $this->name = $name;
-        $this->id = $id;
-        $this->checked = $checked;
-        $this->value = $value;
+        $this->checked = (bool)$checked;
         $this->inline = $inline;
+
+        if (is_array($value)) {
+            $this->value_unchecked = $value[1];
+            $this->value_checked = $value[0];
+        } else {
+            $this->value_checked = $value;
+        }
     }
 
     /**
@@ -31,5 +40,12 @@ class Checkbox extends Component
     public function render()
     {
         return view('def-components::checkbox');
+    }
+
+    public function is_checked(): bool
+    {
+
+
+        return $this->checked;
     }
 }

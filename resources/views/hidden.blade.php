@@ -9,6 +9,6 @@ use Illuminate\View\ComponentAttributeBag;
  */
 
 ?>
-{{h()->hidden($name)
- ->attributeIf(!$slot->isEmpty(), 'value', $slot)
-}}
+
+
+<input type="hidden" name="{{$name}}" class="form-control" value="{{$computed_value($slot)}}">

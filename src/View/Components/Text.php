@@ -3,15 +3,17 @@
 
 namespace DefStudio\Components\View\Components;
 
-
-use Illuminate\View\Component;
+use DefStudio\Components\Traits\HasName;
+use DefStudio\Components\Traits\HasValue;
 
 class Text extends Component
 {
-    public string $name;
+    use HasValue;
+    use HasName;
+
     public string $label;
 
-    public function __construct(string $name, string $label='')
+    public function __construct(string $name, string $label = '')
     {
         $this->name = $name;
         $this->label = $label;

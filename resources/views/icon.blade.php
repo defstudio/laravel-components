@@ -11,4 +11,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-{{h()->icon($name, $type)->attributes($attributes)}}{!! $slot->isEmpty()?'':"&nbsp;$slot"!!}
+<i {{$attributes->merge(['class' => "$type $name"])}}>
+    {!! $slot->isEmpty()?'':"&nbsp;$slot"!!}
+</i>

@@ -4,18 +4,22 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
+use DefStudio\Components\Traits\HasName;
+use DefStudio\Components\Traits\HasValue;
 
 class Multiselect extends Component
 {
-    public string $name;
-    public $options;
-    public $value;
+    use HasValue;
+    use HasName;
 
-    public function __construct(string $name, $options = [], $value = null)
+    public array $options;
+    public string $label;
+
+    public function __construct(string $name, string $label = '', array $options = [], $value = null)
     {
         $this->name = $name;
         $this->options = $options;
+        $this->label = $label;
         $this->value = $value;
     }
 

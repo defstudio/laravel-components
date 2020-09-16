@@ -5,28 +5,34 @@ use Illuminate\View\ComponentAttributeBag;
 /**
  * @var ComponentAttributeBag $attributes
  * @var string $name
- * @var string $id
- * @var string $value
- * @var bool $checked
  * @var bool $inline
+ * @var bool $checked
  *
  */
+
+
 ?>
 
 @if($inline)
-    @if(is_array($value))
-        <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
-        <?php $value = $value[0] ?>
+    @if(isset($value_unchecked))
+        <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
     @endif
-    {{h()->custom_checkbox($name, $slot, $checked, $value, $id)
-         ->attributes($attributes)
-         ->classIf($inline, 'custom-control-inline')}}
+
+    <div class="custom-control {{$custom_class}} custom-control-inline">
+        <input type="checkbox" id="{{$dashed_field_name()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()}} />
+        <label for="#{{$dashed_field_name()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
+    </div>
 @else
     <div {{$attributes->merge(['class' => 'form-group'])}}>
-        @if(is_array($value))
-            <input type="hidden" name="{{$name}}" value="{{$value[1]}}">
-            <?php $value = $value[0] ?>
+        @if(isset($value_unchecked))
+            <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
         @endif
-        {{h()->custom_checkbox($name, $slot, $checked, $value, $id)->classIf($inline, 'custom-control-inline')}}
+        <div class="custom-control {{$custom_class}} custom-control-inline">
+            <input type="checkbox" id="{{$dashed_field_name()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()}} />
+            <label for="#{{$dashed_field_name()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
+        </div>
     </div>
 @endif
+
+
+

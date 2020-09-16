@@ -4,8 +4,6 @@
 namespace DefStudio\Components\View\Components;
 
 
-use Illuminate\View\Component;
-
 class Datatable extends Component
 {
     public array $headers;

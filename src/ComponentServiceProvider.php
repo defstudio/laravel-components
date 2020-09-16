@@ -8,7 +8,9 @@ use DefStudio\Components\View\Components\Button;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
+use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Datatable;
+use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
 use DefStudio\Components\View\Components\Multiselect;
@@ -18,14 +20,19 @@ use Illuminate\Support\ServiceProvider;
 
 class ComponentServiceProvider extends ServiceProvider
 {
-    public function boot(){
+    public function boot()
+    {
+
+        $this->app->singleton(ContextStack::class);
 
         $this->loadViewComponentsAs('def', [
             Button::class,
             Card::class,
             Checkbox::class,
             CheckboxSwitch::class,
+            Context::class,
             Datatable::class,
+            Form::class,
             Hidden::class,
             Icon::class,
             Multiselect::class,
