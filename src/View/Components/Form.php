@@ -3,17 +3,15 @@
 
 namespace DefStudio\Components\View\Components;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Form extends Component
 {
     public string $method;
     public string $action;
     public bool $accept_files;
     public bool $autocomplete;
-    public ?Model $model;
+    public $model;
 
-    public function __construct(string $method = 'POST', string $action = '', bool $accept_files = false, $autocomplete = false, Model $model = null)
+    public function __construct(string $method = 'POST', string $action = '', bool $accept_files = false, $autocomplete = false, $model = null)
     {
         $this->method = strtoupper($method);
         $this->action = $action;

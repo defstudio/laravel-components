@@ -19,8 +19,8 @@ use Illuminate\View\ComponentAttributeBag;
     @endif
 
     <div class="custom-control {{$custom_class}} custom-control-inline">
-        <input type="checkbox" id="{{$dashed_field_name()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()}} />
-        <label for="#{{$dashed_field_name()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
+        <input type="checkbox" id="{{$computed_id()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()?'checked':''}} />
+        <label for="{{$computed_id()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
     </div>
 @else
     <div {{$attributes->merge(['class' => 'form-group'])}}>
@@ -28,8 +28,8 @@ use Illuminate\View\ComponentAttributeBag;
             <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
         @endif
         <div class="custom-control {{$custom_class}} custom-control-inline">
-            <input type="checkbox" id="{{$dashed_field_name()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()}} />
-            <label for="#{{$dashed_field_name()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
+            <input type="checkbox" id="{{$computed_id()}}-{{$value_checked}}" name="{{$name}}" value="{{$value_checked}}" class="custom-control-input" {{$is_checked()?'checked':''}} />
+            <label for="{{$computed_id()}}-{{$value_checked}}" class="custom-control-label">{{$slot}}</label>
         </div>
     </div>
 @endif

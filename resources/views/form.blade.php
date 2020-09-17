@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUndefinedVariableInspection */
 
 use Illuminate\View\ComponentAttributeBag;
 
@@ -31,10 +32,10 @@ if (!$autocomplete) {
     @endif
 
     @if(in_array($method, ['DELETE', 'PATCH', 'PUT']))
-        <x-def-hidden name="_method">{{$method}}</x-def-hidden>
+        <input type="hidden" name="_method" value="{{$method}}">
     @endif
 
     {{$slot}}
 
-    @php($unbind_model())
+    <?php $unbind_model() ?>
 </form>

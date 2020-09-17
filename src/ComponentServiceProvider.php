@@ -4,6 +4,7 @@
 namespace DefStudio\Components;
 
 
+use DefStudio\Components\View\Components\Alert;
 use DefStudio\Components\View\Components\Button;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
@@ -15,6 +16,7 @@ use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
 use DefStudio\Components\View\Components\Multiselect;
 use DefStudio\Components\View\Components\Password;
+use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Text;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +27,8 @@ class ComponentServiceProvider extends ServiceProvider
 
         $this->app->singleton(ContextStack::class);
 
-        $this->loadViewComponentsAs('def', [
+        $this->loadViewComponentsAs(config('components.tags_prefix', ''), [
+            Alert::class,
             Button::class,
             Card::class,
             Checkbox::class,
@@ -37,6 +40,7 @@ class ComponentServiceProvider extends ServiceProvider
             Icon::class,
             Multiselect::class,
             Password::class,
+            Select::class,
             Text::class,
         ]);
 
@@ -45,7 +49,11 @@ class ComponentServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
-        ]);
+        ], 'views');
+
+        $this->publishes([
+            __DIR__ . "/../config/components.php" => config_path('components.php'),
+        ], 'config');
 
 
     }

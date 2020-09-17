@@ -3,18 +3,15 @@
 
 namespace DefStudio\Components\View\Components;
 
-use DefStudio\Components\Traits\HasName;
-use DefStudio\Components\Traits\HasValue;
 
-class Text extends Component
+class Text extends Input
 {
-    use HasValue;
-    use HasName;
 
     public string $label;
 
-    public function __construct(string $name, string $label = '')
+    public function __construct(string $name, string $label = '', string $id = '')
     {
+        $this->id = $id;
         $this->name = $name;
         $this->label = $label;
     }

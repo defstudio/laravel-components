@@ -4,30 +4,16 @@
 namespace DefStudio\Components\View\Components;
 
 
-use DefStudio\Components\Traits\HasName;
-use DefStudio\Components\Traits\HasValue;
-
-class Multiselect extends Component
+class Multiselect extends Select
 {
-    use HasValue;
-    use HasName;
 
-    public array $options;
-    public string $label;
-
-    public function __construct(string $name, string $label = '', array $options = [], $value = null)
+    public function __construct(
+        string $name,
+        string $label = '',
+        array $options = [],
+        array $selected = []
+    )
     {
-        $this->name = $name;
-        $this->options = $options;
-        $this->label = $label;
-        $this->value = $value;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function render()
-    {
-        return view('def-components::multiselect');
+        parent::__construct($name, $id = '', $label, $options, '', true, $selected);
     }
 }

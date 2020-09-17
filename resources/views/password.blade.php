@@ -13,14 +13,18 @@ use Illuminate\View\ComponentAttributeBag;
 <div {{$attributes->merge(['class' => 'form-group'])}}>
 
     @unless(empty($label))
-        <label for="#{{$dashed_field_name()}}">{{$label}}</label>
+        <label for="{{$computed_id()}}">{{$label}}</label>
     @endunless
 
 
     <div class="input-group">
 
-
-        <input id="{{$dashed_field_name()}}" type="password" name="{{$name}}" class="form-control" value="{{$slot}}">
+        <input
+            id="{{$computed_id()}}"
+            type="password"
+            name="{{$name}}"
+            {{$error_attributes()->merge(['class' => 'form-control'])}}
+            value="{{$slot}}">
 
         @isset($append)
             <div class="input-group-append">
