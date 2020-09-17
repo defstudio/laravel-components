@@ -11,9 +11,9 @@ trait ChecksErrors
 {
     use InteractsWithRequest;
 
-    public function error_attributes(): ComponentAttributeBag
+    public function error_attributes(): array
     {
-        $attributes = new ComponentAttributeBag();
+        $attributes = [];
 
         if (!$this->has_errors()) return $attributes;
 
@@ -24,14 +24,14 @@ trait ChecksErrors
         }
 
 
-        $attributes->setAttributes([
+        $attributes = [
             'class' => 'is-invalid',
             'data-toggle' => 'popover',
             'data-trigger' => 'hover',
             'data-html' => 'true',
             'data-content' => $errors_html,
             'data-placement' => 'top',
-        ]);
+        ];
 
         return $attributes;
     }

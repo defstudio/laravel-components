@@ -15,6 +15,10 @@ use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
 use DefStudio\Components\View\Components\Multiselect;
+use DefStudio\Components\View\Components\Navbar;
+use DefStudio\Components\View\Components\NavbarDropdown;
+use DefStudio\Components\View\Components\NavbarDropdownItem;
+use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Text;
@@ -39,6 +43,10 @@ class ComponentServiceProvider extends ServiceProvider
             Hidden::class,
             Icon::class,
             Multiselect::class,
+            Navbar::class,
+            NavbarNav::class,
+            NavbarDropdown::class,
+            NavbarDropdownItem::class,
             Password::class,
             Select::class,
             Text::class,

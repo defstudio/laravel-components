@@ -11,4 +11,4 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 
-<input {{$attributes}} type="hidden" name="{{$name}}" class="form-control" value="{{$computed_value($slot)}}">
+<input {{$attributes}} type="hidden" name="{{$name}}" value="{{$computed_value($slot)}}">

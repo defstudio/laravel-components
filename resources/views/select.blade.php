@@ -13,21 +13,22 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<div {{$attributes->merge(['class' => 'form-group'])}}>
-    @unless(empty($label))
-        <label for="{{$computed_id()}}">{{$label}}</label>
-    @endunless
 
-    <select
-        name="{{$name}}"
-        id="{{$computed_id()}}"
-        {{$error_attributes()->merge(['class' => 'form-control custom-select' . empty($size)?'':"-$size"])}}
-        {{$multiple?'multiple':''}}>
+@unless(empty($label))
+    <label for="{{$computed_id()}}">{{$label}}</label>
+@endunless
 
-        @foreach($options as $key=>$value)
-            <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
-        @endforeach
+<select
+    name="{{$name}}"
+    id="{{$computed_id()}}"
+    {{$attributes->merge(['class' => 'form-control'])
+                 ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
+                 ->merge($error_attributes())}}
+    {{$multiple?'multiple':''}}>
 
-    </select>
-</div>
+    @foreach($options as $key=>$value)
+        <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
+    @endforeach
+
+</select>
 

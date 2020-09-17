@@ -10,28 +10,25 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<div {{$attributes->merge(['class' => 'form-group'])}}>
-
-    @unless(empty($label))
-        <label for="{{$computed_id()}}">{{$label}}</label>
-    @endunless
+@unless(empty($label))
+    <label for="{{$computed_id()}}">{{$label}}</label>
+@endunless
 
 
-    <div class="input-group">
+<div id="{{$computed_id()}}-input-group" class="input-group">
 
-        <input
-            id="{{$computed_id()}}"
-            type="password"
-            name="{{$name}}"
-            {{$error_attributes()->merge(['class' => 'form-control'])}}
-            value="{{$slot}}">
+    <input
+        id="{{$computed_id()}}"
+        type="password"
+        name="{{$name}}"
+        {{$attributes->merge(['class' => 'form-control'])->merge($error_attributes())}}
+        value="{{$slot}}">
 
-        @isset($append)
-            <div class="input-group-append">
+    @isset($append)
+        <div class="input-group-append">
                 <span class="input-group-text">
                     {{$append}}
                 </span>
-            </div>
-        @endisset
-    </div>
+        </div>
+    @endisset
 </div>
