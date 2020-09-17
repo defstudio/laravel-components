@@ -49,7 +49,7 @@ trait ChecksErrors
         return false;
     }
 
-    public function get_errors(): ViewErrorBag
+    public function get_errors(): ?ViewErrorBag
     {
         return $this->session()->get('errors');
     }

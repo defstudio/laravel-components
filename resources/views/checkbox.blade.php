@@ -14,7 +14,8 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 @if($inline)
-    @if(isset($value_unchecked))
+
+    @if($value_unchecked!='')
         <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
     @endif
 
@@ -24,7 +25,7 @@ use Illuminate\View\ComponentAttributeBag;
     </div>
 @else
     <div {{$attributes->merge(['class' => 'form-group'])}}>
-        @if(isset($value_unchecked))
+        @if($value_unchecked!='')
             <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
         @endif
         <div class="custom-control {{$custom_class}} custom-control-inline">

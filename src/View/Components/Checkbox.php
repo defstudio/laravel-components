@@ -21,7 +21,7 @@ class Checkbox extends Component
     public string $custom_class = 'custom-checkbox';
     private bool $checked;
     public bool $inline;
-    public string $value_unchecked;
+    public string $value_unchecked = '';
     public string $value_checked;
 
 
