@@ -14,6 +14,7 @@ use DefStudio\Components\View\Components\Datatable;
 use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
+use DefStudio\Components\View\Components\LaravelMessages;
 use DefStudio\Components\View\Components\Modal;
 use DefStudio\Components\View\Components\Multiselect;
 use DefStudio\Components\View\Components\Navbar;
@@ -46,6 +47,7 @@ class ComponentServiceProvider extends ServiceProvider
             Icon::class,
             Modal::class,
             Multiselect::class,
+            LaravelMessages::class,
             Navbar::class,
             NavbarNav::class,
             NavbarDropdown::class,
