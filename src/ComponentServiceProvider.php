@@ -14,6 +14,7 @@ use DefStudio\Components\View\Components\Datatable;
 use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
+use DefStudio\Components\View\Components\Modal;
 use DefStudio\Components\View\Components\Multiselect;
 use DefStudio\Components\View\Components\Navbar;
 use DefStudio\Components\View\Components\NavbarDropdown;
@@ -22,6 +23,7 @@ use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Text;
+use DefStudio\Components\View\Components\Tools;
 use Illuminate\Support\ServiceProvider;
 
 class ComponentServiceProvider extends ServiceProvider
@@ -42,6 +44,7 @@ class ComponentServiceProvider extends ServiceProvider
             Form::class,
             Hidden::class,
             Icon::class,
+            Modal::class,
             Multiselect::class,
             Navbar::class,
             NavbarNav::class,
@@ -50,9 +53,12 @@ class ComponentServiceProvider extends ServiceProvider
             Password::class,
             Select::class,
             Text::class,
+            Tools::class,
         ]);
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
+
+        $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
 
 
         $this->publishes([
@@ -63,6 +69,20 @@ class ComponentServiceProvider extends ServiceProvider
             __DIR__ . "/../config/components.php" => config_path('components.php'),
         ], 'config');
 
+        $this->publishes([
+            __DIR__ . "/../resources/lang" => resource_path('lang/vendor/def-components'),
+        ], 'lang');
 
+        $this->publish_js();
+
+    }
+
+    private function publish_js(): void
+    {
+        if (file_exists(public_path('js/defstudio/components/tools.js'))) return;
+
+
+        mkdir(public_path('js/defstudio/components'), 0777, true);
+        symlink(__DIR__ . "/../resources/js/tools.js", public_path('js/defstudio/components/tools.js'));
     }
 }

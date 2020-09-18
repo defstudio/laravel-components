@@ -13,8 +13,6 @@ class Button extends Component
     public string $method;
     public string $confirm;
 
-    implementare il dialog di conferma per poter eliminare <x-button.destroy>
-
     public function __construct(
         string $url = '',
         string $route = '',
