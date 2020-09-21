@@ -11,7 +11,7 @@
         <x-alert type="danger" :dismissable="true"><em>{{session('error')}}</em></x-alert>
     @endif
 
-    @if(count($errors) > 0)
+    @if(count($errors??[]) > 0)
         <x-alert type="danger" :dismissable="true">
             <ul style="margin-bottom: 0">
                 @foreach (array_unique($errors->all()) as $error)
