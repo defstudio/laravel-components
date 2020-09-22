@@ -10,11 +10,11 @@ trait HasId
 
     public string $id = '';
 
-    public function computed_id(): string
+    public function computed_id(string $default = ''): string
     {
         if ($this->id == '') {
-            return $this->dashed_field_name();
+            return $this->dashed_field_name($default);
         }
-        return $this->id ?? '';
+        return $this->id;
     }
 }

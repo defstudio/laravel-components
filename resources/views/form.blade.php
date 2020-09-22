@@ -11,7 +11,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var bool $autocomplete
  */
 
-if ($accept_files) {
+if ($acceptFiles) {
     $attributes = $attributes->merge([
         'enctype' => 'multipart/form-data'
     ]);

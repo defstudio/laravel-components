@@ -12,3 +12,5 @@
 </x-modal>
 
 <script type="text/javascript" src="{{ asset('js/defstudio/components/tools.js') }}" defer></script>
+
+@stack('x-scripts')

@@ -20,9 +20,9 @@ trait HasName
         return $name;
     }
 
-    public function dashed_field_name(): string
+    public function dashed_field_name(string $default = ''): string
     {
-        return $this->array_format_to_dash_notation($this->name ?? '');
+        return $this->array_format_to_dash_notation($this->name ?? $default);
     }
 
     private function array_format_to_dash_notation($name)

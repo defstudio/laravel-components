@@ -11,6 +11,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 $random_id = rand(1, 9999999);
 
+
 $aria_expanded = $collapsed ? 'false' : 'true'
 
 ?>
@@ -21,7 +22,11 @@ $aria_expanded = $collapsed ? 'false' : 'true'
         <div class="card-header" id="card-header-{{$random_id}}">
             <h5 class="mb-0">
                 <span style="cursor: pointer" {{$collapsable?"data-toggle=collapse data-target=#card-body-$random_id aria-expanded=$aria_expanded aria-controls=card-body-$random_id":""}}>
-                   {{$header}}
+                    @empty($icon)
+                        {{$header}}
+                    @else
+                        <x-icon :name="$icon">{{$header}}</x-icon>
+                    @endempty
                 </span>
             </h5>
         </div>

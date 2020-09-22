@@ -13,6 +13,7 @@ class Button extends Component
     public string $method;
     public string $confirm;
 
+
     public function __construct(
         string $url = '',
         string $route = '',

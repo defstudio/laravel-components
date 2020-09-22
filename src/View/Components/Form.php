@@ -7,15 +7,15 @@ class Form extends Component
 {
     public string $method;
     public string $action;
-    public bool $accept_files;
+    public bool $acceptFiles;
     public bool $autocomplete;
     public $model;
 
-    public function __construct(string $method = 'POST', string $action = '', bool $accept_files = false, $autocomplete = false, $model = null)
+    public function __construct(string $method = 'POST', string $action = '', bool $acceptFiles = false, $autocomplete = false, $model = null)
     {
         $this->method = strtoupper($method);
         $this->action = $action;
-        $this->accept_files = $accept_files;
+        $this->acceptFiles = $acceptFiles;
         $this->autocomplete = $autocomplete;
 
         $this->model = $model;
