@@ -11,6 +11,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 
+
 ?>
 
 
@@ -20,13 +21,15 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
     @if($method=='GET')
         <a href="{{$href}}" {{$attributes}} {!! empty($confirm)?'':"onclick='return confirm(`$confirm`)'" !!}>{{$slot}}</a>
     @else
-        <x-form :method="$method" :action="$href">
-            <button type="submit"
-                    {{$attributes}}
-                    @unless(empty($confirm))
-                    onclick="return confirm('{{$confirm}}')"
-                @endunless
-            >{{$slot}}</button>
-        </x-form>
+        <?php $random_id = rand(1, 9999999); ?>
+        <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
+        <button type="submit"
+                form="button-form-{{$random_id}}"
+                {{$attributes}}
+                @unless(empty($confirm))
+                onclick="return confirm('{{$confirm}}')"
+            @endunless
+        >{{$slot}}</button>
+
     @endif
 @endempty
