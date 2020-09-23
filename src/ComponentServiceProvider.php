@@ -19,8 +19,8 @@ use DefStudio\Components\View\Components\LaravelMessages;
 use DefStudio\Components\View\Components\Modal;
 use DefStudio\Components\View\Components\Multiselect;
 use DefStudio\Components\View\Components\Navbar;
-use DefStudio\Components\View\Components\NavbarDropdown;
 use DefStudio\Components\View\Components\NavbarDropdownItem;
+use DefStudio\Components\View\Components\NavbarItem;
 use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
@@ -55,7 +55,7 @@ class ComponentServiceProvider extends ServiceProvider
             LaravelMessages::class,
             Navbar::class,
             NavbarNav::class,
-            NavbarDropdown::class,
+            NavbarItem::class,
             NavbarDropdownItem::class,
             Password::class,
             Select::class,

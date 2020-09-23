@@ -6,23 +6,20 @@ namespace DefStudio\Components\View\Components;
 
 use Illuminate\Support\Arr;
 
-class NavbarDropdown extends Component
+class NavbarItem extends Component
 {
 
     public string $id;
-    public string $label;
     public array $permissions;
     public string $url;
 
     public function __construct(
-        $label = '',
-        $id = null,
-        $permissions=[],
+        $id = '',
+        $permissions = [],
         $url = '#'
     )
     {
-        $this->id = $id??"menu-$label-dropdown";
-        $this->label = $label;
+        $this->id = $id;
         $this->permissions = Arr::wrap($permissions);
         $this->url = $url;
     }
@@ -33,6 +30,6 @@ class NavbarDropdown extends Component
      */
     public function render()
     {
-        return view('def-components::navbar-dropdown');
+        return view('def-components::navbar-item');
     }
 }
