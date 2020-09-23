@@ -9,7 +9,9 @@ use Illuminate\View\ComponentAttributeBag;
  * @var bool $collapsed
  */
 
-$random_id = rand(1, 9999999);
+if (empty($id)) {
+    $id = "card-" . rand(1, 9999999);
+}
 
 
 $aria_expanded = $collapsed ? 'false' : 'true'
@@ -17,11 +19,11 @@ $aria_expanded = $collapsed ? 'false' : 'true'
 ?>
 
 
-<div {{$attributes->merge(['class' => 'card', 'id' => "card-{$random_id}"])}}>
+<div {{$attributes->merge(['class' => 'card', 'id' => $id])}}>
     @if(!empty($header))
-        <div class="card-header" id="card-header-{{$random_id}}">
+        <div class="card-header" id="card-header-{{$id}}">
             <h5 class="mb-0">
-                <span style="cursor: pointer" {{$collapsable?"data-toggle=collapse data-target=#card-body-$random_id aria-expanded=$aria_expanded aria-controls=card-body-$random_id":""}}>
+                <span style="cursor: pointer" {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
                     @empty($icon)
                         {{$header}}
                     @else
@@ -32,7 +34,7 @@ $aria_expanded = $collapsed ? 'false' : 'true'
         </div>
     @endif
 
-    <div id="card-body-{{$random_id}}" class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}" {{$collapsable?"aria-labelledby=card-header-$random_id":""}}>
+    <div id="card-body-{{$id}}" class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}" {{$collapsable?"aria-labelledby=card-header-$id":""}}>
         <div class="card-body">
             {{$slot}}
         </div>

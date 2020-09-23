@@ -23,10 +23,12 @@ class Checkbox extends Component
     public bool $inline;
     public string $value_unchecked = '';
     public string $value_checked;
+    public string $modelField;
 
 
-    public function __construct(string $name, $value = '1', ?bool $checked = false, bool $inline = false, string $id = '')
+    public function __construct(string $name, $value = '1', ?bool $checked = false, bool $inline = false, string $id = '', string $modelField = 'id')
     {
+        $this->modelField = $modelField;
         $this->name = $name;
         $this->checked = (bool)$checked;
         $this->inline = $inline;
@@ -54,7 +56,7 @@ class Checkbox extends Component
         $computed_value = $this->computed_value($this->checked);
 
         if ($computed_value instanceof Collection) {
-            return $this->checked;
+            return $computed_value->contains($this->modelField, $this->value_checked);
         } else if ($this->is_array()) {
             $computed_values = Arr::wrap($computed_value);
 

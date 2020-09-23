@@ -90,24 +90,30 @@ class ComponentServiceProvider extends ServiceProvider
 
     private function publish_assets(): void
     {
-        if (!file_exists(public_path('js/defstudio/components'))) {
-            mkdir(public_path('js/defstudio/components'), 0777, true);
-        }
-        if (!file_exists(public_path('css/defstudio/components'))) {
-            mkdir(public_path('css/defstudio/components'), 0777, true);
-        }
+        $this->publish_js();
 
-        if (!file_exists(public_path('js/defstudio/components/tools.js'))) {
-            symlink(__DIR__ . "/../resources/js/tools.js", public_path('js/defstudio/components/tools.js'));
-        }
-        if (!file_exists(public_path('js/defstudio/components/summernote-bs4.js'))) {
-            symlink(__DIR__ . "/../resources/js/summernote-bs4.js", public_path('js/defstudio/components/summernote-bs4.js'));
-        }
-        if (!file_exists(public_path('css/defstudio/components/summernote-bs4.css'))) {
-            symlink(__DIR__ . "/../resources/css/summernote-bs4.css", public_path('css/defstudio/components/summernote-bs4.css'));
-        }
-
-
+        $this->publish_css();
     }
 
+    private function publish_js()
+    {
+        if (!file_exists(public_path('js/defstudio'))) {
+            mkdir(public_path('js/defstudio'), 0777, true);
+        }
+
+        if (!file_exists(public_path('js/defstudio/components'))) {
+            symlink(__DIR__ . "/../resources/js", public_path('js/defstudio/components'));
+        }
+    }
+
+    private function publish_css()
+    {
+        if (!file_exists(public_path('css/defstudio'))) {
+            mkdir(public_path('css/defstudio'), 0777, true);
+        }
+
+        if (!file_exists(public_path('css/defstudio/components'))) {
+            symlink(__DIR__ . "/../resources/css", public_path('css/defstudio/components'));
+        }
+    }
 }
