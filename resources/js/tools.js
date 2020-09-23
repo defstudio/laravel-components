@@ -158,7 +158,7 @@ $('select[multiple]').selectpicker();
 //</editor-fold>
 
 //<editor-fold desc="Summernote">
-windows.tools.summernote = {
+window.tools.summernote = {
     setup: () => {
         let $summernotes = $(".summernote:not(#templates *):not('.summernote-setup')");
 

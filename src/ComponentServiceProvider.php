@@ -26,6 +26,7 @@ use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
 use DefStudio\Components\View\Components\Text;
+use DefStudio\Components\View\Components\TextArea;
 use DefStudio\Components\View\Components\ToggleButton;
 use DefStudio\Components\View\Components\Tools;
 use Illuminate\Support\ServiceProvider;
@@ -60,11 +61,13 @@ class ComponentServiceProvider extends ServiceProvider
             Select::class,
             Styles::class,
             Text::class,
+            TextArea::class,
             ToggleButton::class,
             Tools::class,
         ]);
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
+
 
         $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
 

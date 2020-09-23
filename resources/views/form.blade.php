@@ -32,7 +32,7 @@ if (!$autocomplete) {
     @endif
 
     @if(in_array($method, ['DELETE', 'PATCH', 'PUT']))
-        <input type="hidden" name="_method" value="{{$method}}">
+        @method($method)
     @endif
 
     {{$slot}}
