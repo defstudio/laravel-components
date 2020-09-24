@@ -2,7 +2,7 @@
     <p class="modal-message"></p>
 </x-modal>
 
-<x-modal id="tools_question_modal" title="&nbsp;" size="sm">
+<x-modal id="tools_question_modal" title="&nbsp" size="sm">
     <p class="modal-message"></p>
 
     <x-slot name="footer">
@@ -15,3 +15,5 @@
 <script type="text/javascript" src="{{ asset('js/defstudio/components/tools.js') }}" defer></script>
 
 @stack('x-scripts')
+
+@stack('x-html')

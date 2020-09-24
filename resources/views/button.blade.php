@@ -16,20 +16,53 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 
 
 @empty($href)
-    <button type="{{$type}}" {{$attributes}}>{{$slot}}</button>
+    <button type="{{$type}}"
+            {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
+            data-confirm-message="{{$confirm}}"
+    >{{$slot}}</button>
 @else
     @if($method=='GET')
-        <a href="{{$href}}" {{$attributes}} {!! empty($confirm)?'':"onclick='return confirm(`$confirm`)'" !!}>{{$slot}}</a>
+        <a href="{{$href}}"
+           {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
+           data-confirm-message="{{$confirm}}"
+        >{{$slot}}</a>
     @else
         <?php $random_id = rand(1, 9999999); ?>
-        <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
+
+        @push('x-html')
+            <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
+        @endpush
+
         <button type="submit"
                 form="button-form-{{$random_id}}"
-                {{$attributes}}
-                @unless(empty($confirm))
-                onclick="return confirm('{{$confirm}}')"
-            @endunless
+                {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
+                data-confirm-message="{{$confirm}}"
         >{{$slot}}</button>
 
     @endif
 @endempty
+
+
+@once
+@push('x-scripts')
+    <script>
+        $(document).ready(function () {
+            $('a.confirmable,button.confirmable').click(function (evt, confirmed = false) {
+                const $button = $(this);
+                const message = $button.data('confirm-message');
+
+                if (!confirmed) {
+                    evt.preventDefault();
+
+                    tools.confirm.danger('', message).then(confirmed => {
+                        if (confirmed) {
+                            $button.trigger('click', {confirmed});
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+@endpush
+@endonce
+

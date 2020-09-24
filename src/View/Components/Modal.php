@@ -9,6 +9,7 @@ class Modal extends Component
     public string $id;
     public bool $scrollable;
     public string $size;
+    public string $title;
 
     /**
      * Modal constructor.
@@ -27,7 +28,7 @@ class Modal extends Component
         $this->id = $id;
         $this->scrollable = $scrollable;
         $this->size = $size;
-        $this->size = $title;
+        $this->title = $title;
     }
 
 

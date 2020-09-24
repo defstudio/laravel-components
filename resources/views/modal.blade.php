@@ -34,7 +34,9 @@ use Illuminate\View\ComponentAttributeBag;
             </div>
 
             @unless(empty($footer))
-                {{$footer}}
+                <div class="modal-footer">
+                    {{$footer}}
+                </div>
             @endunless
         </div>
     </div>

@@ -22,6 +22,7 @@ use DefStudio\Components\View\Components\Navbar;
 use DefStudio\Components\View\Components\NavbarDropdownItem;
 use DefStudio\Components\View\Components\NavbarItem;
 use DefStudio\Components\View\Components\NavbarNav;
+use DefStudio\Components\View\Components\Number;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
@@ -57,6 +58,7 @@ class ComponentServiceProvider extends ServiceProvider
             NavbarNav::class,
             NavbarItem::class,
             NavbarDropdownItem::class,
+            Number::class,
             Password::class,
             Select::class,
             Styles::class,

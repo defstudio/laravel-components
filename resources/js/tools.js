@@ -1,6 +1,67 @@
-window.tools = {
-    route: route,
+window.tools = {}
+
+//<editor-fold desc="Laravel Routes">
+// noinspection JSUnresolvedVariable
+tools.route = route;
+//</editor-fold>
+
+//<editor-fold desc="Numbers">
+tools.numbers = {
+    random: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
 }
+//</editor-fold>
+
+//<editor-fold desc="Arrays">
+tools.arrays = {
+    get: (obj, path, def = undefined) => {
+        let stringToPath = function (path) {
+
+            // If the path isn't a string, return it
+            if (typeof path !== 'string') return path;
+
+            // Create new array
+            let output = [];
+
+            // Split to an array with dot notation
+            path.split('.').forEach(function (item) {
+
+                // Split to an array with bracket notation
+                item.split(/\[([^}]+)]/g).forEach(function (key) {
+
+                    // Push to the new array
+                    if (key.length > 0) {
+                        output.push(key);
+                    }
+
+                });
+
+            });
+
+            return output;
+
+        };
+
+        // Get the path as an array
+        path = stringToPath(path);
+
+        // Cache the current object
+        let current = obj;
+
+        // For each item in the path, dig into the object
+        for (let i = 0; i < path.length; i++) {
+
+            // If the item isn't found, return the default (or null)
+            if (current[path[i]] === undefined) return def;
+
+            // Otherwise, update the current  value
+            current = current[path[i]];
+
+        }
+
+        return current;
+    }
+}
+//</editor-fold>
 
 //<editor-fold desc="Modals">
 
@@ -74,6 +135,21 @@ tools.modal = {
 };
 //</editor-fold>
 
+//<editor-fold desc="Confirm">
+tools.confirm = {
+    danger: function (title, message) {
+        return new Promise((resolve) => {
+            tools.modal.danger(title, message, function () {
+                resolve(true);
+            }, function () {
+                resolve(false);
+            });
+        });
+    }
+}
+//</editor-fold>
+
+
 //<editor-fold desc="Messages">
 //message modal
 let $message_modal = $('#tools_message_modal');
@@ -113,6 +189,151 @@ tools.message = {
         $message_modal.modal('show');
     },
 };
+//</editor-fold>
+
+//<editor-fold desc="Templates">
+const $templates = $('#templates');
+tools.templates = {
+    make: function (selector, $destination = null, data = null, context = null) {
+        let $element;
+        if (context) {
+            $element = $templates.find(`[data-context=${context}] ${selector}`).eq(0).clone();
+        } else {
+            $element = $templates.find(selector).eq(0).clone();
+        }
+
+        if ($element.length === 0) {
+            console.error(`[Tools] Template not found: ${selector}`);
+            return null;
+        }
+
+        if ($destination) {
+            $destination.append($element);
+        }
+
+        if (data) {
+            return tools.templates.compile($element, data);
+        } else {
+            return $element;
+        }
+    },
+    compile: function ($template, data) {
+        if ($template.length === 0) {
+            console.error("Empty template, cannot compile");
+            return $template;
+        }
+
+        if (data === null) return $template;
+
+        $template.find('[data-show-if]').each(function () {
+
+            let $element = $(this);
+            let conditions = $element.data('show-if');
+
+
+            let and_conditions = conditions.split('&&');
+
+            let all_condition_valid = and_conditions.every(and_condition => {
+
+                let or_conditions = and_condition.split('||');
+
+                return or_conditions.some(condition => {
+
+                    if (condition.substring(0, 1) === '!') {
+                        condition = condition.substr(1);
+                        return data[condition] === undefined || !data[condition];
+                    } else {
+                        return data[condition] !== undefined && data[condition];
+                    }
+                });
+
+            });
+
+
+            if (!all_condition_valid) {
+                $element.remove();
+            }
+
+
+        });
+
+
+        $template.addClass('template-under-processing');
+        $template.wrap('<div class="template-container"></div>');
+
+        let $container = $template.closest('.template-container');
+
+        let html = $container.html();
+
+        let matched_keys = html.match(new RegExp(`:[_A-Za-z0-9\.]*:`, "g"));
+        for (let key of matched_keys) {
+            key = key.split(':').join('');
+
+            let value = tools.arrays.get(data, key);
+            if (value !== undefined) {
+                html = html.replace(new RegExp(`\\:${key}\\:`, "g"), value);
+            }
+        }
+
+        $container.html(html);
+
+
+        $template = $container.find('.template-under-processing');
+        $template.removeClass('template-under-processing');
+        $container.after($template);
+        $container.remove();
+
+
+        $template.find('[data-loop]').each(function () {
+            let $element = $(this);
+
+            let array_key = $element.data('loop');
+            $element.removeAttr("data-loop");
+
+            let $loop_template = $element.clone();
+
+            $.each(tools.arrays.get(data, array_key), (loop_key, loop_value) => {
+                let $new = $loop_template.clone();
+
+                $element.after($new);
+
+                let $wrap = $new.wrap('<div/>').parent();
+
+
+                let matched_keys = $wrap.html().match(new RegExp(`:[_A-Za-z0-9\.]*:`, "g"));
+                for (let key of matched_keys) {
+                    key = key.split(':').join('');
+
+                    if (key === 'value') {
+                        $wrap.html($wrap.html().replace(new RegExp(":value:", "g"), loop_value));
+                        $wrap.val($wrap.val().replace(new RegExp(":value:", "g"), loop_value));
+                    } else if (key === 'key') {
+                        $wrap.html($wrap.html().replace(new RegExp(":key:", "g"), loop_key));
+                        $wrap.val($wrap.val().replace(new RegExp(":key:", "g"), loop_key));
+                    } else {
+                        key = key.replace('value.', '');
+                        let value = tools.arrays.get(loop_value, key);
+
+                        if (value === undefined) value = '';
+                        $wrap.html($wrap.html().replace(new RegExp(`:value.${key}:`, "g"), value));
+                        $wrap.val($wrap.val().replace(new RegExp(`:value.${key}:`, "g"), value));
+                    }
+
+
+                }
+
+                $wrap.replaceWith($wrap.children());
+
+
+            });
+
+            $element.remove();
+        });
+
+
+        return $template;
+    }
+}
 //</editor-fold>
 
 //<editor-fold desc="Password">
@@ -158,7 +379,7 @@ $('select[multiple]').selectpicker();
 //</editor-fold>
 
 //<editor-fold desc="Summernote">
-window.tools.summernote = {
+tools.summernote = {
     setup: () => {
         let $summernotes = $(".summernote:not(#templates *):not('.summernote-setup')");
 
