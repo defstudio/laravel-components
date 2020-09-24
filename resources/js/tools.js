@@ -145,6 +145,24 @@ tools.confirm = {
                 resolve(false);
             });
         });
+    },
+    success: function (title, message) {
+        return new Promise((resolve) => {
+            tools.modal.success(title, message, function () {
+                resolve(true);
+            }, function () {
+                resolve(false);
+            });
+        });
+    },
+    warning: function (title, message) {
+        return new Promise((resolve) => {
+            tools.modal.warning(title, message, function () {
+                resolve(true);
+            }, function () {
+                resolve(false);
+            });
+        });
     }
 }
 //</editor-fold>
