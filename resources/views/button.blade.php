@@ -46,22 +46,22 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 @once
 @push('x-scripts')
     <script>
-        $(document).ready(function () {
-            $('a.confirmable,button.confirmable').click(function (evt, confirmed = false) {
-                const $button = $(this);
-                const message = $button.data('confirm-message');
 
-                if (!confirmed) {
-                    evt.preventDefault();
+        $(document).on('click', 'a.confirmable,button.confirmable', function (evt, confirmed = false) {
+            const $button = $(this);
+            const message = $button.data('confirm-message');
 
-                    tools.confirm.danger('', message).then(confirmed => {
-                        if (confirmed) {
-                            $button.trigger('click', {confirmed});
-                        }
-                    });
-                }
-            });
+            if (!confirmed) {
+                evt.preventDefault();
+
+                tools.confirm.danger('', message).then(confirmed => {
+                    if (confirmed) {
+                        $button.trigger('click', {confirmed});
+                    }
+                });
+            }
         });
+
     </script>
 @endpush
 @endonce
