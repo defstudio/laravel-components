@@ -46,7 +46,6 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 @once
 @push('x-scripts')
     <script>
-
         $(document).on('click', 'a.confirmable,button.confirmable', function (evt, confirmed = false) {
             const $button = $(this);
             const message = $button.data('confirm-message');
@@ -61,7 +60,6 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
                 });
             }
         });
-
     </script>
 @endpush
 @endonce
