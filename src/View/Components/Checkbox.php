@@ -21,17 +21,27 @@ class Checkbox extends Component
     public string $custom_class = 'custom-checkbox';
     private bool $checked;
     public bool $inline;
+    public bool $readonly;
     public string $value_unchecked = '';
     public string $value_checked;
     public string $modelField;
 
 
-    public function __construct(string $name, $value = '1', ?bool $checked = false, bool $inline = false, string $id = '', string $modelField = 'id')
+    public function __construct(
+        string $name,
+        $value = '1',
+        $checked = false,
+        bool $inline = false,
+        string $id = '',
+        string $modelField = 'id',
+        bool $readonly = false
+    )
     {
         $this->modelField = $modelField;
         $this->name = $name;
         $this->checked = (bool)$checked;
         $this->inline = $inline;
+        $this->readonly = $readonly;
         $this->id = $id;
 
         if (is_array($value)) {

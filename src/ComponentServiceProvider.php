@@ -10,7 +10,7 @@ use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Context;
-use DefStudio\Components\View\Components\Datatable;
+use DefStudio\Components\View\Components\Fieldset;
 use DefStudio\Components\View\Components\File;
 use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
@@ -26,6 +26,7 @@ use DefStudio\Components\View\Components\Number;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
+use DefStudio\Components\View\Components\Table;
 use DefStudio\Components\View\Components\Text;
 use DefStudio\Components\View\Components\TextArea;
 use DefStudio\Components\View\Components\ToggleButton;
@@ -46,7 +47,8 @@ class ComponentServiceProvider extends ServiceProvider
             Checkbox::class,
             CheckboxSwitch::class,
             Context::class,
-            Datatable::class,
+            Table::class,
+            Fieldset::class,
             File::class,
             Form::class,
             Hidden::class,

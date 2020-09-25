@@ -25,14 +25,20 @@ if ($is_array()) {
     <input type="hidden" name="{{$name}}" value="{{$value_unchecked}}">
 @endif
 
+@if($readonly)
+    <input type="hidden" name="{{$name}}" value="{{$value_checked}}">
+@endif
+
 <div class="custom-control {{$custom_class}} {{$inline?'custom-control-inline':''}}">
     <input
-            type="checkbox"
-            id="{{$checkbox_id}}"
-            name="{{$name}}"
-            value="{{$value_checked}}"
-            {{$attributes->merge(['class' => "custom-control-input"])}}
-            {{$is_checked()?'checked':''}}
+        type="checkbox"
+        id="{{$checkbox_id}}"
+        name="{{$name}}"
+        value="{{$value_checked}}"
+        {{$attributes->merge(['class' => "custom-control-input"])}}
+        {{$is_checked()?'checked':''}}
+
+        {{$readonly?'disabled':''}}
     />
     <label for="{{$checkbox_id}}" class="custom-control-label" style="cursor:pointer;">{{$slot}}</label>
 </div>

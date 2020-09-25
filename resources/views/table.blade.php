@@ -10,7 +10,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<table {{$attributes->merge(['class' => 'table table-sm table-responsive-md table-hover table-bordered'])}}>
+<table id="{{$id}}" {{$attributes->merge(['class' => 'table table-sm table-responsive-md table-hover table-bordered'])}}>
     <thead>
     @isset($header)
         {{$header}}
@@ -33,3 +33,14 @@ use Illuminate\View\ComponentAttributeBag;
         </tfoot>
     @endisset
 </table>
+
+@unless(empty($datatable))
+    @push('x-scripts')
+        <script type="text/javascript">
+            console.log('test');
+            $(document).ready(function () {
+                $('#{{$id}}').DataTable({{$datatable}});
+            });
+        </script>
+    @endpush
+@endif
