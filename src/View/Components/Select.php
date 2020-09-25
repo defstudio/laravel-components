@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 class Select extends Input
 {
 
+    public string $unselected;
     public array $options;
     public string $label;
     public ?string $size;
@@ -25,6 +26,7 @@ class Select extends Input
         array $options = [],
         string $size = null,
         bool $multiple = false,
+        string $unselected = '',
         $selected = ''
     )
     {
@@ -35,6 +37,7 @@ class Select extends Input
         $this->size = $size;
         $this->multiple = $multiple;
         $this->selected = $selected;
+        $this->unselected = $unselected;
     }
 
     /**

@@ -26,6 +26,10 @@ use Illuminate\View\ComponentAttributeBag;
                  ->merge($error_attributes())}}
     {{$multiple?'multiple':''}}>
 
+    @if(!empty($unselected))
+        <option value="">{{$unselected}}</option>
+    @endif
+
     @foreach($options as $key=>$value)
         <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
     @endforeach
