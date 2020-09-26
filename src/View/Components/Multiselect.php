@@ -14,6 +14,14 @@ class Multiselect extends Select
         array $selected = []
     )
     {
-        parent::__construct($name, $id = '', $label, $options, '', true, $selected);
+        parent::__construct(
+            $name,
+            $id = '',
+            $label,
+            $options,
+            '',
+            true,
+            '',
+            $selected);
     }
 }
