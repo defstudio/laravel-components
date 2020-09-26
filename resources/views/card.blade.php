@@ -19,7 +19,9 @@ $aria_expanded = $collapsed ? 'false' : 'true'
 ?>
 
 
-<div {{$attributes->merge(['class' => 'card', 'id' => $id])}}>
+<div {{$attributes->merge(['class' => 'card', 'id' => $id])
+                  ->merge(['class' => $attributes->get('invalid','')=='invalid'?'border-danger':''])}}>
+
     @if(!empty($header))
         <div class="card-header" id="card-header-{{$id}}">
             <h5 class="mb-0">
