@@ -37,7 +37,6 @@ use Illuminate\View\ComponentAttributeBag;
 @unless(empty($datatable))
     @push('x-scripts')
         <script type="text/javascript">
-            console.log('test');
             $(document).ready(function () {
                 $('#{{$id}}').DataTable({{$datatable}});
             });
