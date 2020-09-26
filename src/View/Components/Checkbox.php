@@ -63,6 +63,8 @@ class Checkbox extends Component
     public function is_checked(): bool
     {
 
+        if ($this->checked) return true;
+
         $computed_value = $this->computed_value($this->checked);
 
         if ($computed_value instanceof Collection) {
