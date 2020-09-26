@@ -25,7 +25,6 @@ if (!$autocomplete) {
 
 ?>
 
-
 <form action="{{$action}}" method="{{$method=='GET'?'GET':'POST'}}" {{$attributes}}>
     @if($method!='GET')
         @csrf
