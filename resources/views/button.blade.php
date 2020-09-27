@@ -11,21 +11,20 @@ use Illuminate\View\ComponentAttributeBag;
 
 $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 
-
+if (!empty($confirm)) {
+    $attributes->merge([
+        'class' => 'confirmable',
+        'data-confirm-message', $confirm
+    ]);
+}
 ?>
 
 
 @empty($href)
-    <button type="{{$type}}"
-            {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
-            data-confirm-message="{{$confirm}}"
-    >{{$slot}}</button>
+    <button type="{{$type}}" {{$attributes}}>{{$slot}}</button>
 @else
     @if($method=='GET')
-        <a href="{{$href}}"
-           {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
-           data-confirm-message="{{$confirm}}"
-        >{{$slot}}</a>
+        <a href="{{$href}}" {{$attributes}}>{{$slot}}</a>
     @else
         <?php $random_id = rand(1, 9999999); ?>
 
@@ -33,21 +32,17 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
             <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
         @endpush
 
-        <button type="submit"
-                form="button-form-{{$random_id}}"
-                {{$attributes->merge(['class'=>empty($confirm)?'':'confirmable'])}}
-                data-confirm-message="{{$confirm}}"
-        >{{$slot}}</button>
+        <button type="submit" form="button-form-{{$random_id}}" {{$attributes}}>{{$slot}}</button>
 
     @endif
 @endempty
 
 
 @once
-@push('x-scripts')
-    <script>
-        $(document).on('click', 'a.confirmable,button.confirmable', function (evt, confirmed = false) {
-            const $button = $(this);
+    @push('x-scripts')
+        <script>
+            $(document).on('click', 'a.confirmable,button.confirmable', function (evt, confirmed = false) {
+                const $button = $(this);
             const message = $button.data('confirm-message');
 
             if (!confirmed) {
