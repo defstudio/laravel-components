@@ -21,7 +21,9 @@ use Illuminate\View\ComponentAttributeBag;
         id="{{$computed_id()}}"
         type="password"
         name="{{$name}}"
-        {{$attributes->merge(['class' => 'form-control'])->merge($error_attributes())}}
+        {{$attributes->merge(['class' => 'form-control'])
+                     ->merge(['autocomplete' => 'new-password'])
+                     ->merge($error_attributes())}}
         value="{{$slot}}">
 
     @isset($append)

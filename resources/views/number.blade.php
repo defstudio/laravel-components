@@ -18,13 +18,15 @@ use Illuminate\View\ComponentAttributeBag;
 <div id="{{$computed_id()}}-input-group" class="input-group">
 
     <input
-            id="{{$computed_id()}}"
-            type="number"
-            name="{{$name}}"
-            {{isset($min)?"min='$min'":''}}
-            {{isset($max)?"max='$max'":''}}
-            {{$attributes->merge(['class' => 'form-control'])->merge($error_attributes())}}
-            value="{{$computed_value($slot)}}">
+        id="{{$computed_id()}}"
+        type="number"
+        name="{{$name}}"
+        {{isset($min)?"min='$min'":''}}
+        {{isset($max)?"max='$max'":''}}
+        {{$attributes->merge(['class' => 'form-control'])
+                     ->merge(['autocomplete' => 'nope'])
+                     ->merge($error_attributes())}}
+        value="{{$computed_value($slot)}}">
 
     @isset($append)
         <div class="input-group-append">

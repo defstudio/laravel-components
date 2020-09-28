@@ -21,7 +21,9 @@ use Illuminate\View\ComponentAttributeBag;
         id="{{$computed_id()}}"
         type="text"
         name="{{$name}}"
-        {{$attributes->merge(['class' => 'form-control'])->merge($error_attributes())}}
+        {{$attributes->merge(['class' => 'form-control'])
+                     ->merge(['autocomplete' => 'nope'])
+                     ->merge($error_attributes())}}
         value="{{$computed_value($slot)}}">
 
     @isset($append)
