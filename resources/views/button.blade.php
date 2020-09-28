@@ -14,7 +14,7 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 if (!empty($confirm)) {
     $attributes = $attributes->merge([
         'class' => 'confirmable',
-        'data-confirm-message', $confirm
+        'data-confirm-message' => $confirm,
     ]);
 }
 ?>
@@ -43,19 +43,19 @@ if (!empty($confirm)) {
         <script>
             $(document).on('click', 'a.confirmable,button.confirmable', function (evt, confirmed = false) {
                 const $button = $(this);
-            const message = $button.data('confirm-message');
+                const message = $button.data('confirm-message');
 
-            if (!confirmed) {
-                evt.preventDefault();
+                if (!confirmed) {
+                    evt.preventDefault();
 
-                tools.confirm.danger('', message).then(confirmed => {
-                    if (confirmed) {
-                        $button.trigger('click', {confirmed});
-                    }
-                });
-            }
-        });
-    </script>
-@endpush
+                    tools.confirm.danger('', message).then(confirmed => {
+                        if (confirmed) {
+                            $button.trigger('click', {confirmed});
+                        }
+                    });
+                }
+            });
+        </script>
+    @endpush
 @endonce
 
