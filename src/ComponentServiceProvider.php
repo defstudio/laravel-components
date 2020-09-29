@@ -5,6 +5,7 @@ namespace DefStudio\Components;
 
 
 use DefStudio\Components\View\Components\Alert;
+use DefStudio\Components\View\Components\Box;
 use DefStudio\Components\View\Components\Button;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
