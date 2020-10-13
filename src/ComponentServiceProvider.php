@@ -5,7 +5,6 @@ namespace DefStudio\Components;
 
 
 use DefStudio\Components\View\Components\Alert;
-use DefStudio\Components\View\Components\Box;
 use DefStudio\Components\View\Components\Button;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
@@ -25,6 +24,7 @@ use DefStudio\Components\View\Components\NavbarItem;
 use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Number;
 use DefStudio\Components\View\Components\Password;
+use DefStudio\Components\View\Components\Percent;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
 use DefStudio\Components\View\Components\Table;
@@ -63,6 +63,7 @@ class ComponentServiceProvider extends ServiceProvider
             NavbarDropdownItem::class,
             Number::class,
             Password::class,
+            Percent::class,
             Select::class,
             Styles::class,
             Text::class,
