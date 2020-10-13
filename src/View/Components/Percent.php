@@ -9,6 +9,7 @@ class Percent extends Input
     public string $label;
     public ?int $max;
     public ?int $min;
+    public $append = '%';
 
     public function __construct(
         string $name,
@@ -30,6 +31,6 @@ class Percent extends Input
      */
     public function render()
     {
-        return view('def-components::number', ['append', '%']);
+        return view('def-components::number');
     }
 }
