@@ -48,7 +48,7 @@ if (!empty($confirm)) {
                 if (!confirmed) {
                     evt.preventDefault();
 
-                    tools.confirm.danger('', message).then(confirmed => {
+                    deftools.confirm.danger('', message).then(confirmed => {
                         if (confirmed) {
                             $button.trigger('click', {confirmed});
                         }

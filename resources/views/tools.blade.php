@@ -1,8 +1,8 @@
-<x-modal id="tools_message_modal" title="&nbsp;" size="sm">
+<x-modal id="deftools_message_modal" title="&nbsp;" size="sm">
     <p class="modal-message"></p>
 </x-modal>
 
-<x-modal id="tools_question_modal" title="&nbsp" size="sm">
+<x-modal id="deftools_question_modal" title="&nbsp" size="sm">
     <p class="modal-message"></p>
 
     <x-slot name="footer">

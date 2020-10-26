@@ -1,18 +1,18 @@
-window.tools = {}
+window.deftools = {}
 
 //<editor-fold desc="Laravel Routes">
 // noinspection JSUnresolvedVariable
-tools.route = route;
+deftools.route = route;
 //</editor-fold>
 
 //<editor-fold desc="Numbers">
-tools.numbers = {
+deftools.numbers = {
     random: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
 }
 //</editor-fold>
 
 //<editor-fold desc="Arrays">
-tools.arrays = {
+deftools.arrays = {
     get: (obj, path, def = undefined) => {
         let stringToPath = function (path) {
 
@@ -66,7 +66,7 @@ tools.arrays = {
 //<editor-fold desc="Modals">
 
 //question modal
-let $question_modal = $('#tools_question_modal');
+let $question_modal = $('#deftools_question_modal');
 $question_modal.modal({
     show: false,
     keyboard: true
@@ -87,7 +87,7 @@ function reset_question_modal() {
     $question_modal.off('.question_handling');
 }
 
-tools.modal = {
+deftools.modal = {
     success: function (title, message, ok_action = function () {
     }, abort_action = function () {
     }) {
@@ -136,10 +136,10 @@ tools.modal = {
 //</editor-fold>
 
 //<editor-fold desc="Confirm">
-tools.confirm = {
+deftools.confirm = {
     danger: function (title, message) {
         return new Promise((resolve) => {
-            tools.modal.danger(title, message, function () {
+            deftools.modal.danger(title, message, function () {
                 resolve(true);
             }, function () {
                 resolve(false);
@@ -148,7 +148,7 @@ tools.confirm = {
     },
     success: function (title, message) {
         return new Promise((resolve) => {
-            tools.modal.success(title, message, function () {
+            deftools.modal.success(title, message, function () {
                 resolve(true);
             }, function () {
                 resolve(false);
@@ -157,7 +157,7 @@ tools.confirm = {
     },
     warning: function (title, message) {
         return new Promise((resolve) => {
-            tools.modal.warning(title, message, function () {
+            deftools.modal.warning(title, message, function () {
                 resolve(true);
             }, function () {
                 resolve(false);
@@ -170,7 +170,7 @@ tools.confirm = {
 
 //<editor-fold desc="Messages">
 //message modal
-let $message_modal = $('#tools_message_modal');
+let $message_modal = $('#deftools_message_modal');
 $message_modal.modal({
     show: false,
     keyboard: true
@@ -184,7 +184,7 @@ function reset_message_modal() {
     $message_modal.find('.modal-message').html("");
 }
 
-tools.message = {
+deftools.message = {
     success: function (title, message) {
         reset_message_modal();
         $message_modal.find('.modal-header').addClass('bg-success');
@@ -211,7 +211,7 @@ tools.message = {
 
 //<editor-fold desc="Templates">
 const $templates = $('#templates');
-tools.templates = {
+deftools.templates = {
     make: function (selector, $destination = null, data = null, context = null) {
         let $element;
         if (context) {
@@ -221,7 +221,7 @@ tools.templates = {
         }
 
         if ($element.length === 0) {
-            console.error(`[Tools] Template not found: ${selector}`);
+            console.error(`[deftools] Template not found: ${selector}`);
             return null;
         }
 
@@ -230,7 +230,7 @@ tools.templates = {
         }
 
         if (data) {
-            return tools.templates.compile($element, data);
+            return deftools.templates.compile($element, data);
         } else {
             return $element;
         }
@@ -287,7 +287,7 @@ tools.templates = {
         for (let key of matched_keys) {
             key = key.split(':').join('');
 
-            let value = tools.arrays.get(data, key);
+            let value = deftools.arrays.get(data, key);
             if (value !== undefined) {
                 html = html.replace(new RegExp(`\\:${key}\\:`, "g"), value);
             }
@@ -310,7 +310,7 @@ tools.templates = {
 
             let $loop_template = $element.clone();
 
-            $.each(tools.arrays.get(data, array_key), (loop_key, loop_value) => {
+            $.each(deftools.arrays.get(data, array_key), (loop_key, loop_value) => {
                 let $new = $loop_template.clone();
 
                 $element.after($new);
@@ -330,7 +330,7 @@ tools.templates = {
                         $wrap.val($wrap.val().replace(new RegExp(":key:", "g"), loop_key));
                     } else {
                         key = key.replace('value.', '');
-                        let value = tools.arrays.get(loop_value, key);
+                        let value = deftools.arrays.get(loop_value, key);
 
                         if (value === undefined) value = '';
                         $wrap.html($wrap.html().replace(new RegExp(`:value.${key}:`, "g"), value));
@@ -371,7 +371,7 @@ $(document).on('click', '.password-generator', function (e) {
         let data_size = $password_field.data('password-size');
         let dataset = $password_field.data('character-set');
 
-        axios.get(tools.route('users.generate_password', {size: data_size, dataset: dataset}))
+        axios.get(deftools.route('users.generate_password', {size: data_size, dataset: dataset}))
             .then(response => {
                 let password = response.data;
                 $password_field.val(password);
@@ -397,7 +397,7 @@ $('select[multiple]').selectpicker();
 //</editor-fold>
 
 //<editor-fold desc="Summernote">
-tools.summernote = {
+deftools.summernote = {
     setup: () => {
         let $summernotes = $(".summernote:not(#templates *):not('.summernote-setup')");
 
@@ -440,6 +440,6 @@ tools.summernote = {
         });
     }
 };
-tools.summernote.setup();
+deftools.summernote.setup();
 
 //</editor-fold>
