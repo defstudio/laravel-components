@@ -28,6 +28,7 @@ use DefStudio\Components\View\Components\Percent;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
 use DefStudio\Components\View\Components\Table;
+use DefStudio\Components\View\Components\TemplateAttachment;
 use DefStudio\Components\View\Components\Text;
 use DefStudio\Components\View\Components\TextArea;
 use DefStudio\Components\View\Components\ToggleButton;
@@ -66,11 +67,14 @@ class ComponentServiceProvider extends ServiceProvider
             Percent::class,
             Select::class,
             Styles::class,
+            TemplateAttachment::class,
             Text::class,
             TextArea::class,
             ToggleButton::class,
             Tools::class,
         ]);
+
+        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
 
