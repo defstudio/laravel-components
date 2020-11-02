@@ -12,16 +12,19 @@ class NavbarItem extends Component
     public string $id;
     public array $permissions;
     public string $url;
+    public string $target;
 
     public function __construct(
-        $id = '',
-        $permissions = [],
-        $url = '#'
+        string $id = '',
+        array $permissions = [],
+        string $url = '#',
+        string $target = ''
     )
     {
         $this->id = $id;
         $this->permissions = Arr::wrap($permissions);
         $this->url = $url;
+        $this->target = $target;
     }
 
 

@@ -22,9 +22,9 @@ if (empty($id)) {
            role="button"
            id="{{$id}}"
            class="nav-link {{isset($dropdown)?'dropdown-toggle':''}}"
-           @isset($dropdown)
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            @endisset
+           @isset($dropdown) data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @endisset
+           @if(!empty($target)) target="{{$target}}" @endif
+
         >
             {{$slot}}
         </a>
