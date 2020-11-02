@@ -16,7 +16,7 @@ class NavbarItem extends Component
 
     public function __construct(
         string $id = '',
-        array $permissions = [],
+        $permissions = [],
         string $url = '#',
         string $target = ''
     )
