@@ -12,10 +12,11 @@ class CheckboxSwitch extends Checkbox
         bool $inline = false,
         string $id = '',
         string $modelField = 'id',
-        bool $readonly = false
+        bool $readonly = false,
+        string $containerClass = ''
     )
     {
-        parent::__construct($name, $value, $checked, $inline, $id, $modelField, $readonly);
+        parent::__construct($name, $value, $checked, $inline, $id, $modelField, $readonly, $containerClass);
         $this->custom_class = 'custom-switch';
     }
 }

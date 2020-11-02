@@ -18,6 +18,7 @@ class Checkbox extends Component
     use HasValue;
     use HasId;
 
+    public string $containerClass;
     public string $custom_class = 'custom-checkbox';
     private bool $checked;
     public bool $inline;
@@ -34,7 +35,8 @@ class Checkbox extends Component
         bool $inline = false,
         string $id = '',
         string $modelField = 'id',
-        bool $readonly = false
+        bool $readonly = false,
+        string $containerClass = ''
     )
     {
         $this->modelField = $modelField;
@@ -43,6 +45,7 @@ class Checkbox extends Component
         $this->inline = $inline;
         $this->readonly = $readonly;
         $this->id = $id;
+        $this->containerClass = $containerClass;
 
         if (is_array($value)) {
             $this->value_unchecked = $value[1];
