@@ -1,3 +1,58 @@
-body {
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+//<editor-fold desc="Axios Spinner">
+#spinner {
+    display: flex;
+    flex-direction: column;
+
+    background: #000000cc;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99999999999998;
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .spin-content {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        .spinnable {
+            margin-left: auto;
+            margin-right: auto;
+
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: rgba(0, 0, 0, 0);
+            animation: spinner .6s linear infinite;
+
+        }
+
+        .message {
+            margin-top: 2rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ccc;
+            font-size: 1.5rem;
+        }
+    }
 
 }
+
+
+//</editor-fold>

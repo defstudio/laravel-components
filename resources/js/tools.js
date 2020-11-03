@@ -9,6 +9,27 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+window.axios.interceptors.request.use(function (config) {
+    // noinspection JSUnresolvedVariable
+    if (config.spinner ?? true) {
+        tools.spinner.show();
+    }
+    return config;
+});
+
+window.axios.interceptors.response.use(function (response) {
+    // noinspection JSUnresolvedVariable
+    if (response.config.spinner ?? true) {
+        tools.spinner.hide();
+    }
+
+    return response;
+}, function (error) {
+    tools.spinner.hide(true);
+    return Promise.reject(error);
+});
+
 window.axios.download = response => {
     const FileSaver = require('file-saver');
     let headerLine = response.headers['content-disposition']
@@ -66,6 +87,43 @@ window.axios.handle = (error, $form = null, messages = {}) => {
                 console.error(error);
                 break;
         }
+    }
+}
+//</editor-fold>
+
+
+//<editor-fold desc="Spinner">
+const $spinner = $('#spinner');
+const $spinner_message = $('#spinner .message');
+let spin_count = 0;
+deftools.spinner = {
+    show: (message = '') => {
+        spin_count++;
+        if (spin_count === 1) {
+            $spinner.addClass('visible');
+        }
+
+        if (message) {
+            deftools.spinner.message(message);
+        }
+    },
+    hide: (with_message = false) => {
+        spin_count--;
+        if (spin_count <= 0) {
+            spin_count = 0;
+            deftools.spinner.message('');
+            $spinner.removeClass('visible');
+        } else if (with_message) {
+            deftools.spinner.message('');
+        }
+    },
+    hide_all: () => {
+        spin_count = 0;
+        deftools.spinner.message('');
+        $spinner.removeClass('visible');
+    },
+    message: message => {
+        $spinner_message.html(message);
     }
 }
 //</editor-fold>

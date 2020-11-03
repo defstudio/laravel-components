@@ -17,3 +17,10 @@
 @stack('x-scripts')
 
 @stack('x-html')
+
+<div id="spinner">
+    <div class="spin-content">
+        <div class="spinnable"></div>
+        <div class="message"></div>
+    </div>
+</div>
