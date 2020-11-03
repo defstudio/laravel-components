@@ -1,3 +1,5 @@
+@routes
+
 <x-modal id="deftools_message_modal" title="&nbsp;" size="sm">
     <p class="modal-message"></p>
 </x-modal>
@@ -11,8 +13,6 @@
     </x-slot>
 </x-modal>
 
-<script type="text/javascript" src="{{ asset('js/defstudio/components/summernote-bs4.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/defstudio/components/tools.js') }}" defer></script>
 
 @stack('x-scripts')
 

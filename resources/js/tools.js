@@ -1,8 +1,73 @@
 window.deftools = {}
 
-//<editor-fold desc="Laravel Routes">
-// noinspection JSUnresolvedVariable
-deftools.route = route;
+//<editor-fold desc="Axios">
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+window.axios.download = response => {
+    const FileSaver = require('file-saver');
+    let headerLine = response.headers['content-disposition']
+    let startFileNameIndex = headerLine.indexOf('=') + 1
+    let filename = headerLine.substring(startFileNameIndex)
+    FileSaver.saveAs(response.data, filename);
+}
+
+let default_error_messages = {
+    403: "Non disponi dei permessi necessari per completare l'operazione",
+    401: "Non disponi dei permessi necessari per completare l'operazione",
+    422: "I dati non sono validi",
+    default: "Si è verificato un errore"
+};
+window.axios.handle = (error, $form = null, messages = {}) => {
+    messages = $.extend({}, default_error_messages, messages || {});
+
+    //verifica se si tratta di un errore generico
+    if (error.response === undefined) {
+        deftools.message.danger('Error', messages.default);
+        console.error(error);
+    } else {
+        switch (error.response.status) {
+            case 422: //validation error
+                if ($form === null) {
+                    deftools.message.danger('Error', messages[422]);
+                    console.error(error);
+                } else {
+                    let invalid_fields = error.response.data.errors;
+                    $.each(invalid_fields, (field, reasons) => {
+                        console.error(`invalid data for field ${field}`, reasons);
+                        let $input = $form.find(`[name=${field}]`);
+
+                        let $feedback = $input.find('~.invalid-feedback');
+                        if ($feedback.length === 0) {
+                            $feedback = $("<div class='invalid-feedback'></div>");
+                            $input.after($feedback);
+                        }
+
+                        $feedback.html(reasons.join("<br>"));
+                        $input.addClass('is-invalid');
+                    });
+                }
+                break;
+            case 403: //Unauthorized
+                deftools.message.danger('Error', messages[403]);
+                console.error(error);
+                break;
+            case 401: //Forbidden
+                deftools.message.danger('Error', messages[403]);
+                console.error(error);
+                break;
+            default:
+                deftools.message.danger('Error', messages.default);
+                console.error(error);
+                break;
+        }
+    }
+}
 //</editor-fold>
 
 //<editor-fold desc="Numbers">
@@ -166,7 +231,6 @@ deftools.confirm = {
     }
 }
 //</editor-fold>
-
 
 //<editor-fold desc="Messages">
 //message modal
@@ -371,7 +435,7 @@ $(document).on('click', '.password-generator', function (e) {
         let data_size = $password_field.data('password-size');
         let dataset = $password_field.data('character-set');
 
-        axios.get(deftools.route('users.generate_password', {size: data_size, dataset: dataset}))
+        axios.get(route('users.generate_password', {size: data_size, dataset: dataset}))
             .then(response => {
                 let password = response.data;
                 $password_field.val(password);
@@ -442,4 +506,35 @@ deftools.summernote = {
 };
 deftools.summernote.setup();
 
+//</editor-fold>
+
+//<editor-fold desc="Custom File Input">
+$(document).on("change", '.def-components-file-input', function () {
+    const $file_input = $(this);
+    let original_text = $file_input.data('original_text');
+
+    if (original_text === '') {
+        original_text = $file_input.siblings(".custom-file-label").html();
+        $file_input.data('original_text', original_text);
+    }
+    let fileName = $file_input.val().split("\\").pop();
+
+    if (fileName === "") {
+        $file_input.siblings(".custom-file-label").removeClass("selected").html(original_text);
+    } else {
+        $file_input.siblings(".custom-file-label").addClass("selected").html(fileName);
+    }
+});
+//</editor-fold>
+
+//<editor-fold desc="Template Attachment">
+$(document).on('click', '.template-attachment-modal .template-attachment-download-button', function () {
+    const $button = $(this);
+    const url = $button.data('url');
+    const columns = $button.data('columns');
+
+    axios.post(url, {columns: columns}, {responseType: 'blob'})
+        .then(response => axios.download(response))
+        .catch(error => axios.handle(error))
+});
 //</editor-fold>

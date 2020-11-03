@@ -94,36 +94,7 @@ class ComponentServiceProvider extends ServiceProvider
             __DIR__ . "/../resources/lang" => resource_path('lang/vendor/def-components'),
         ], 'lang');
 
-        $this->publish_assets();
-
     }
 
-    private function publish_assets(): void
-    {
-        $this->publish_js();
 
-        $this->publish_css();
-    }
-
-    private function publish_js()
-    {
-        if (!file_exists(public_path('js/defstudio'))) {
-            mkdir(public_path('js/defstudio'), 0777, true);
-        }
-
-        if (!file_exists(public_path('js/defstudio/components'))) {
-            symlink(__DIR__ . "/../resources/js", public_path('js/defstudio/components'));
-        }
-    }
-
-    private function publish_css()
-    {
-        if (!file_exists(public_path('css/defstudio'))) {
-            mkdir(public_path('css/defstudio'), 0777, true);
-        }
-
-        if (!file_exists(public_path('css/defstudio/components'))) {
-            symlink(__DIR__ . "/../resources/css", public_path('css/defstudio/components'));
-        }
-    }
 }

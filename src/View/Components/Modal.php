@@ -6,6 +6,9 @@ namespace DefStudio\Components\View\Components;
 class Modal extends Component
 {
 
+    const SIZE_LG = 'lg';
+    const SIZE_SM = 'sm';
+
     public string $id;
     public bool $scrollable;
     public string $size;

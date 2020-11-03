@@ -7,6 +7,16 @@ namespace DefStudio\Components\View\Components;
 
 class Button extends Component
 {
+
+    const TYPE_SUBMIT = 'submit';
+    const TYPE_BUTTON = 'button';
+
+    const METHOD_GET = 'GET';
+    const METHOD_PUT = 'PUT';
+    const METHOD_POST = 'POST';
+    const METHOD_PATCH = 'PATCH';
+    const METHOD_DELETE = 'DELETE';
+
     public string $href;
     public string $color;
     public string $type;
@@ -18,8 +28,8 @@ class Button extends Component
         string $url = '',
         string $route = '',
         string $color = 'primary',
-        string $type = 'button',
-        string $method = 'GET',
+        string $type = self::TYPE_BUTTON,
+        string $method = self::METHOD_GET,
         string $confirm = ''
     )
     {

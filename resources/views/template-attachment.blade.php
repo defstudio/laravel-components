@@ -12,33 +12,36 @@ $default_id = "template-attachment-" . rand(1, 99999999);
 
 ?>
 
-<x-toggle-button {{$attributes}} target="#{{$computed_id($default_id)}}-container" :color="$color">
+<x-button {{$attributes}} data-toggle="modal" data-target="#{{$computed_id($default_id)}}-modal" :color="$color">
     <x-icon name="upload">{{$label??''}}</x-icon>
-</x-toggle-button>
-
-<br>
-
-<x-card id="{{$computed_id($default_id)}}-container" collapsed>
-    <div class="row">
-        <div class="col-4">
-            <x-button id="{{$computed_id($default_id)}}-download"
-                      color="secondary"
-                      data-url="{{\Illuminate\Support\Facades\URL::temporarySignedRoute('def-components.download.template', now()->addDay(), ['filename' => $filename])}}"
-            >
-                <x-icon name="download">{{ucwords(__('def-components::files.download_template'))}}</x-icon>
-            </x-button>
-        </div>
-    </div>
-</x-card>
+</x-button>
 
 
-@push('x-scripts')
-    <script type="text/javascript">
-        $("#{{$computed_id($default_id)}}-download").on("click", function () {
-            const fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-    </script>
+@push('x-html')
+    <x-modal id="{{$computed_id($default_id)}}-modal" class="template-attachment-modal" :title="$label??''" :size="\DefStudio\Components\View\Components\Modal::SIZE_LG">
+        <x-form :method="$method" :action="$url" accept-files>
+            <div class="row">
+                <div class="col-4">
+                    <x-button id="{{$computed_id($default_id)}}-download"
+                              class="template-attachment-download-button"
+                              color="secondary"
+                              data-url="{{\Illuminate\Support\Facades\URL::temporarySignedRoute('def-components.download.template', now()->addDay(), ['filename' => $filename])}}"
+                              :data-columns="json_encode($columns)"
+                    >
+                        <x-icon name="download">{{ucwords(__('def-components::files.download_template'))}}</x-icon>
+                    </x-button>
+                </div>
+                <div class="col-7">
+                    <x-file :name="$name" accept=".xls"/>
+                </div>
+                <div class="col-1">
+                    <x-button :type="\DefStudio\Components\View\Components\Button::TYPE_SUBMIT" color="success">
+                        <x-icon name="upload"/>
+                    </x-button>
+                </div>
+            </div>
+        </x-form>
+    </x-modal>
 @endpush
 
 
