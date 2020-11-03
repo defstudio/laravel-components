@@ -13,7 +13,7 @@ if (token) {
 window.axios.interceptors.request.use(function (config) {
     // noinspection JSUnresolvedVariable
     if (config.spinner ?? true) {
-        tools.spinner.show();
+        deftools.spinner.show();
     }
     return config;
 });
@@ -21,12 +21,12 @@ window.axios.interceptors.request.use(function (config) {
 window.axios.interceptors.response.use(function (response) {
     // noinspection JSUnresolvedVariable
     if (response.config.spinner ?? true) {
-        tools.spinner.hide();
+        deftools.spinner.hide();
     }
 
     return response;
 }, function (error) {
-    tools.spinner.hide(true);
+    deftools.spinner.hide(true);
     return Promise.reject(error);
 });
 
