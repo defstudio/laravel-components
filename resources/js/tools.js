@@ -93,14 +93,13 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
 
 //<editor-fold desc="Spinner">
-const $spinner = $('#spinner');
-const $spinner_message = $('#spinner .message');
+
 let spin_count = 0;
 deftools.spinner = {
     show: (message = '') => {
         spin_count++;
         if (spin_count === 1) {
-            $spinner.addClass('visible');
+            $('#spinner').addClass('visible');
         }
 
         if (message) {
@@ -112,7 +111,7 @@ deftools.spinner = {
         if (spin_count <= 0) {
             spin_count = 0;
             deftools.spinner.message('');
-            $spinner.removeClass('visible');
+            $('#spinner').removeClass('visible');
         } else if (with_message) {
             deftools.spinner.message('');
         }
@@ -120,10 +119,10 @@ deftools.spinner = {
     hide_all: () => {
         spin_count = 0;
         deftools.spinner.message('');
-        $spinner.removeClass('visible');
+        $('#spinner').removeClass('visible');
     },
     message: message => {
-        $spinner_message.html(message);
+        $('#spinner .message').html(message);
     }
 }
 //</editor-fold>
