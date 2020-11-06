@@ -91,7 +91,6 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 }
 //</editor-fold>
 
-
 //<editor-fold desc="Spinner">
 
 let spin_count = 0;
@@ -594,4 +593,141 @@ $(document).on('click', '.template-attachment-modal .template-attachment-downloa
         .then(response => axios.download(response))
         .catch(error => axios.handle(error))
 });
+//</editor-fold>
+
+//<editor-fold desc="Toggable Sections">
+// noinspection JSJQueryEfficiency
+if ($('.section-toggle-switch').length > 0) {
+    $(document).on('change', '.section-toggle-switch', function () {
+        deftools.sync_toggable_sections();
+    })
+
+    deftools.sync_toggable_sections = ($context = null) => {
+
+        $context = $context ?? $(document);
+
+        hide_toggable_sections($context);
+
+        show_activated_sections($context);
+
+    }
+
+
+    function hide_toggable_sections($context) {
+        $context.find('.toggable-section').addClass('hidden');
+    }
+
+    function show_activated_sections($context) {
+        const switches = retrieve_switches_status($context);
+
+        const $toggable_sections = $context.find('.toggable-section');
+
+        for (const switch_key in switches) {
+            if (switches.hasOwnProperty(switch_key)) {
+                this[switch_key] = switches[switch_key];
+            }
+        }
+
+        $toggable_sections.each(function () {
+            const $toggable_section = $(this);
+            const condition = $toggable_section.data('toggle-if');
+
+            if (!condition) return;
+
+            const visible = eval(condition);
+
+            if (visible) {
+                $toggable_section.removeClass('hidden');
+            }
+        })
+    }
+
+    function retrieve_switches_status($context) {
+        let $toggle_switches = $context.find('.section-toggle-switch');
+
+        let switches = {}
+
+        $toggle_switches.each(function () {
+            let $switch = $(this);
+            if ($switch.prop('tagName') === 'SELECT') {
+                const selected_value = $switch.val();
+                const switch_id = get_switch_id($switch);
+
+                $switch.find('option').each(function () {
+                    const option_key = $(this).attr('val');
+
+                    switches[`${switch_id}_${option_key}`] = option_key === selected_value;
+                });
+            } else {
+                $switch = $switch.find('.custom-control-input');
+                const switch_id = get_switch_id($switch);
+                switches[switch_id] = !!$switch.prop('checked');
+            }
+        });
+        return switches;
+
+    }
+
+
+    function get_switch_id($switch) {
+        let switch_id = $switch.data('switch-name');
+
+        if (!switch_id) {
+            switch_id = $switch.attr('id');
+        }
+
+        return switch_id;
+    }
+
+
+    deftools.sync_toggable_sections();
+}
+
+//</editor-fold>
+
+//<editor-fold desc="Zoomables">
+$(document).on('click', '.apply-zoom', function () {
+    const $target = $(this).closest('.zoomable');
+
+    $target.toggleClass('zoomed');
+});
+//</editor-fold>
+
+//<editor-fold desc="Input Number Format">
+$(document).on('keyup', 'input.number-format', function (e) {
+    const selection = window.getSelection().toString();
+    if (selection !== '') return
+
+    if ($.inArray(e.keyCode, [38, 40, 37, 39]) !== -1) return;
+
+    const $input = $(this);
+
+    format_number($input);
+
+});
+
+format_number($('input.number-format'));
+
+function format_number($input) {
+    $input.each(function () {
+
+        let value = $(this).val();
+        value = value.replace(/[\D\s._\-]+/g, "");
+        value = value ? parseInt(value, 10) : 0;
+        $(this).val(value.toLocaleString("it-IT"));
+    })
+}
+
+$(document).on('submit', 'form', function () {
+    const $form = $(this);
+
+    $form.find('input.number-format').each(function () {
+        const $input = $(this);
+
+        let value = $input.val();
+        value = value.replace(/[\D\s._\-]+/g, "");
+        value = value ? parseInt(value, 10) : 0;
+        $input.val(value);
+    })
+})
 //</editor-fold>
