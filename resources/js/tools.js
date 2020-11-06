@@ -654,7 +654,7 @@ if ($('.section-toggle-switch').length > 0) {
                 const switch_id = get_switch_id($switch);
 
                 $switch.find('option').each(function () {
-                    const option_key = $(this).attr('val');
+                    const option_key = $(this).attr('value');
 
                     switches[`${switch_id}_${option_key}`] = option_key === selected_value;
                 });
