@@ -3,7 +3,7 @@
 <x-modal id="deftools_message_modal" title="&nbsp;" size="sm">
     <p class="modal-message"></p>
 </x-modal>
-aaaaaaaaaaaaaaa
+
 <x-modal id="deftools_question_modal" title="&nbsp" size="sm">
     <p class="modal-message"></p>
 
