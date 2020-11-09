@@ -51,6 +51,7 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
             }
 
             $data['type'] = $data['type'] ?? 'text';
+            $data['label'] = $data['label'] ?? $key;
 
             $columns[$key] = $data;
         }
