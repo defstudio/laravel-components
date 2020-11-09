@@ -187,11 +187,16 @@ deftools.arrays = {
 //<editor-fold desc="Modals">
 
 //question modal
-let $question_modal = $('#deftools_question_modal');
-$question_modal.modal({
-    show: false,
-    keyboard: true
+let $question_modal;
+
+$(document).ready(function () {
+    $question_modal = $('#deftools_question_modal')
+    $question_modal.modal({
+        show: false,
+        keyboard: true
+    });
 });
+
 
 function reset_question_modal() {
     $question_modal.find('.modal-dialog').addClass('modal-sm');
