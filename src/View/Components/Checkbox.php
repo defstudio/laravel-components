@@ -26,10 +26,12 @@ class Checkbox extends Component
     public string $value_unchecked = '';
     public string $value_checked;
     public string $modelField;
+    public ?string $label;
 
 
     public function __construct(
         string $name,
+        string $label = null,
         $value = '1',
         $checked = false,
         bool $inline = false,
@@ -41,6 +43,7 @@ class Checkbox extends Component
     {
         $this->modelField = $modelField;
         $this->name = $name;
+        $this->label = $label;
         $this->checked = (bool)$checked;
         $this->inline = $inline;
         $this->readonly = $readonly;
@@ -53,6 +56,7 @@ class Checkbox extends Component
         } else {
             $this->value_checked = $value;
         }
+
     }
 
     /**

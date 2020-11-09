@@ -7,6 +7,7 @@ class CheckboxSwitch extends Checkbox
 {
     public function __construct(
         string $name,
+        string $label = null,
         $value = '1',
         $checked = false,
         bool $inline = false,
@@ -16,7 +17,7 @@ class CheckboxSwitch extends Checkbox
         string $containerClass = ''
     )
     {
-        parent::__construct($name, $value, $checked, $inline, $id, $modelField, $readonly, $containerClass);
+        parent::__construct($name, $label, $value, $checked, $inline, $id, $modelField, $readonly, $containerClass);
         $this->custom_class = 'custom-switch';
     }
 }
