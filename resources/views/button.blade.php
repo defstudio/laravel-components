@@ -21,10 +21,22 @@ if (!empty($confirm)) {
 
 
 @empty($href)
-    <button type="{{$type}}" {{$attributes}}>{{$slot}}</button>
+    <button type="{{$type}}" {{$attributes}}>
+        @empty($icon)
+            {{$slot}}
+        @else
+            <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+        @endempty
+    </button>
 @else
     @if($method=='GET')
-        <a href="{{$href}}" {{$attributes}}>{{$slot}}</a>
+        <a href="{{$href}}" {{$attributes}}>
+            @empty($icon)
+                {{$slot}}
+            @else
+                <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+            @endempty
+        </a>
     @else
         <?php $random_id = rand(1, 9999999); ?>
 
@@ -32,7 +44,13 @@ if (!empty($confirm)) {
             <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
         @endpush
 
-        <button type="submit" form="button-form-{{$random_id}}" {{$attributes}}>{{$slot}}</button>
+        <button type="submit" form="button-form-{{$random_id}}" {{$attributes}}>
+            @empty($icon)
+                {{$slot}}
+            @else
+                <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+            @endempty
+        </button>
 
     @endif
 @endempty

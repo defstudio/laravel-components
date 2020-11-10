@@ -4,7 +4,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 /**
  * @var ComponentAttributeBag $attributes
- * @var string $href
  * @var string $color
  * @var string $method
  */

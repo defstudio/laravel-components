@@ -4,7 +4,6 @@
 namespace DefStudio\Components\View\Components;
 
 
-
 class Button extends Component
 {
 
@@ -22,22 +21,49 @@ class Button extends Component
     public string $type;
     public string $method;
     public string $confirm;
-
+    public string $icon;
 
     public function __construct(
-        string $url = '',
-        string $route = '',
         string $color = 'primary',
         string $type = self::TYPE_BUTTON,
-        string $method = self::METHOD_GET,
-        string $confirm = ''
+        string $confirm = '',
+        string $icon = '',
+        string $get = null,
+        string $post = null,
+        string $put = null,
+        string $patch = null,
+        string $delete = null
     )
     {
-        $this->href = empty($route) ? $url : route($route);
+        $this->compute_href($get, $post, $put, $patch, $delete);
+
         $this->color = $color;
         $this->type = $type;
-        $this->method = $method;
         $this->confirm = $confirm;
+
+        $this->icon = $icon;
+
+    }
+
+    private function compute_href(string $get, string $post, string $put, string $patch, string $delete): void
+    {
+
+        if ($get) {
+            $this->href = $get;
+            $this->method = self::METHOD_GET;
+        } else if ($post) {
+            $this->href = $post;
+            $this->method = self::METHOD_POST;
+        } else if ($put) {
+            $this->href = $put;
+            $this->method = self::METHOD_PUT;
+        } else if ($patch) {
+            $this->href = $patch;
+            $this->method = self::METHOD_PATCH;
+        } else if ($delete) {
+            $this->href = $delete;
+            $this->method = self::METHOD_DELETE;
+        }
     }
 
     /**

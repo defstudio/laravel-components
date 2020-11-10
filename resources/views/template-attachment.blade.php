@@ -12,8 +12,8 @@ $default_id = "template-attachment-" . rand(1, 99999999);
 
 ?>
 
-<x-button {{$attributes}} data-toggle="modal" data-target="#{{$computed_id($default_id)}}-modal" :color="$color">
-    <x-icon name="upload">{{$label??''}}</x-icon>
+<x-button {{$attributes}} data-toggle="modal" data-target="#{{$computed_id($default_id)}}-modal" :color="$color" icon="upload">
+    {{$label??''}}
 </x-button>
 
 
@@ -27,17 +27,16 @@ $default_id = "template-attachment-" . rand(1, 99999999);
                               color="secondary"
                               data-url="{{\Illuminate\Support\Facades\URL::temporarySignedRoute('def-components.download.template', now()->addDay(), ['filename' => $filename])}}"
                               :data-columns="json_encode($columns)"
+                              icon="download"
                     >
-                        <x-icon name="download">{{ucwords(__('def-components::files.download_template'))}}</x-icon>
+                        {{ucwords(__('def-components::files.download_template'))}}
                     </x-button>
                 </div>
                 <div class="col-7">
                     <x-file :name="$name" accept=".xls"/>
                 </div>
                 <div class="col-1">
-                    <x-button :type="\DefStudio\Components\View\Components\Button::TYPE_SUBMIT" color="success">
-                        <x-icon name="upload"/>
-                    </x-button>
+                    <x-button :type="\DefStudio\Components\View\Components\Button::TYPE_SUBMIT" color="success" icon="upload"/>
                 </div>
             </div>
         </x-form>
