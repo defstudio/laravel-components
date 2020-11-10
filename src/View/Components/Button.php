@@ -63,6 +63,9 @@ class Button extends Component
         } else if ($delete) {
             $this->href = $delete;
             $this->method = self::METHOD_DELETE;
+        } else {
+            $this->href = '';
+            $this->method = '';
         }
     }
 
