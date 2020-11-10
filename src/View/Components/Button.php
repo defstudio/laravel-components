@@ -28,11 +28,11 @@ class Button extends Component
         string $type = self::TYPE_BUTTON,
         string $confirm = '',
         string $icon = '',
-        string $get = null,
-        string $post = null,
-        string $put = null,
-        string $patch = null,
-        string $delete = null
+        string $get = '',
+        string $post = '',
+        string $put = '',
+        string $patch = '',
+        string $delete = ''
     )
     {
         $this->compute_href($get, $post, $put, $patch, $delete);
