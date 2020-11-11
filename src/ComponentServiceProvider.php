@@ -10,6 +10,7 @@ use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Context;
+use DefStudio\Components\View\Components\Currency;
 use DefStudio\Components\View\Components\Fieldset;
 use DefStudio\Components\View\Components\File;
 use DefStudio\Components\View\Components\Form;
@@ -49,6 +50,7 @@ class ComponentServiceProvider extends ServiceProvider
             Checkbox::class,
             CheckboxSwitch::class,
             Context::class,
+            Currency::class,
             Table::class,
             Fieldset::class,
             File::class,
