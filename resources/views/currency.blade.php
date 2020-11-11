@@ -14,5 +14,5 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 <span {{$attributes}}>
-    {{$currency}}&nbsp;{{number_format($slot->toHtml(), $precision)}}
+    {{$currency}}&nbsp;{{number_format($slot->toHtml(), $precision, $decimalSeparator, $thousandsSeparator)}}
 </span>
