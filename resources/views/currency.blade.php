@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 
 /**
@@ -8,9 +9,10 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string $type
  */
 
+/** @var HtmlString $slot */
 
 ?>
 
 <span {{$attributes}}>
-    {{$currency}}&nbsp;{{number_format($slot, $precision)}}
+    {{$currency}}&nbsp;{{number_format($slot->toHtml(), $precision)}}
 </span>
