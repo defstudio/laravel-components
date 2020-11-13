@@ -11,5 +11,9 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
+<div class="row mb-3">
+    <div class="col-12 d-flex">
+        <x-button {{$attributes->merge(['class' => 'apply-zoom btn-xs'])}} :color="$color" :icon="$icon"/>
+    </div>
+</div>
 
-<x-button {{$attributes->merge(['class' => 'apply-zoom btn-xs'])}} :color="$color" :icon="$icon">{{$slot}}</x-button>

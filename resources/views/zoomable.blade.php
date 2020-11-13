@@ -12,7 +12,7 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 
-<div {{$attributes->merge(['class' => 'zoomable d-flex'])}}>
+<div {{$attributes->merge(['class' => 'zoomable'])}}>
 
     @empty($zoom_button)
         <x-zoom-button>Zoom</x-zoom-button>
