@@ -72,18 +72,25 @@
 
 //<editor-fold desc="Zoomable">
 .zoomable {
-    .reduce-05 {
-        zoom: 0.5;
+
+    @for $step from 1 to 9 {
+        .reduce-0#{$step} {
+            zoom: $step/10;
+        }
     }
+
 
     .apply-zoom::after {
         content: ' Zoom';
     }
 
     &.zoomed {
-        .reduce-05 {
-            zoom: unset;
+        @for $step from 1 to 9 {
+            .reduce-0#{$step} {
+                zoom: unset;
+            }
         }
+
 
         .apply-zoom::after {
             content: ' Conferma';
