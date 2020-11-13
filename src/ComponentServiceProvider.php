@@ -35,6 +35,7 @@ use DefStudio\Components\View\Components\TextArea;
 use DefStudio\Components\View\Components\ToggleButton;
 use DefStudio\Components\View\Components\Tools;
 use DefStudio\Components\View\Components\Zoomable;
+use DefStudio\Components\View\Components\ZoomButton;
 use Illuminate\Support\ServiceProvider;
 
 class ComponentServiceProvider extends ServiceProvider
@@ -76,6 +77,7 @@ class ComponentServiceProvider extends ServiceProvider
             ToggleButton::class,
             Tools::class,
             Zoomable::class,
+            ZoomButton::class,
         ]);
 
         $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
