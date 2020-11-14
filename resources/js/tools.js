@@ -61,7 +61,9 @@ window.axios.handle = (error, $form = null, messages = {}) => {
                     let invalid_fields = error.response.data.errors;
                     $.each(invalid_fields, (field, reasons) => {
                         console.error(`invalid data for field ${field}`, reasons);
-                        let $input = $form.find(`[name=${field}]`);
+                        const normalized_field = field.replace(/\.([\w\*]*)/g, "[$1]");
+
+                        let $input = $($form[0].elements[normalized_field]);
 
                         let $feedback = $input.find('~.invalid-feedback');
                         if ($feedback.length === 0) {
@@ -71,7 +73,11 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
                         $feedback.html(reasons.join("<br>"));
                         $input.addClass('is-invalid');
+
+                        $input.trigger('def::invalid_field');
                     });
+
+                    deftools.message.danger('Error', messages[422]);
                 }
                 break;
             case 403: //Unauthorized
@@ -735,4 +741,57 @@ $(document).on('submit', 'form', function () {
         $input.val(value);
     })
 })
+//</editor-fold>
+
+//<editor-fold desc="Forms">
+
+deftools.form = {
+    reset: $form => {
+        $form.find('input:not(.disable-reset):not(.templates *), select:not(.disable-reset):not(.templates *), textarea:not(.disable-reset):not(.templates *)').each(function () {
+            let $field = $(this);
+            if ($field.attr('type') === 'checkbox') {
+                $field.prop('checked', false);
+            } else {
+                $field.val('');
+            }
+            $field.removeClass('is-invalid');
+        });
+        $form.find('.reset-by-clear').html('');
+        $form.find('.reset-by-hide').hide();
+    },
+    read: $form => {
+        return $form.find("input:not(.templates *), select:not(.templates *), textarea:not(.templates *)").serializeJSON();
+    },
+    get_value: ($form, name) => {
+        return $form.find(`input[name=${name}]:not(.templates *), select[name=${name}]:not(.templates *)`).val();
+    },
+}
+
+$(document).ready(function () {
+    $('form[data-ajax-validation-url]').each(function () {
+
+        let form_ok = false;
+        $(this).submit(function () {
+            console.debug('checking form');
+
+            if(form_ok) return true;
+
+            const $form = $(this);
+
+            const data = deftools.form.read($form);
+
+            const validation_url = $form.data('ajax-validation-url');
+
+            axios.post(validation_url, data)
+                .then(response => {
+                    form_ok = true;
+                    $form.submit();
+                })
+                .catch(error => axios.handle(error, $form));
+
+
+            return false;
+        })
+    })
+});
 //</editor-fold>
