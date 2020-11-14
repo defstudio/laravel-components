@@ -76,7 +76,6 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
                         $input.trigger('def::invalid_field');
                     });
-
                     deftools.message.danger('Error', messages[422]);
                 }
                 break;
@@ -303,7 +302,7 @@ deftools.confirm = {
 //message modal
 let $message_modal;
 
-$(document).ready(function(){
+$(document).ready(function () {
     $message_modal = $('#deftools_message_modal');
     $message_modal.modal({
         show: false,
@@ -777,17 +776,15 @@ $(document).ready(function () {
 
         let form_ok = false;
         $(this).submit(function () {
-            console.debug('checking form');
-
-            if(form_ok) return true;
+            if (form_ok) return true;
 
             const $form = $(this);
 
-            const data = deftools.form.read($form);
+            const form_data = new FormData($form.get(0));
 
             const validation_url = $form.data('ajax-validation-url');
 
-            axios.post(validation_url, data)
+            axios.post(validation_url, form_data)
                 .then(response => {
                     form_ok = true;
                     $form.submit();
