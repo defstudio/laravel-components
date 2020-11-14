@@ -59,8 +59,14 @@ window.axios.handle = (error, $form = null, messages = {}) => {
                     console.error(error);
                 } else {
                     let invalid_fields = error.response.data.errors;
+
+                    let errors = [];
+
                     $.each(invalid_fields, (field, reasons) => {
                         console.error(`invalid data for field ${field}`, reasons);
+
+                        errors.push(...reasons);
+
                         const normalized_field = field.replace(/\.([\w\*]*)/g, "[$1]");
 
                         let $input = $($form[0].elements[normalized_field]);
@@ -76,7 +82,19 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
                         $input.trigger('def::invalid_field');
                     });
-                    deftools.message.danger('Error', messages[422]);
+
+
+                    if (errors.length > 0) {
+                        let error_message = "<ul>";
+                        for (const error of errors.filter((value, index, self) => self.indexOf(value) === index)) {
+                            error_message += `<li>${error}</li>`;
+                        }
+                        error_message += "</ul>";
+
+                        deftools.message.danger('Error', error_message, false);
+                    } else {
+                        deftools.message.danger('Error', messages[422]);
+                    }
                 }
                 break;
             case 403: //Unauthorized
@@ -316,6 +334,7 @@ function reset_message_modal() {
     $message_modal.find('.modal-header').removeClass('bg-success');
     $message_modal.find('.modal-title').html("");
     $message_modal.find('.modal-message').html("");
+    $message_modal.find('.modal-dialog').addClass('modal-sm');
 }
 
 deftools.message = {
@@ -333,8 +352,13 @@ deftools.message = {
         $message_modal.find('.modal-message').html(message);
         $message_modal.modal('show');
     },
-    danger: function (title, message) {
+    danger: function (title, message, small=true) {
         reset_message_modal();
+
+        if(!small){
+            $message_modal.find('.modal-dialog').removeClass('modal-sm');
+        }
+
         $message_modal.find('.modal-header').addClass('bg-danger');
         $message_modal.find('.modal-title').html(title);
         $message_modal.find('.modal-message').html(message);
