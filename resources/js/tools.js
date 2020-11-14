@@ -301,10 +301,14 @@ deftools.confirm = {
 
 //<editor-fold desc="Messages">
 //message modal
-let $message_modal = $('#deftools_message_modal');
-$message_modal.modal({
-    show: false,
-    keyboard: true
+let $message_modal;
+
+$(document).ready(function(){
+    $message_modal = $('#deftools_message_modal');
+    $message_modal.modal({
+        show: false,
+        keyboard: true
+    });
 });
 
 function reset_message_modal() {
@@ -767,6 +771,7 @@ deftools.form = {
     },
 }
 
+//Form ajax validation
 $(document).ready(function () {
     $('form[data-ajax-validation-url]').each(function () {
 
@@ -786,6 +791,7 @@ $(document).ready(function () {
                 .then(response => {
                     form_ok = true;
                     $form.submit();
+                    deftools.spinner.show();
                 })
                 .catch(error => axios.handle(error, $form));
 
