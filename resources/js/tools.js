@@ -562,6 +562,36 @@ $('select[multiple]').selectpicker();
 
 //</editor-fold>
 
+//<editor-fold desc="Remember Selected Tab">
+$(document).ready(function () {
+    let $tabs_to_be_remembered = $('.remeber-selected-tab');
+    $tabs_to_be_remembered.on('click', 'a[data-toggle="tab"]', function () {
+        let $tab = $(this);
+        let $tabs = $tab.closest('.remeber-selected-tab');
+
+        window.localStorage.setItem($tabs.attr('id') + "_active_tab", $tab.attr('href'));
+    });
+    $tabs_to_be_remembered.each(function () {
+        let $tabs = $(this);
+
+        let active_tab = window.localStorage.getItem($tabs.attr('id') + "_active_tab");
+        if (active_tab) {
+            $tabs.find('a[href="' + active_tab + '"]').tab('show');
+        }
+    });
+});
+//</editor-fold>
+
+//<editor-fold desc="Allows open Modal from Modal">
+$(document).on('show.bs.modal', '.modal', function () {
+    let zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function () {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+//</editor-fold>
+
 //<editor-fold desc="Summernote">
 deftools.summernote = {
     setup: () => {
