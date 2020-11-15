@@ -544,8 +544,16 @@ $(document).on('click', '.password-generator', function (e) {
 //</editor-fold>
 
 //<editor-fold desc="Tooltips">
-$('[data-toggle="tooltip"]').tooltip();
-$('[data-toggle="popover"]').popover();
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('body').popover({
+        placement: 'bottom',
+        container: 'body',
+        html: true,
+        selector: '[data-toggle="popover"]',
+    });
+});
 //</editor-fold>
 
 //<editor-fold desc="Boostrap MultiSelect">
