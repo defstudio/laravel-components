@@ -812,7 +812,6 @@ $(document).ready(function () {
                 .then(response => {
                     form_ok = true;
                     $form.submit();
-                    deftools.spinner.show();
                 })
                 .catch(error => axios.handle(error, $form));
 
