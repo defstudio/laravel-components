@@ -9,6 +9,7 @@ use DefStudio\Components\View\Components\Button;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
+use DefStudio\Components\View\Components\Col;
 use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Currency;
 use DefStudio\Components\View\Components\Fieldset;
@@ -26,6 +27,7 @@ use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Number;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Percent;
+use DefStudio\Components\View\Components\Row;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
 use DefStudio\Components\View\Components\Table;
@@ -51,6 +53,7 @@ class ComponentServiceProvider extends ServiceProvider
             Card::class,
             Checkbox::class,
             CheckboxSwitch::class,
+            Col::class,
             Context::class,
             Currency::class,
             Table::class,
@@ -69,6 +72,7 @@ class ComponentServiceProvider extends ServiceProvider
             Number::class,
             Password::class,
             Percent::class,
+            Row::class,
             Select::class,
             Styles::class,
             TemplateAttachment::class,
