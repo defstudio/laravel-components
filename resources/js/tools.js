@@ -849,9 +849,13 @@ $(document).ready(function () {
             axios.post(validation_url, form_data)
                 .then(response => {
                     form_ok = true;
+                    $form.trigger('def::form-submitted');
                     $form.submit();
                 })
-                .catch(error => axios.handle(error, $form));
+                .catch(error => {
+                    $form.trigger('def::invalid-form');
+                    axios.handle(error, $form)
+                });
 
 
             return false;
