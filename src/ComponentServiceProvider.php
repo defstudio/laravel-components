@@ -36,36 +36,14 @@ use DefStudio\Components\View\Components\ToggleButton;
 use DefStudio\Components\View\Components\Tools;
 use DefStudio\Components\View\Components\Zoomable;
 use DefStudio\Components\View\Components\ZoomButton;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ComponentServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
 
         $this->app->singleton(ContextStack::class);
-
-        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
-
-        $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
-
-        $this->init_components();
-
-        $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
-
-        $this->init_assets();
-
-    }
-
-    private function init_components(): void
-    {
-
-        Blade::components([
-            'def-components::row' => 'row',
-            'def-components::col' => 'col',
-        ], config('components.tags_prefix', ''));
 
         $this->loadViewComponentsAs(config('components.tags_prefix', ''), [
             Alert::class,
@@ -101,10 +79,15 @@ class ComponentServiceProvider extends ServiceProvider
             Zoomable::class,
             ZoomButton::class,
         ]);
-    }
 
-    private function init_assets(): void
-    {
+        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
+
+        $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
+
+
+        $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
+
+
         $this->publishes([
             __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
         ], 'views');
@@ -116,6 +99,7 @@ class ComponentServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . "/../resources/lang" => resource_path('lang/vendor/def-components'),
         ], 'lang');
+
     }
 
 
