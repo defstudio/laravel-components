@@ -13,7 +13,7 @@ class Currency extends Component
 
     public function __construct(string $currency = '€', int $precision = 2, string $decimalSeparator = ',', string $thousandsSeparator = '.')
     {
-        $this->currency = $currency;
+        $this->currency = (float)$currency;
         $this->precision = $precision;
         $this->decimalSeparator = $decimalSeparator;
         $this->thousandsSeparator = $thousandsSeparator;
