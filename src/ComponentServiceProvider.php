@@ -36,58 +36,78 @@ use DefStudio\Components\View\Components\ToggleButton;
 use DefStudio\Components\View\Components\Tools;
 use DefStudio\Components\View\Components\Zoomable;
 use DefStudio\Components\View\Components\ZoomButton;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ComponentServiceProvider extends ServiceProvider
 {
+    private array $components = [
+        Alert::class,
+        Button::class,
+        Card::class,
+        Checkbox::class,
+        CheckboxSwitch::class,
+        Context::class,
+        Currency::class,
+        Table::class,
+        Fieldset::class,
+        File::class,
+        Form::class,
+        Hidden::class,
+        Icon::class,
+        Modal::class,
+        Multiselect::class,
+        LaravelMessages::class,
+        Navbar::class,
+        NavbarNav::class,
+        NavbarItem::class,
+        NavbarDropdownItem::class,
+        Number::class,
+        Password::class,
+        Percent::class,
+        Select::class,
+        Styles::class,
+        TemplateAttachment::class,
+        Text::class,
+        TextArea::class,
+        ToggleButton::class,
+        Tools::class,
+        Zoomable::class,
+        ZoomButton::class,
+    ];
+    private array $anonymous_components = [
+        'row',
+        'col',
+    ];
+
     public function boot()
     {
 
         $this->app->singleton(ContextStack::class);
 
-        $this->loadViewComponentsAs(config('components.tags_prefix', ''), [
-            Alert::class,
-            Button::class,
-            Card::class,
-            Checkbox::class,
-            CheckboxSwitch::class,
-            Context::class,
-            Currency::class,
-            Table::class,
-            Fieldset::class,
-            File::class,
-            Form::class,
-            Hidden::class,
-            Icon::class,
-            Modal::class,
-            Multiselect::class,
-            LaravelMessages::class,
-            Navbar::class,
-            NavbarNav::class,
-            NavbarItem::class,
-            NavbarDropdownItem::class,
-            Number::class,
-            Password::class,
-            Percent::class,
-            Select::class,
-            Styles::class,
-            TemplateAttachment::class,
-            Text::class,
-            TextArea::class,
-            ToggleButton::class,
-            Tools::class,
-            Zoomable::class,
-            ZoomButton::class,
-        ]);
-
         $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
 
+        $this->init_components();
 
         $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
 
+        $this->init_assets();
 
+    }
+
+    private function init_components(): void
+    {
+        foreach ($this->anonymous_components as $component_name) {
+            Blade::component("def-components::{$component_name}", $component_name, config('components.tags_prefix', ''));
+        }
+
+        $this->loadViewComponentsAs(config('components.tags_prefix', ''), $this->components);
+    }
+
+    private function init_assets(): void
+    {
         $this->publishes([
             __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
         ], 'views');
@@ -99,7 +119,6 @@ class ComponentServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . "/../resources/lang" => resource_path('lang/vendor/def-components'),
         ], 'lang');
-
     }
 
 
