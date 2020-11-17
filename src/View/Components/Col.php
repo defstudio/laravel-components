@@ -6,9 +6,9 @@ namespace DefStudio\Components\View\Components;
 
 class Col extends Component
 {
-    public string $size;
+    public ?string $size;
 
-    public function __construct(string $size)
+    public function __construct(string $size = null)
     {
         $this->size = $size;
     }
