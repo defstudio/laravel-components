@@ -842,6 +842,8 @@ $(document).ready(function () {
 
             const $form = $(this);
 
+            $form.find('.is-invalid').removeClass('is-invalid');
+
             const form_data = new FormData($form.get(0));
 
             const validation_url = $form.data('ajax-validation-url');
