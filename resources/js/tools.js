@@ -841,6 +841,7 @@ $(document).ready(function () {
         $(this).submit(function () {
             if (form_ok) return true;
 
+
             const submit_value = document.activeElement.getAttribute('value');
 
             const $form = $(this);
@@ -869,5 +870,23 @@ $(document).ready(function () {
             return false;
         })
     })
+});
+//</editor-fold>
+
+
+//<editor-fold desc="Confirmable Buttons">
+$(document).on('click', 'a.confirmable,button[type=button].confirmable', function (evt, confirmed = false) {
+    const $button = $(this);
+    const message = $button.data('confirm-message');
+
+    if (!confirmed) {
+        evt.preventDefault();
+
+        deftools.confirm.danger('', message).then(confirmed => {
+            if (confirmed) {
+                $button.trigger('click', {confirmed});
+            }
+        });
+    }
 });
 //</editor-fold>
