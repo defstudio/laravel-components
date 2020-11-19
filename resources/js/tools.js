@@ -837,20 +837,26 @@ $(document).ready(function () {
     $('form[data-ajax-validation-url]').each(function () {
 
         let form_ok = false;
+
         $(this).submit(function () {
             if (form_ok) return true;
+
+            const submit_value = document.activeElement.getAttribute('value');
 
             const $form = $(this);
 
             $form.find('.is-invalid').removeClass('is-invalid');
 
             const form_data = new FormData($form.get(0));
+            form_data.set('submit_value', submit_value);
 
             const validation_url = $form.data('ajax-validation-url');
 
             axios.post(validation_url, form_data)
                 .then(response => {
                     form_ok = true;
+
+                    $form.append(`<input type="hidden" name="submit_value" value="${submit_value}">`);
                     $form.trigger('def::form-submitted');
                     $form.submit();
                 })
