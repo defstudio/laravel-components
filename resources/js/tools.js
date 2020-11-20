@@ -352,10 +352,10 @@ deftools.message = {
         $message_modal.find('.modal-message').html(message);
         $message_modal.modal('show');
     },
-    danger: function (title, message, small=true) {
+    danger: function (title, message, small = true) {
         reset_message_modal();
 
-        if(!small){
+        if (!small) {
             $message_modal.find('.modal-dialog').removeClass('modal-sm');
         }
 
@@ -544,7 +544,7 @@ $(document).on('click', '.password-generator', function (e) {
 //</editor-fold>
 
 //<editor-fold desc="Tooltips">
-$(document).ready(function(){
+$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('body').popover({
@@ -842,10 +842,28 @@ $(document).ready(function () {
             if (form_ok) return true;
 
 
-            const submit_value = document.activeElement.getAttribute('value');
+            const $submit_button = $(document.activeElement);
+
+            const submit_value = $submit_button.attr('value');
 
             const $form = $(this);
 
+
+            if ($submit_button.hasClass('confirmable')) {
+                const message = $submit_button.data('confirm-message');
+                deftools.confirm.danger('', message).then(confirmed => {
+                    if (confirmed) {
+                        validate_data($form, submit_value);
+                    }
+                });
+            } else {
+                validate_data($form, submit_value);
+            }
+
+            return false;
+        });
+
+        function validate_data($form, submit_value) {
             $form.find('.is-invalid').removeClass('is-invalid');
 
             const form_data = new FormData($form.get(0));
@@ -865,14 +883,12 @@ $(document).ready(function () {
                     $form.trigger('def::invalid-form');
                     axios.handle(error, $form)
                 });
+        }
+    });
 
 
-            return false;
-        })
-    })
 });
 //</editor-fold>
-
 
 //<editor-fold desc="Confirmable Buttons">
 $(document).on('click', 'a.confirmable,button[type=button].confirmable', function (evt, confirmed = false) {
