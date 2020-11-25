@@ -846,6 +846,13 @@ $(document).ready(function () {
 
             const submit_value = $submit_button.attr('value');
 
+            if ($submit_button.hasClass('ajax-validation-disabled')) {
+                form_ok = true;
+                $form.trigger('def::form-submitted');
+                $form.submit();
+            }
+
+
             const $form = $(this);
 
 
