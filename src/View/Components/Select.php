@@ -10,7 +10,7 @@ class Select extends Input
 {
 
     public string $unselected;
-    public array $options;
+    public iterable $options;
     public string $label;
     public ?string $size;
     public bool $multiple;
@@ -23,7 +23,7 @@ class Select extends Input
         string $name,
         string $id = '',
         string $label = '',
-        array $options = [],
+        iterable $options = [],
         string $size = null,
         bool $multiple = false,
         string $unselected = '',

@@ -10,8 +10,8 @@ class Multiselect extends Select
     public function __construct(
         string $name,
         string $label = '',
-        array $options = [],
-        array $selected = []
+        iterable $options = [],
+        iterable $selected = []
     )
     {
         parent::__construct(
