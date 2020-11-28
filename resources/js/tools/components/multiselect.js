@@ -1,0 +1,1 @@
+$('select[multiple]').selectpicker();
