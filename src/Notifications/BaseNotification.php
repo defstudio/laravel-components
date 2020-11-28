@@ -6,16 +6,16 @@ namespace DefStudio\Components\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Notification;
+use Illuminate\Notifications\Notification;
 
 class BaseNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private string $title;
-    private string $message;
-    private string $color;
-    private iterable $actions;
+    public string $title;
+    public string $message;
+    public string $color;
+    public iterable $actions;
 
 
     public function __construct(

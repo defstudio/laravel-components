@@ -8,30 +8,28 @@
            v-bind:class="[
                   notifications.length===0?'text-light':'text-primary',
                   {blinking: has_unread}
-              ]"
-           @click="has_unread = false"
+            ]"
+           @click="mark_all_as_read()"
         />
 
 
-        <div aria-labelledby="dropdown-label" class="dropdown-menu notifications" role="menu">
+        <div aria-labelledby="dropdown-label" class="dropdown-menu notifications" role="menu" @click="$event.stopPropagation()">
             <div class="notifications-wrapper">
 
-                <div v-for="notification in notifications"
+                <div v-for="(notification, index) in notifications"
                      class="notification-item d-flex"
                      v-bind:class="[
                          'border-'+notification.data.color,
-                          {read: notification.read_at}
-                        ]">
+                     ]">
 
                     <div class="item-content flex-grow-1">
                         <h4 class="item-title" v-text="notification.data.title"/>
                         <p class="item-info" v-text="notification.data.message"/>
                     </div>
                     <div class="item-options d-flex flex-column">
-                        <i class="fas fa-eye mx-auto"
-                           @click="mark_as_read(notification)"/>
-
-                        <i class="fas fa-trash mt-auto mx-auto"/>
+                        <i class="fas fa-trash delete-item mt-auto mx-auto"
+                           role="button"
+                           @click="destroy(index)"/>
                     </div>
 
                 </div>
@@ -49,7 +47,7 @@ export default {
     name: "NotificationsMenu",
     data() {
         return {
-            notifications: {},
+            notifications: [],
             has_unread: false,
         }
     },
@@ -62,21 +60,40 @@ export default {
                 .then(response => this.update_notifications(response.data))
                 .catch(error => console.error(error));
         },
-        mark_as_read(notification) {
-            axios.patch(`/def-components/notifications/${notification.id}/read`, {read: !notification.read_at}, {spinner: false})
-                .then(response => this.refresh_notifications())
-                .catch(error => console.error(error));
+        mark_all_as_read() {
+            this.has_unread = false;
+
+            for (const notification_id in this.notifications) {
+                if (this.notifications[notification_id].read_at) continue;
+
+                this.notifications[notification_id] = new Date();
+
+                axios.patch(`/def-components/notifications/${notification_id}/read`, {
+                    read: !notification.read_at
+                }, {
+                    spinner: false
+                });
+
+            }
         },
         update_notifications(notifications) {
-            const updated_notifications = {};
+            this.notifications = notifications;
+
+            this.has_unread = false;
             for (const notification of notifications) {
-                if (this.notifications[notification.id] === undefined) {
+                if (!notification.read_at) {
                     this.has_unread = true;
                 }
-
-                updated_notifications[notification.id] = notification;
             }
-            this.notifications = updated_notifications;
+
+        },
+        destroy(notification_index) {
+            const notification = this.notifications[notification_index];
+            this.notifications.splice(notification_index, 1);
+
+            axios.delete(`/def-components/notifications/${notification.id}`, {
+                spinner: false
+            }).catch(error => console.error(error));
         }
     }
 }
@@ -135,7 +152,4 @@ export default {
     border-radius: 4px;
 }
 
-.notification-item.read {
-    opacity: 0.3;
-}
 </style>

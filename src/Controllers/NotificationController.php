@@ -29,4 +29,15 @@ class NotificationController
 
         return response()->noContent();
     }
+
+    public function destroy(string $notification_id)
+    {
+        /** @var DatabaseNotification $notification */
+        $notification = User::current()->notifications()->findOrFail($notification_id);
+
+        $notification->delete();
+
+        return response()->noContent();
+    }
+
 }
