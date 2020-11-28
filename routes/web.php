@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('web')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('def-components/notifications', [NotificationController::class, 'index'])->name('def-components.notifications.index');
+        Route::patch('def-components/notifications/{notification}/read', [NotificationController::class, 'read'])->name('def-components.notifications.read');
     });
 
     Route::middleware('signed')->group(function () {
