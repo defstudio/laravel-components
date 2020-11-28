@@ -1,6 +1,6 @@
 require('../vendor/summernote-bs4');
 
-export default {
+const summernote = {
     setup: () => {
         let $summernotes = $(".summernote:not(#templates *):not('.summernote-setup')");
 
@@ -44,4 +44,8 @@ export default {
     }
 };
 
-deftools.summernote.setup();
+summernote.setup();
+
+export default summernote
+
+
