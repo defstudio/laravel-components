@@ -5,7 +5,7 @@
            class="fas fa-bell"
            data-toggle="dropdown"
            role="button"
-           v-bind:class="[
+           :class="[
                   notifications.length===0?'text-light':'text-primary',
                   {blinking: has_unread}
             ]"
@@ -16,23 +16,10 @@
         <div aria-labelledby="dropdown-label" class="dropdown-menu notifications" role="menu" @click="$event.stopPropagation()">
             <div class="notifications-wrapper">
 
-                <div v-for="(notification, index) in notifications"
-                     class="notification-item d-flex"
-                     v-bind:class="[
-                         'border-'+notification.data.color,
-                     ]">
-
-                    <div class="item-content flex-grow-1">
-                        <h4 class="item-title" v-text="notification.data.title"/>
-                        <p class="item-info" v-text="notification.data.message"/>
-                    </div>
-                    <div class="item-options d-flex flex-column">
-                        <i class="fas fa-trash delete-item mt-auto mx-auto"
-                           role="button"
-                           @click="destroy(index)"/>
-                    </div>
-
-                </div>
+                <notification v-for="notification in notifications"
+                              :key="notification.id"
+                              :notification="notification"
+                              v-on:destroy-notification="destroy"/>
 
             </div>
 
@@ -63,12 +50,12 @@ export default {
         mark_all_as_read() {
             this.has_unread = false;
 
-            for (const notification_id in this.notifications) {
-                if (this.notifications[notification_id].read_at) continue;
+            for (const notification of this.notifications) {
+                if (notification.read_at) continue;
 
-                this.notifications[notification_id] = new Date();
+                notification.read_at = new Date();
 
-                axios.patch(`/def-components/notifications/${notification_id}/read`, {
+                axios.patch(`/def-components/notifications/${notification.id}/read`, {
                     read: !notification.read_at
                 }, {
                     spinner: false
@@ -87,11 +74,11 @@ export default {
             }
 
         },
-        destroy(notification_index) {
-            const notification = this.notifications[notification_index];
-            this.notifications.splice(notification_index, 1);
+        destroy(notification_to_destroy) {
 
-            axios.delete(`/def-components/notifications/${notification.id}`, {
+            this.notifications = this.notifications.filter(notification => notification.id !== notification_to_destroy.id);
+
+            axios.delete(`/def-components/notifications/${notification_to_destroy.id}`, {
                 spinner: false
             }).catch(error => console.error(error));
         }
@@ -116,40 +103,12 @@ export default {
     padding: 10px;
 }
 
-
 .notifications {
     left: unset;
     right: -15px;
     min-width: 420px;
 }
 
-.menu-title {
-    color: #ff7788;
-    font-size: 1rem;
-    display: inline-block;
-}
 
-
-.notification-heading, .notification-footer {
-    padding: 2px 10px;
-}
-
-
-.dropdown-menu .divider {
-    margin: 5px 0;
-}
-
-.item-title {
-    font-size: 1.0rem;
-    color: #000;
-}
-
-
-.notification-item {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid;
-    border-radius: 4px;
-}
 
 </style>
