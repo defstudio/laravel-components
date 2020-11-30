@@ -1,1 +1,3 @@
-$('select[multiple]').selectpicker();
+$(document).ready(function () {
+    $('select[multiple]').selectpicker();
+});
