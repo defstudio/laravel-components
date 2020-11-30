@@ -1,4 +1,4 @@
-require('../vendor/summernote-bs4');
+require('../lib/summernote-bs4');
 
 const summernote = {
     setup: () => {
