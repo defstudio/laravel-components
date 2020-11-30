@@ -35,7 +35,13 @@ export default {
     data() {
         return {
             notifications: [],
-            has_unread: false,
+        }
+    },
+    computed: {
+        has_unread() {
+            if (this.notifications.length === 0) return false;
+
+            return this.notifications.filter(notification => !notification.read_at).length > 1;
         }
     },
     mounted() {
@@ -44,7 +50,7 @@ export default {
     methods: {
         refresh_notifications() {
             axios.get('/def-components/notifications', {spinner: false})
-                .then(response => this.update_notifications(response.data))
+                .then(response => this.notifications = response.data)
                 .catch(error => console.error(error));
         },
         mark_all_as_read() {
@@ -62,17 +68,6 @@ export default {
                 });
 
             }
-        },
-        update_notifications(notifications) {
-            this.notifications = notifications;
-
-            this.has_unread = false;
-            for (const notification of notifications) {
-                if (!notification.read_at) {
-                    this.has_unread = true;
-                }
-            }
-
         },
         destroy(notification_to_destroy) {
 
