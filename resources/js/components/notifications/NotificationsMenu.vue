@@ -56,7 +56,7 @@ export default {
                 notification.read_at = new Date();
 
                 axios.patch(`/def-components/notifications/${notification.id}/read`, {
-                    read: !notification.read_at
+                    read: true
                 }, {
                     spinner: false
                 });
