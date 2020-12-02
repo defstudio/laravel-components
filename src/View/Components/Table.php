@@ -7,10 +7,10 @@ namespace DefStudio\Components\View\Components;
 class Table extends Component
 {
     public string $id;
-    public array $headers;
+    public iterable $headers;
     public string $datatable;
 
-    public function __construct(string $id = '', array $headers = [], string $datatable = '')
+    public function __construct(string $id = '', iterable $headers = [], string $datatable = '')
     {
         $this->id = $id;
         $this->headers = $headers;
