@@ -64,6 +64,7 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
                         errors.push(...reasons);
 
+                        // noinspection RegExpRedundantEscape
                         const normalized_field = field.replace(/\.([\w\*]*)/g, "[$1]");
 
                         let $input = $($form[0].elements[normalized_field]);
