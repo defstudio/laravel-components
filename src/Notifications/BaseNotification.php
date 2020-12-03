@@ -6,6 +6,7 @@ namespace DefStudio\Components\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
 class BaseNotification extends Notification implements ShouldQueue
@@ -33,9 +34,18 @@ class BaseNotification extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
+    public function toBroadcast($notifiable): BroadcastMessage
+    {
+        return new BroadcastMessage([
+            'color'   => $this->color,
+            'title'   => $this->title,
+            'message' => $this->message,
+            'actions' => $this->actions,
+        ]);
+    }
 
     public function toArray($notifiable)
     {
