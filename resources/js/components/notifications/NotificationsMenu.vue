@@ -40,7 +40,6 @@ export default {
     computed: {
         has_unread() {
             if (this.notifications.length === 0) return false;
-
             return this.notifications.filter(notification => !notification.read_at).length > 1;
         }
     },
@@ -54,8 +53,6 @@ export default {
                 .catch(error => console.error(error));
         },
         mark_all_as_read() {
-            this.has_unread = false;
-
             for (const notification of this.notifications) {
                 if (notification.read_at) continue;
 
