@@ -40,14 +40,17 @@ class BaseNotification extends Notification implements ShouldQueue
     public function toBroadcast($notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
-            'color'   => $this->color,
-            'title'   => $this->title,
-            'message' => $this->message,
-            'actions' => $this->actions,
+            'def_components_notification' => true,
+            'data'                        => [
+                'color'   => $this->color,
+                'title'   => $this->title,
+                'message' => $this->message,
+                'actions' => $this->actions,
+            ],
         ]);
     }
 
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'color'   => $this->color,

@@ -1,4 +1,5 @@
 require('./tools/axios');
+require('./tools/echo');
 require('./tools/password');
 require('./tools/components');
 require('./tools/bootstrap');

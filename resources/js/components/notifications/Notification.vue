@@ -7,7 +7,7 @@
             <p class="item-info" v-text="notification.data.message"/>
         </div>
 
-        <div class="item-options d-flex flex-column">
+        <div v-if="deletable" class="item-options d-flex flex-column">
             <i class="fas fa-trash delete-item mt-auto mx-auto"
                role="button"
                @click="$emit('destroy-notification', notification)"/>
@@ -19,7 +19,14 @@
 <script>
 export default {
     name: "Notification",
-    props: ['notification'],
+    props: {
+        notification: {
+            required: true,
+        },
+        deletable: {
+            default: true,
+        },
+    },
 }
 </script>
 
@@ -29,11 +36,11 @@ export default {
     color: #000;
 }
 
-
 .notification-item {
     padding: 10px;
     margin: 5px;
     border: 1px solid;
     border-radius: 4px;
+    background-color: whitesmoke;
 }
 </style>
