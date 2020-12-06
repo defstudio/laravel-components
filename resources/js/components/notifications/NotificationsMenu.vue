@@ -46,6 +46,11 @@ export default {
             toasts: [],
         }
     },
+    props: {
+        userId: {
+            required: true,
+        }
+    },
     computed: {
         has_unread() {
             if (this.notifications.length === 0) return false;
@@ -58,7 +63,8 @@ export default {
     },
     methods: {
         setup_echo_listener() {
-            window.Echo.private(`App.Models.User.4`)
+
+            window.Echo.private(`App.Models.User.${this.userId}`)
                 .notification(notification => {
                     if (notification.def_components_notification) {
                         this.show_toast_notification(notification);
