@@ -2,7 +2,7 @@ import Echo from "laravel-echo";
 
 const echo_enabled = document.head.querySelector('meta[name="def-components-echo-enabled"]');
 
-if (echo_enabled) {
+if (echo_enabled && echo_enabled.content) {
     window.Pusher = require('pusher-js');
 
     window.Echo = new Echo({
