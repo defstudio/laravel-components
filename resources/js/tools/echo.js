@@ -1,3 +1,7 @@
+const echo_enabled = document.head.querySelector('meta[name="def-components-echo-enabled"]');
+
+if (!echo_enabled) return;
+
 import Echo from "laravel-echo";
 
 window.Pusher = require('pusher-js');
