@@ -1,2 +1,2 @@
-<meta name="def-components-echo-enabled" content="{{config('components.echo_enabled')?1:0}}">
+<meta name="def-components-echo-enabled" content="{{config('components.echo_enabled')?"enabled":"disabled"}}">
 @stack('x-styles')
