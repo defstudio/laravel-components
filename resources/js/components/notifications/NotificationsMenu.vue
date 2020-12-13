@@ -63,6 +63,7 @@ export default {
     },
     methods: {
         setup_echo_listener() {
+            if (!window.Echo) return;
 
             window.Echo.private(`App.Models.User.${this.userId}`)
                 .notification(notification => {
