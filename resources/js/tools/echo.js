@@ -10,7 +10,7 @@ if (echo_enabled && echo_enabled.content === 'enabled') {
         key: process.env.MIX_PUSHER_APP_KEY,
         cluster: process.env.MIX_PUSHER_APP_CLUSTER,
         forceTLS: true,
-        wsHost: window.location.hostname + process.env.MIX_PUSHER_PATH,
+        wsHost: window.location.hostname,
         wsPort: 6001,
         wssPort: 6001,
     });
