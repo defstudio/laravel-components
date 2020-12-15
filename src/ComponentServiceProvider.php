@@ -91,6 +91,8 @@ class ComponentServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
 
+        $this->mergeConfigFrom(__DIR__ . "/../config/components.php", 'components');
+
 
         $this->publishes([
             __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
