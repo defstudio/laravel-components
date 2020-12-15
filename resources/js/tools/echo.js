@@ -12,6 +12,7 @@ if (echo_enabled && echo_enabled.content === 'enabled') {
         cluster: process.env.MIX_PUSHER_APP_CLUSTER,
         wsHost: window.location.hostname,
         wsPort: 6001,
+        forceTLS: false,
     };
 
     if (!allow_insecure || allow_insecure.content !== 'allow') {
