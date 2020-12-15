@@ -10,4 +10,7 @@ return [
     'tags_prefix' => '',
 
     'echo_enabled' => env('DEF_COMPONENTS_ECHO_ENABLED', false),
+
+    'allow_insecure' => env('DEF_COMPONENTS_ECHO_ALLOW_INSECURE', false),
+
 ];
