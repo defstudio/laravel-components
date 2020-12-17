@@ -44,7 +44,7 @@ if (!empty($confirm)) {
             <x-form hidden id="button-form-{{$random_id}}" :method="$method" :action="$href"></x-form>
         @endpush
 
-        <button type="submit" form="button-form-{{$random_id}}" {{$attributes}}>
+        <button type="submit" form="button-form-{{$random_id}}" {{$attributes->merge(['class' => empty($confirm)?'':'force-confirm'])}}>
             @empty($icon)
                 {{$slot}}
             @else

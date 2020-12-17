@@ -1,4 +1,4 @@
-$(document).on('click', 'a.confirmable,button[type=button].confirmable', function (evt, confirmed = false) {
+$(document).on('click', 'a.confirmable,button[type=button].confirmable,button.force-confirm.confirmable', function (evt, confirmed = false) {
     const $button = $(this);
     const message = $button.data('confirm-message');
 
