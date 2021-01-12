@@ -1,3 +1,9 @@
+<!--
+  - Copyright (C) 2021. Def Studio
+  -  Unauthorized copying of this file, via any medium is strictly prohibited
+  -  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+  -->
+
 <template>
     <div class="dropdown">
 
@@ -145,6 +151,10 @@ export default {
     position: absolute;
     right: -15px;
     z-index: 500;
+}
+
+.dropdown-menu {
+    z-index: 999999;
 }
 
 .notification-item {
