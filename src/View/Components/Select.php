@@ -1,10 +1,15 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Lang;
 
 class Select extends Input
 {
@@ -28,8 +33,7 @@ class Select extends Input
         bool $multiple = false,
         string $unselected = '',
         $selected = ''
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->options = $options;
@@ -53,5 +57,10 @@ class Select extends Input
         $selected_values = Arr::wrap($this->computed_value($this->selected));
 
         return in_array($option_key, $selected_values);
+    }
+
+    public static function options_months()
+    {
+        return Lang::get('def-components::strings.months');
     }
 }
