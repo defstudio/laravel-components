@@ -7,13 +7,14 @@
 import moment from "moment";
 import Vue from "vue";
 
-if ($('#app').length === 0) return;
+if ($('#app').length > 0) {
+    const files = require.context('../../components', true, /\.vue$/i);
+    files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-const files = require.context('../../components', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+    Vue.filter('format_date', value => {
+        if (value) {
+            return moment(String(value)).format('MM/DD/YYYY HH:mm');
+        }
+    })
+}
 
-Vue.filter('format_date', value => {
-    if (value) {
-        return moment(String(value)).format('MM/DD/YYYY HH:mm');
-    }
-})
