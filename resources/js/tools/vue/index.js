@@ -7,6 +7,8 @@
 import moment from "moment";
 import Vue from "vue";
 
+if ($('#app').length === 0) return;
+
 const files = require.context('../../components', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
