@@ -1,4 +1,11 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 
 namespace DefStudio\Components\Excel;
@@ -41,7 +48,7 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
         $this->fileName = "$filename.xls";
     }
 
-    private function normalize_columns(array $columns)
+    private function normalize_columns(array $columns): array
     {
         foreach ($columns as $key => $data) {
             if (!is_array($data)) {
@@ -64,7 +71,7 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
     {
         return view('def-components::excel.template-export')->with([
             'columns' => $this->columns,
-            'rows' => $this->rows,
+            'rows'    => $this->rows,
         ]);
     }
 
@@ -94,7 +101,7 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
         return $formats;
     }
 
-    public function styles(Worksheet $sheet)
+    public function styles(Worksheet $sheet): array
     {
         $sheet->freezePane('A3');
         $sheet->getRowDimension(1)->setVisible(false);
@@ -120,13 +127,11 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
     {
         $range = "{$column_letter}3:{$column_letter}9999";
 
-
         if (($column_data['type'] ?? '') == 'select') {
-
             $options = $column_data['options'] ?? [];
             unset($options['']);
 
-            $allowed_values = '"' . implode(',', $options) . '"';
+            $allowed_values = '"'.implode(',', $options).'"';
 
             $validation = $sheet->getDataValidation($range);
             $validation->setType(DataValidation::TYPE_LIST);
@@ -138,20 +143,21 @@ class TemplateExcelExport implements FromView, Responsable, ShouldAutoSize, With
             $validation->setShowDropDown(true);
             $validation->setFormula1($allowed_values);
             $sheet->setDataValidation($range, $validation);
+        } else {
+            if (($column_data['type'] ?? '') == 'checkbox') {
+                $allowed_values = '"'.implode(',', ['1']).'"';
 
-        } else if (($column_data['type'] ?? '') == 'checkbox') {
-            $allowed_values = '"' . implode(',', ['1']) . '"';
-
-            $validation = $sheet->getDataValidation($range);
-            $validation->setType(DataValidation::TYPE_LIST);
-            $validation->setErrorStyle(DataValidation::STYLE_STOP);
-            $validation->setAllowBlank(true);
-            $validation->setShowErrorMessage(true);
-            $validation->setErrorTitle("Attenzione");
-            $validation->setError("Inserire 1 per selezionare");
-            $validation->setShowDropDown(true);
-            $validation->setFormula1($allowed_values);
-            $sheet->setDataValidation($range, $validation);
+                $validation = $sheet->getDataValidation($range);
+                $validation->setType(DataValidation::TYPE_LIST);
+                $validation->setErrorStyle(DataValidation::STYLE_STOP);
+                $validation->setAllowBlank(true);
+                $validation->setShowErrorMessage(true);
+                $validation->setErrorTitle("Attenzione");
+                $validation->setError("Inserire 1 per selezionare");
+                $validation->setShowDropDown(true);
+                $validation->setFormula1($allowed_values);
+                $sheet->setDataValidation($range, $validation);
+            }
         }
     }
 }
