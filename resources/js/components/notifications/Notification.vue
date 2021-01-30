@@ -4,7 +4,7 @@
 
         <div class="item-content flex-grow-1">
             <h4 class="item-title">{{ notification.data.title }}</h4>
-            <p class="item-info">{{ notification.data.message }}</p>
+            <p class="item-info" v-html="notification.data.message"></p>
 
             <small class="mt-4">
                 {{ notification.created_at | format_date }}
