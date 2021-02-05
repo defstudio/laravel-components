@@ -54,6 +54,18 @@ class TemplateExcelExport implements WithMultipleSheets, Responsable
             $columns[$key] = $data;
         }
 
+        foreach ($columns as &$column) {
+            if (data_get($column, 'type') == 'select') {
+                $values_column = [];
+                $values_column[] = data_get($column, 'label');
+
+                $options = array_values(data_get($column, 'options', []));
+                unset($options['']);
+                $values_column = array_merge($values_column, $options);
+                $column['values_column'] = $values_column;
+            }
+        }
+
         return $columns;
     }
 

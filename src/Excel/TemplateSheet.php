@@ -5,8 +5,9 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
-namespace DefStudio\Components\Excel;
+/** @noinspection PhpUnhandledExceptionInspection */
 
+namespace DefStudio\Components\Excel;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -20,11 +21,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class TemplateSheet implements FromView, ShouldAutoSize, WithStyles, WithColumnFormatting, WithTitle
 {
-    const ALPHABET = [
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ',
-    ];
-
     public function __construct(
         private array $columns,
         private array $rows,
@@ -50,7 +46,7 @@ class TemplateSheet implements FromView, ShouldAutoSize, WithStyles, WithColumnF
 
         $column_number = 0;
         foreach ($this->columns as $column_data) {
-            $column_letter = self::ALPHABET[$column_number];
+            $column_letter = TemplateExcelExport::ALPHABET[$column_number];
 
             switch ($column_data['type'] ?? '') {
                 case 'number':
@@ -83,24 +79,24 @@ class TemplateSheet implements FromView, ShouldAutoSize, WithStyles, WithColumnF
 
 
         $column_number = 0;
+
+        $select_columns_count = 0;
         foreach ($this->columns as $column_data) {
-            $column_letter = self::ALPHABET[$column_number];
-            $this->set_cell_style($sheet, $column_letter, $column_data);
+            $column_letter = TemplateExcelExport::ALPHABET[$column_number];
+            $this->set_cell_style($sheet, $column_letter, $column_data, $select_columns_count);
             $column_number++;
         }
 
         return $styles;
     }
 
-    private function set_cell_style(Worksheet &$sheet, $column_letter, $column_data)
+    private function set_cell_style(Worksheet $sheet, $column_letter, $column_data, &$select_columns_count)
     {
         $range = "{$column_letter}3:{$column_letter}9999";
 
         if (($column_data['type'] ?? '') == 'select') {
-            $options = $column_data['options'] ?? [];
+            $options = data_get($column_data, 'options', []);
             unset($options['']);
-
-            $allowed_values = '"'.implode(',', $options).'"';
 
             $validation = $sheet->getDataValidation($range);
             $validation->setType(DataValidation::TYPE_LIST);
@@ -110,8 +106,14 @@ class TemplateSheet implements FromView, ShouldAutoSize, WithStyles, WithColumnF
             $validation->setErrorTitle("Attenzione");
             $validation->setError("Valore non ammesso");
             $validation->setShowDropDown(true);
-            $validation->setFormula1($allowed_values);
+
+            $values_column = TemplateExcelExport::ALPHABET[$select_columns_count];
+            $values_row_start = 2;
+            $values_row_end = $values_row_start + count($options);
+            $validation->setFormula1("'Data'!\${$values_column}\${$values_row_start}:\${$values_column}\${$values_row_end}");
             $sheet->setDataValidation($range, $validation);
+
+            $select_columns_count++;
         } else {
             if (($column_data['type'] ?? '') == 'checkbox') {
                 $allowed_values = '"'.implode(',', ['1']).'"';

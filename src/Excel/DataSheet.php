@@ -7,17 +7,12 @@
 
 namespace DefStudio\Components\Excel;
 
-
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class DataSheet implements WithTitle, FromArray
+class DataSheet implements WithTitle, FromArray, ShouldAutoSize
 {
-    const ALPHABET = [
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ',
-    ];
-
     public function __construct(
         private array $columns,
         private array $rows,
@@ -29,14 +24,37 @@ class DataSheet implements WithTitle, FromArray
         return 'Data';
     }
 
-    public function array()
+    public function array(): array
     {
-        return [
-            [
-                'a',
-                'c',
-            ],
-        ];
+        $values_columns = [];
+        foreach ($this->columns as $column) {
+            if (!empty($values_column = data_get($column, 'values_column'))) {
+                $values_columns[] = $values_column;
+            }
+        }
+
+        $max_length = 0;
+        foreach ($values_columns as $values_column) {
+            $max_length = max($max_length, count($values_column));
+        }
+
+
+        $data_columns = [];
+        for ($i = 0; $i < $max_length; $i++) {
+            for ($j = 0; $j < count($values_columns); $j++) {
+                $data_columns[$i][$j] = "";
+            }
+        }
+
+
+        foreach ($values_columns as $col_index => $col_data) {
+            foreach ($col_data as $row_index => $cell) {
+                $data_columns[$row_index][$col_index] = $cell;
+            }
+        }
+
+
+        return $data_columns;
     }
 
     // public function columnFormats(): array
