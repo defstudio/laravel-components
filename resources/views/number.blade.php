@@ -8,6 +8,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string $label
  */
 
+
 ?>
 
 
@@ -21,9 +22,9 @@ use Illuminate\View\ComponentAttributeBag;
         id="{{$computed_id()}}"
         type="number"
         name="{{$name}}"
-        step="{{$step}}"
-        {{isset($min)?"min='$min'":''}}
-        {{isset($max)?"max='$max'":''}}
+        {{isset($step)?"step=$step":''}}
+        {{isset($min)?"min=$min":''}}
+        {{isset($max)?"max=$max":''}}
         {{$attributes->merge(['class' => 'form-control'])
                      ->merge(['autocomplete' => 'nope'])
                      ->merge($error_attributes())}}
