@@ -9,13 +9,15 @@ class Number extends Input
     public string $label;
     public ?int $max;
     public ?int $min;
+    public string|int|float $step;
 
     public function __construct(
         string $name,
         string $label = '',
         string $id = '',
         int $max = null,
-        int $min = null
+        int $min = null,
+        string|int|float $step = 1,
     )
     {
         $this->id = $id;
@@ -23,6 +25,7 @@ class Number extends Input
         $this->label = $label;
         $this->max = $max;
         $this->min = $min;
+        $this->step = $step;
     }
 
     /**

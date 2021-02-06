@@ -21,6 +21,7 @@ use Illuminate\View\ComponentAttributeBag;
         id="{{$computed_id()}}"
         type="number"
         name="{{$name}}"
+        step="{{$step}}"
         {{isset($min)?"min='$min'":''}}
         {{isset($max)?"max='$max'":''}}
         {{$attributes->merge(['class' => 'form-control'])

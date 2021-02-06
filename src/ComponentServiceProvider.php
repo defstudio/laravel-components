@@ -14,6 +14,7 @@ use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Currency;
 use DefStudio\Components\View\Components\Fieldset;
 use DefStudio\Components\View\Components\File;
+use DefStudio\Components\View\Components\FloatNumber;
 use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
@@ -60,6 +61,7 @@ class ComponentServiceProvider extends ServiceProvider
             Fieldset::class,
             File::class,
             Form::class,
+            FloatNumber::class,
             Hidden::class,
             Icon::class,
             Modal::class,
