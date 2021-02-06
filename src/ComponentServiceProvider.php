@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components;
 
@@ -12,6 +16,7 @@ use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Col;
 use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Currency;
+use DefStudio\Components\View\Components\Datepicker;
 use DefStudio\Components\View\Components\Fieldset;
 use DefStudio\Components\View\Components\File;
 use DefStudio\Components\View\Components\FloatNumber;
@@ -57,7 +62,7 @@ class ComponentServiceProvider extends ServiceProvider
             Col::class,
             Context::class,
             Currency::class,
-            Table::class,
+            Datepicker::class,
             Fieldset::class,
             File::class,
             Form::class,
@@ -77,6 +82,7 @@ class ComponentServiceProvider extends ServiceProvider
             Row::class,
             Select::class,
             Styles::class,
+            Table::class,
             TemplateAttachment::class,
             Text::class,
             TextArea::class,
