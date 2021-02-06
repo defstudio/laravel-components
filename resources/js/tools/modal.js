@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+
 let $question_modal;
 
 //Modal in modal
@@ -24,9 +30,11 @@ function reset_question_modal() {
     $question_modal.find('.modal-dialog').removeClass('modal-lg');
     $question_modal.find('.modal-header').removeClass('bg-danger');
     $question_modal.find('.modal-header').removeClass('bg-warning');
+    $question_modal.find('.modal-header').removeClass('bg-primary');
     $question_modal.find('.modal-header').removeClass('bg-success');
     $question_modal.find('.modal-ok-button').removeClass('btn-danger');
     $question_modal.find('.modal-ok-button').removeClass('btn-warning');
+    $question_modal.find('.modal-ok-button').removeClass('btn-primary');
     $question_modal.find('.modal-ok-button').removeClass('btn-success');
     $question_modal.find('.modal-title').html("");
     $question_modal.find('.modal-message').html("");
@@ -55,6 +63,22 @@ export default {
         if (large) $question_modal.find('.modal-dialog').addClass('modal-lg');
         $question_modal.find('.modal-header').addClass('bg-warning');
         $question_modal.find('.modal-ok-button').addClass('btn-warning');
+        $question_modal.find('.modal-title').html(title);
+        $question_modal.find('.modal-message').html(message);
+
+
+        if (ok_action !== null) $question_modal.on('click.question_handling', '.modal-ok-button', ok_action);
+
+        if (abort_action !== null) $question_modal.on('click.question_handling', '.modal-abort-button', abort_action);
+
+        $question_modal.modal('show');
+    },
+    primary: function (title, message, ok_action = null, abort_action = null, large = false) {
+        reset_question_modal();
+        if (large) $question_modal.find('.modal-dialog').removeClass('modal-sm');
+        if (large) $question_modal.find('.modal-dialog').addClass('modal-lg');
+        $question_modal.find('.modal-header').addClass('bg-primary');
+        $question_modal.find('.modal-ok-button').addClass('btn-primary');
         $question_modal.find('.modal-title').html(title);
         $question_modal.find('.modal-message').html(message);
 

@@ -6,6 +6,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var ComponentAttributeBag $attributes
  * @var string $href
  * @var string $color
+ * @var string $confirmColor
  * @var string $method
  */
 
@@ -13,7 +14,7 @@ $attributes = $attributes->merge(['class' => "btn btn-$color"]);
 
 if (!empty($confirm)) {
     $attributes = $attributes->merge([
-        'class' => 'confirmable',
+        'class'                => "confirmable confirmable-{$confirmColor}",
         'data-confirm-message' => $confirm,
     ]);
 }

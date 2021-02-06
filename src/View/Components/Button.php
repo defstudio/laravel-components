@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
@@ -7,50 +11,30 @@ namespace DefStudio\Components\View\Components;
 class Button extends Component
 {
 
-    const TYPE_SUBMIT = 'submit';
-    const TYPE_BUTTON = 'button';
+    public const TYPE_SUBMIT = 'submit';
+    public const TYPE_BUTTON = 'button';
 
-    const METHOD_GET = 'GET';
-    const METHOD_PUT = 'PUT';
-    const METHOD_POST = 'POST';
-    const METHOD_PATCH = 'PATCH';
-    const METHOD_DELETE = 'DELETE';
+    public const METHOD_GET = 'GET';
+    public const METHOD_PUT = 'PUT';
+    public const METHOD_POST = 'POST';
+    public const METHOD_PATCH = 'PATCH';
+    public const METHOD_DELETE = 'DELETE';
 
     public string $href;
-    public string $color;
-    public string $type;
     public string $method;
-    public string $confirm;
-    public string $icon;
-    public string $get;
-    public string $post;
-    public string $put;
-    public string $patch;
-    public string $delete;
 
     public function __construct(
-        string $color = 'primary',
-        string $type = self::TYPE_BUTTON,
-        string $confirm = '',
-        string $icon = '',
-        string $get = '',
-        string $post = '',
-        string $put = '',
-        string $patch = '',
-        string $delete = ''
-    )
-    {
-        $this->color = $color;
-        $this->type = $type;
-        $this->confirm = $confirm;
-
-        $this->icon = $icon;
-
-        $this->get = $get;
-        $this->post = $post;
-        $this->put = $put;
-        $this->patch = $patch;
-        $this->delete = $delete;
+        public string $color = 'primary',
+        public string $type = self::TYPE_BUTTON,
+        public string $confirm = '',
+        public string $confirmColor = 'primary',
+        public string $icon = '',
+        public string $get = '',
+        public string $post = '',
+        public string $put = '',
+        public string $patch = '',
+        public string $delete = ''
+    ) {
 
         $this->compute_href();
     }
