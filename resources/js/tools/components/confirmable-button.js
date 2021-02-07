@@ -15,9 +15,9 @@ $(document).on('click', 'a.confirmable,button[type=button].confirmable,button.fo
         if ($button.hasClass('confirmable-danger')) {
             display_confirm_message = deftools.confirm.danger;
         } else if ($button.hasClass('confirmable-warning')) {
-            display_confirm_message = deftools.confirm.warning();
+            display_confirm_message = deftools.confirm.warning;
         } else if ($button.hasClass('confirmable-primary')) {
-            display_confirm_message = deftools.confirm.primary();
+            display_confirm_message = deftools.confirm.primary;
         } else if ($button.hasClass('confirmable-success')) {
             display_confirm_message = deftools.confirm.success;
         }
