@@ -11,16 +11,16 @@ $(document).on('click', 'a.confirmable,button[type=button].confirmable,button.fo
     if (!confirmed) {
         evt.preventDefault();
 
-        let confirm_message;
+        let display_confirm_message;
         if ($button.hasClass('confirmable-danger')) {
-            confirm_message = deftools.confirm.danger;
+            display_confirm_message = deftools.confirm.danger;
         } else if ($button.hasClass('confirmable-warning')) {
-            confirm_message = deftools.confirm.warning();
+            display_confirm_message = deftools.confirm.warning();
         } else if ($button.hasClass('confirmable-success')) {
-            confirm_message = deftools.confirm.success;
+            display_confirm_message = deftools.confirm.success;
         }
 
-        confirm_message.danger('', message).then(confirmed => {
+        display_confirm_message('', message).then(confirmed => {
             if (confirmed) {
                 $button.trigger('click', {confirmed});
             }
