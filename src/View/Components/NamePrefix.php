@@ -9,8 +9,13 @@ namespace DefStudio\Components\View\Components;
 
 class NamePrefix extends Context
 {
+
     public function __construct(public string $val = '')
     {
+        $current_prefix = $this->context()->read('def_name_prefix');
+        if (!empty($current_prefix)) {
+            $val = "$current_prefix.$this->val";
+        }
         parent::__construct(['def_name_prefix' => $val]);
     }
 }
