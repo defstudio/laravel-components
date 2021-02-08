@@ -27,7 +27,7 @@ class Button extends Component
         public string $color = 'primary',
         public string $type = self::TYPE_BUTTON,
         public string $confirm = '',
-        public string $confirmColor = 'primary',
+        public string $confirmColor = '',
         public string $icon = '',
         public string $get = '',
         public string $post = '',
@@ -35,7 +35,9 @@ class Button extends Component
         public string $patch = '',
         public string $delete = ''
     ) {
-
+        if (empty($this->confirmColor)) {
+            $this->confirmColor = str($this->color)->replace('outline-', '');
+        }
         $this->compute_href();
     }
 
