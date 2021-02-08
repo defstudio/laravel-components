@@ -4,7 +4,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 /**
  * @var ComponentAttributeBag $attributes
- * @var string $name
  * @var string $label
  */
 
@@ -21,7 +20,7 @@ use Illuminate\View\ComponentAttributeBag;
     <input
         id="{{$computed_id()}}"
         type="number"
-        name="{{$name}}"
+        name="{{$name()}}"
         {{isset($step)?"step=$step":''}}
         {{isset($min)?"min=$min":''}}
         {{isset($max)?"max=$max":''}}

@@ -4,7 +4,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 /**
  * @var ComponentAttributeBag $attributes
- * @var string $name
  * @var string $label
  */
 
@@ -20,7 +19,7 @@ use Illuminate\View\ComponentAttributeBag;
         ->merge(['class' => 'form-control'])
         ->merge(['class' => is_null($summernote)?'':'summernote'])
         ->merge($error_attributes())}}
-    name="{{$name}}"
+    name="{{$name()}}"
     id="{{$computed_id()}}"
 
     @foreach($summernote??[] as $summernote_feature)

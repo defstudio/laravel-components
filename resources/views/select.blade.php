@@ -4,7 +4,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 /**
  * @var ComponentAttributeBag $attributes
- * @var string $name
  * @var array $options
  * @var string $label
  * @var string|null $size
@@ -19,7 +18,7 @@ use Illuminate\View\ComponentAttributeBag;
 @endunless
 
 <select
-    name="{{$name}}"
+    name="{{$name()}}"
     id="{{$computed_id()}}"
     {{$attributes->merge(['class' => 'form-control'])
                  ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])

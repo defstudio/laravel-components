@@ -4,7 +4,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 /**
  * @var ComponentAttributeBag $attributes
- * @var string $name
  * @var string $label
  */
 
@@ -20,7 +19,7 @@ use Illuminate\View\ComponentAttributeBag;
     <input
         id="{{$computed_id()}}"
         type="password"
-        name="{{$name}}"
+        name="{{$name()}}"
         {{$attributes->merge(['class' => 'form-control'])
                      ->merge(['autocomplete' => 'new-password'])
                      ->merge($error_attributes())}}

@@ -1,11 +1,14 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\Traits;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 trait BindsModels
 {
@@ -23,6 +26,6 @@ trait BindsModels
 
     public function model(): ?Model
     {
-        return Arr::get($this->context()->read(), 'model');
+        return $this->context()->read('model');
     }
 }

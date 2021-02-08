@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components;
 
@@ -15,9 +19,15 @@ class ContextStack
         $this->stack[] = array_merge($this->read(), $data);
     }
 
-    public function read(): array
+    public function read(string $key = null): mixed
     {
-        return Arr::last($this->stack) ?? [];
+        $context = Arr::last($this->stack) ?? [];
+
+        if (empty($key)) {
+            return $context;
+        }
+
+        return data_get($context, $key);
     }
 
     public function pop()

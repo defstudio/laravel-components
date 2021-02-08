@@ -26,6 +26,7 @@ use DefStudio\Components\View\Components\Icon;
 use DefStudio\Components\View\Components\LaravelMessages;
 use DefStudio\Components\View\Components\Modal;
 use DefStudio\Components\View\Components\Multiselect;
+use DefStudio\Components\View\Components\NamePrefix;
 use DefStudio\Components\View\Components\Navbar;
 use DefStudio\Components\View\Components\NavbarDropdownItem;
 use DefStudio\Components\View\Components\NavbarItem;
@@ -72,6 +73,7 @@ class ComponentServiceProvider extends ServiceProvider
             Modal::class,
             Multiselect::class,
             LaravelMessages::class,
+            NamePrefix::class,
             Navbar::class,
             NavbarNav::class,
             NavbarItem::class,
