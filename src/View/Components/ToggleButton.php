@@ -1,23 +1,22 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
 
 class ToggleButton extends Component
 {
-    public string $target;
-    public string $color;
 
 
     public function __construct(
-        string $target,
-        string $color = 'primary'
-
-    )
-    {
-        $this->target = $target;
-        $this->color = $color;
+        public string $target,
+        public string $color = 'primary',
+        public string $icon = '',
+    ) {
     }
 
     /**

@@ -10,4 +10,4 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<x-button :color="$color" {{$attributes}} data-toggle="collapse" data-target="{{$target}}">{{$slot}}</x-button>
+<x-button :color="$color" :icon="$icon" {{$attributes}} data-toggle="collapse" data-target="{{$target}}">{{$slot}}</x-button>
