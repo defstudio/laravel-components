@@ -5,11 +5,12 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
+/** @noinspection PhpUndefinedFieldInspection */
+
 use Carbon\CarbonInterface;
 use DefStudio\Components\Helpers\DotCollection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
-use JetBrains\PhpStorm\Pure;
 use Symfony\Component\VarDumper\VarDumper;
 
 
@@ -17,11 +18,11 @@ if (!function_exists('str')) {
     /**
      * Get a new stringable object from the given string.
      *
-     * @param  string  $string
+     * @param  string|\Illuminate\Support\Stringable  $string  $string
      *
      * @return \Illuminate\Support\Stringable
      */
-    function str($string): \Illuminate\Support\Stringable
+    function str(string|\Illuminate\Support\Stringable $string): \Illuminate\Support\Stringable
     {
         return \Illuminate\Support\Str::of($string);
     }
@@ -37,7 +38,7 @@ if (!function_exists('back')) {
      *
      * @return RedirectResponse
      */
-    function back($status = 302, $headers = [], $fallback = false)
+    function back($status = 302, $headers = [], $fallback = false): RedirectResponse
     {
         if (request()->has('referer')) {
             return app('redirect')->to(request()->referer, $status, $headers);
@@ -54,7 +55,6 @@ if (!function_exists('carbon')) {
 }
 
 if (!function_exists('dot_collect')) {
-    #[Pure]
     function dot_collect(
         $value = null
     ): DotCollection {
