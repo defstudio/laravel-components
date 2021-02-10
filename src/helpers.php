@@ -24,9 +24,9 @@ if (!function_exists('str')) {
      *
      * @return \Illuminate\Support\Stringable
      */
-    function str(string|\Illuminate\Support\Stringable $string): \Illuminate\Support\Stringable
+    function str(null|string|\Illuminate\Support\Stringable $string): \Illuminate\Support\Stringable
     {
-        return \Illuminate\Support\Str::of($string);
+        return \Illuminate\Support\Str::of($string ?? '');
     }
 }
 
