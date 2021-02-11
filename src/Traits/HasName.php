@@ -27,11 +27,11 @@ trait HasName
             return $this->name;
         }
 
-        $prefix = $this->array_format_to_dot_notation($prefix);
-        $name = $this->array_format_to_dot_notation($this->name ?? '');
+        $prefix = $this->array_format_to_arrow_notation($prefix);
+        $name = $this->array_format_to_arrow_notation($this->name ?? '');
 
-        $tokenized_name = str("$prefix.$name")
-            ->explode('.')
+        $tokenized_name = str("{$prefix}->{$name}")
+            ->explode('->')
             ->map(fn($token) => "[$token]")
             ->join('');
 
@@ -43,9 +43,16 @@ trait HasName
         return $this->array_format_to_dot_notation($this->name());
     }
 
-    private function array_format_to_dot_notation($name)
+    private function array_format_to_dot_notation(string $name): string
     {
         $name = preg_replace('/\[(.+)]/U', '.$1', $name);
+        $name = preg_replace('/\[]/U', '', $name);
+        return $name;
+    }
+
+    private function array_format_to_arrow_notation(string $name): string
+    {
+        $name = preg_replace('/\[(.+)]/U', '->$1', $name);
         $name = preg_replace('/\[]/U', '', $name);
         return $name;
     }
@@ -55,7 +62,7 @@ trait HasName
         return $this->array_format_to_dash_notation($this->name() ?? $default);
     }
 
-    private function array_format_to_dash_notation($name)
+    private function array_format_to_dash_notation(string $name): string
     {
         return str_replace('.', '_', $this->array_format_to_dot_notation($name));
     }

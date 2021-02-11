@@ -14,7 +14,7 @@ class NamePrefix extends Context
     {
         $current_prefix = $this->context()->read('def_name_prefix');
         if (!empty($current_prefix)) {
-            $val = "$current_prefix.$this->val";
+            $val = "{$current_prefix}[{$this ->val}]";
         }
         parent::__construct(['def_name_prefix' => $val]);
     }
