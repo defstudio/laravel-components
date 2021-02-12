@@ -9,10 +9,8 @@
 
 /** @noinspection PhpUndefinedFieldInspection */
 
-use Carbon\CarbonInterface;
 use DefStudio\Components\Helpers\DotCollection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Carbon;
 use Symfony\Component\VarDumper\VarDumper;
 
 
@@ -46,13 +44,6 @@ if (!function_exists('back')) {
             return app('redirect')->to(request()->referer, $status, $headers);
         }
         return app('redirect')->back($status, $headers, $fallback);
-    }
-}
-
-if (!function_exists('carbon')) {
-    function carbon(mixed $datetime): CarbonInterface|null
-    {
-        return Carbon::make($datetime);
     }
 }
 
