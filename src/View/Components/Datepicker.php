@@ -5,6 +5,8 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
+/** @noinspection PhpMissingReturnTypeInspection */
+
 namespace DefStudio\Components\View\Components;
 
 
