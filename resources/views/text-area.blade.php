@@ -30,6 +30,4 @@ use Illuminate\View\ComponentAttributeBag;
 
     @if($rows) rows="{{$rows}}" @endif
 
-    >
-        {{$computed_value($slot)}}
-    </textarea>
+    >{{$computed_value($slot)}}</textarea>
