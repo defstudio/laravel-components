@@ -14,8 +14,12 @@ class NamePrefix extends Context
     {
         $current_prefix = $this->context()->read('def_name_prefix');
         if (!empty($current_prefix)) {
-            $val = "{$current_prefix}[{$this ->val}]";
+            if (!str($this->val)->startsWith('[')) {
+                $first_token = str($this->val)->before('[');
+                $this->val = str($this->val)->replaceFirst($first_token, "[{$first_token}]");
+            }
+            $this->val = "{$current_prefix}{$this ->val}";
         }
-        parent::__construct(['def_name_prefix' => $val]);
+        parent::__construct(['def_name_prefix' => $this->val]);
     }
 }
