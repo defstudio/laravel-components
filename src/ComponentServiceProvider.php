@@ -44,6 +44,7 @@ use DefStudio\Components\View\Components\Text;
 use DefStudio\Components\View\Components\TextArea;
 use DefStudio\Components\View\Components\ToggleButton;
 use DefStudio\Components\View\Components\Tools;
+use DefStudio\Components\View\Components\Value;
 use DefStudio\Components\View\Components\Zoomable;
 use DefStudio\Components\View\Components\ZoomButton;
 use Illuminate\Support\ServiceProvider;
@@ -92,6 +93,7 @@ class ComponentServiceProvider extends ServiceProvider
             TextArea::class,
             ToggleButton::class,
             Tools::class,
+            Value::class,
             Zoomable::class,
             ZoomButton::class,
         ]);
