@@ -36,6 +36,7 @@ use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Number;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Percent;
+use DefStudio\Components\View\Components\Radio;
 use DefStudio\Components\View\Components\Row;
 use DefStudio\Components\View\Components\Select;
 use DefStudio\Components\View\Components\Styles;
@@ -86,6 +87,7 @@ class ComponentServiceProvider extends ServiceProvider
             Number::class,
             Password::class,
             Percent::class,
+            Radio::class,
             Row::class,
             Select::class,
             Styles::class,
@@ -100,29 +102,26 @@ class ComponentServiceProvider extends ServiceProvider
             ZoomButton::class,
         ]);
 
-        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
+        $this->loadRoutesFrom(__DIR__."/../routes/web.php");
 
-        $this->loadViewsFrom(__DIR__ . "/../resources/views", 'def-components');
+        $this->loadViewsFrom(__DIR__."/../resources/views", 'def-components');
 
 
-        $this->loadTranslationsFrom(__DIR__ . "/../resources/lang", 'def-components');
+        $this->loadTranslationsFrom(__DIR__."/../resources/lang", 'def-components');
 
-        $this->mergeConfigFrom(__DIR__ . "/../config/components.php", 'components');
+        $this->mergeConfigFrom(__DIR__."/../config/components.php", 'components');
 
 
         $this->publishes([
-            __DIR__ . "/../resources/views" => resource_path('views/vendor/def-components'),
+            __DIR__."/../resources/views" => resource_path('views/vendor/def-components'),
         ], 'views');
 
         $this->publishes([
-            __DIR__ . "/../config/components.php" => config_path('components.php'),
+            __DIR__."/../config/components.php" => config_path('components.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . "/../resources/lang" => resource_path('lang/vendor/def-components'),
+            __DIR__."/../resources/lang" => resource_path('lang/vendor/def-components'),
         ], 'lang');
-
     }
-
-
 }
