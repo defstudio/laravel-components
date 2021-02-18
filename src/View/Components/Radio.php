@@ -23,7 +23,6 @@ class Radio extends Component
     public string $custom_class = 'custom-radio';
     public bool $inline;
     public bool $readonly;
-    public string $modelField;
     public ?string $label;
     private bool $checked;
 
@@ -61,8 +60,12 @@ class Radio extends Component
             return true;
         }
 
-        $computed_value = $this->computed_value($this->checked);
+        $computed_value = $this->old_value(
+            $this->draft_value(
+                $this->model_value()
+            )
+        );
 
-        return $computed_value == $this->value;
+        return $computed_value === $this->value;
     }
 }

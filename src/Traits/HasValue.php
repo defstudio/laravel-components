@@ -16,8 +16,14 @@ trait HasValue
 
     protected $value;
 
-    public function computed_value($default = '')
+    public function original_value(): string
     {
+        return $this->value;
+    }
+
+    public function computed_value(
+        $default = ''
+    ) {
         return $this->old_value(
             $this->draft_value(
                 $this->model_value(
@@ -28,8 +34,9 @@ trait HasValue
     }
 
 
-    public function model_value($default = '')
-    {
+    public function model_value(
+        $default = ''
+    ) {
         $model = $this->model();
 
         if (empty($model)) {
@@ -39,8 +46,9 @@ trait HasValue
         return data_get($model, $this->dotted_field_name(), $default);
     }
 
-    public function component_value($default = null)
-    {
+    public function component_value(
+        $default = null
+    ) {
         return $this->value ?? $default;
     }
 

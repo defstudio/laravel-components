@@ -12,13 +12,12 @@ use Illuminate\View\ComponentAttributeBag;
  *
  */
 
-$radio_id = $computed_id();
-$radio_id = "$radio_id-$value";
+$radio_id = $computed_id()."-".$original_value();
 ?>
 
 
 @if($readonly)
-    <input type="hidden" name="{{$name()}}" value="{{$value_checked}}">
+    <input type="hidden" name="{{$name()}}" value="{{$original_value()}}">
 @endif
 
 <div class="custom-control {{!empty($label??$slot->isNotEmpty())?'d-flex':''}} {{$custom_class}} {{$containerClass}} {{$inline?'custom-control-inline':''}}">
@@ -26,7 +25,7 @@ $radio_id = "$radio_id-$value";
         type="radio"
         id="{{$radio_id}}"
         name="{{$name()}}"
-        value="{{$value_checked}}"
+        value="{{$original_value()}}"
         {{$attributes->merge(['class' => "custom-control-input"])}}
         {{$is_checked()?'checked':''}}
         {{$readonly?'disabled':''}}
