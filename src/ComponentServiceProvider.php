@@ -17,6 +17,7 @@ use DefStudio\Components\View\Components\Col;
 use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Currency;
 use DefStudio\Components\View\Components\Datepicker;
+use DefStudio\Components\View\Components\DateValue;
 use DefStudio\Components\View\Components\Email;
 use DefStudio\Components\View\Components\Fieldset;
 use DefStudio\Components\View\Components\File;
@@ -66,6 +67,7 @@ class ComponentServiceProvider extends ServiceProvider
             Context::class,
             Currency::class,
             Datepicker::class,
+            DateValue::class,
             Email::class,
             Fieldset::class,
             File::class,
