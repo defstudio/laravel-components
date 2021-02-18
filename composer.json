@@ -1,5 +1,5 @@
 {
-    "name": "def-studio/laravel-components",
+    "name": "defstudio/laravel-components",
     "description": "A collection of laravel blade components",
     "type": "library",
     "minimum-stability": "dev",
