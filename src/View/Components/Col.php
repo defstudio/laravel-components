@@ -6,11 +6,11 @@ namespace DefStudio\Components\View\Components;
 
 class Col extends Component
 {
-    public ?string $size;
 
-    public function __construct(string $size = null)
-    {
-        $this->size = $size;
+    public function __construct(
+        public string|null $size = null,
+        public bool $flex = false,
+    ) {
     }
 
     /**
