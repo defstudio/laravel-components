@@ -9,6 +9,7 @@
 
 /** @noinspection PhpUndefinedFieldInspection */
 
+use DefStudio\Components\Helpers\BladeCompiler;
 use DefStudio\Components\Helpers\DotCollection;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\VarDumper\VarDumper;
@@ -58,7 +59,6 @@ if (!function_exists('dot_collect')) {
 if (!function_exists('dd_nth')) {
     function dd_nth(int $nth, ...$vars)
     {
-
         $iteration_count = $GLOBALS['dd_iterations'] ?? 0;
         $iteration_count++;
 
@@ -70,6 +70,13 @@ if (!function_exists('dd_nth')) {
         } else {
             $GLOBALS['dd_iterations'] = $iteration_count;
         }
+    }
+}
+
+if (!function_exists('blade')) {
+    function blade(): BladeCompiler
+    {
+        return app(BladeCompiler::class);
     }
 }
 

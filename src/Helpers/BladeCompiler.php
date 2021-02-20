@@ -16,9 +16,8 @@ use Throwable;
 
 class BladeCompiler
 {
-    public static function render($content, $data): bool|string
+    public function render($content, $data): bool|string
     {
-
         if (View::exists($content)) {
             return View::make($content, $data)->render();
         }
