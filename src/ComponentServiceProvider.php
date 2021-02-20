@@ -10,6 +10,7 @@ namespace DefStudio\Components;
 
 use DefStudio\Components\View\Components\Alert;
 use DefStudio\Components\View\Components\Button;
+use DefStudio\Components\View\Components\ButtonDropdownItem;
 use DefStudio\Components\View\Components\Card;
 use DefStudio\Components\View\Components\Checkbox;
 use DefStudio\Components\View\Components\CheckboxSwitch;
@@ -61,6 +62,7 @@ class ComponentServiceProvider extends ServiceProvider
         $this->loadViewComponentsAs(config('components.tags_prefix', ''), [
             Alert::class,
             Button::class,
+            ButtonDropdownItem::class,
             Card::class,
             Checkbox::class,
             CheckboxSwitch::class,
