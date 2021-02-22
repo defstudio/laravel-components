@@ -32,7 +32,7 @@ class Checkbox extends Component
     public function __construct(
         string $name,
         string $label = null,
-        $value = '1',
+        $value = [1, 0],
         $checked = false,
         bool $inline = false,
         string $id = '',
