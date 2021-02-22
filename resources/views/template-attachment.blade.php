@@ -33,7 +33,7 @@ $default_id = "template-attachment-" . rand(1, 99999999);
                     </x-button>
                 </div>
                 <div class="col-7">
-                    <x-file :name="$name" accept=".xls"/>
+                    <x-file :name="$name" accept=".xlsx"/>
                 </div>
                 <div class="col-1">
                     <x-button :type="\DefStudio\Components\View\Components\Button::TYPE_SUBMIT" color="success" icon="upload"/>
