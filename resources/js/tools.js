@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+
 require('./tools/axios');
 require('./tools/echo');
 require('./tools/password');
@@ -6,7 +12,9 @@ require('./tools/bootstrap');
 require('./tools/vue');
 
 
+// noinspection JSUnresolvedFunction
 window.deftools = {
+    route: route(),
     spinner: require('./tools/spinner').default,
     numbers: require('./tools/numbers').default,
     arrays: require('./tools/arrays').default,
