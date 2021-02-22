@@ -36,7 +36,7 @@ class TemplateExcelExport implements WithMultipleSheets, Responsable
     {
         $this->columns = $this->normalize_columns($columns);
         $this->rows = $rows;
-        $this->fileName = "$filename.xls";
+        $this->fileName = "$filename.xlsx";
     }
 
     private function normalize_columns(array $columns): array
