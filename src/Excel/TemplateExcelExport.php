@@ -30,7 +30,7 @@ class TemplateExcelExport implements WithMultipleSheets, Responsable
 
     private string $fileName;
 
-    private string $writerType = Excel::XLS;
+    private string $writerType = Excel::XLSX;
 
     public function __construct(string $filename, array $columns, array $rows)
     {

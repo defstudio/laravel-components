@@ -84,6 +84,11 @@ class TemplateSheet implements FromView, ShouldAutoSize, WithStyles, WithColumnF
         foreach ($this->columns as $column_data) {
             $column_letter = TemplateExcelExport::ALPHABET[$column_number];
             $this->set_cell_style($sheet, $column_letter, $column_data, $select_columns_count);
+
+            if (!empty($column_data['help'])) {
+                $sheet->getComment("{$column_letter}2")->getText()->createTextRun($column_data['help']);
+            }
+
             $column_number++;
         }
 
