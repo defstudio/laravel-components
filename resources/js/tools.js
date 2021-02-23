@@ -12,9 +12,7 @@ require('./tools/bootstrap');
 require('./tools/vue');
 
 
-// noinspection JSUnresolvedFunction
 window.deftools = {
-    route: route,
     spinner: require('./tools/spinner').default,
     numbers: require('./tools/numbers').default,
     arrays: require('./tools/arrays').default,
