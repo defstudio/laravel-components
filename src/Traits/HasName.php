@@ -21,6 +21,10 @@ trait HasName
 
     public function name(): string
     {
+        if (str($this->name)->startsWith("/")) {
+            return str($this->name)->replaceFirst("/", '');
+        }
+
         $prefix = $this->context()->read('def_name_prefix');
 
         if (empty($prefix)) {
