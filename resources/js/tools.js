@@ -4,6 +4,10 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
+if (!window.route) {
+    window.route = {};
+}
+
 require('./tools/axios');
 require('./tools/echo');
 require('./tools/password');
