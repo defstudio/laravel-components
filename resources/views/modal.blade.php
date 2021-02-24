@@ -17,7 +17,7 @@ use Illuminate\View\ComponentAttributeBag;
     >
         <div class="modal-content">
             @if(!empty($header))
-                <div class="modal-header">
+                <div class="modal-header {{empty($color)?'':"bg-$color"}}">
                     {{$header}}
                 </div>
             @elseif(!empty($title))
