@@ -1,37 +1,25 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
 class Modal extends Component
 {
 
-    const SIZE_LG = 'lg';
-    const SIZE_SM = 'sm';
+    public const SIZE_LG = 'lg';
+    public const SIZE_SM = 'sm';
 
-    public string $id;
-    public bool $scrollable;
-    public string $size;
-    public string $title;
-
-    /**
-     * Modal constructor.
-     * @param string $id
-     * @param bool $scrollable
-     * @param string $size (optional) allowed values: sm, lg
-     * @param string $title (optional)
-     */
     public function __construct(
-        string $id,
-        bool $scrollable = false,
-        string $size = '',
-        string $title = ''
-    )
-    {
-        $this->id = $id;
-        $this->scrollable = $scrollable;
-        $this->size = $size;
-        $this->title = $title;
+        public string $id,
+        public bool $scrollable = false,
+        public string $size = '',
+        public string $title = '',
+        public string $color = '',
+    ) {
     }
 
 
