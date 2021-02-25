@@ -1,4 +1,10 @@
-require('../lib/summernote-bs4');
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+
+require('../lib/summernote-0.8.18-dist/summernote');
 
 const summernote = {
     setup: () => {
@@ -37,8 +43,15 @@ const summernote = {
 
             options.toolbar.push(['view', ['fullscreen', 'codeview']]);
 
+            options.callbacks = {
+                onChange: function (contents, $editable) {
+                    $(this).val(contents);
+                }
+            }
+
 
             $element.summernote(options);
+
             $element.addClass('summernote-setup');
         });
     }
