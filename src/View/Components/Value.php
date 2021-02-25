@@ -10,8 +10,10 @@ namespace DefStudio\Components\View\Components;
 
 class Value extends Input
 {
-    public function __construct(string $name = '')
-    {
+    public function __construct(
+        public bool $html = false,
+        string $name = '',
+    ) {
         $this->name = $name;
     }
 

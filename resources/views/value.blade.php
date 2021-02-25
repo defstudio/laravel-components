@@ -6,5 +6,9 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<span {{$attributes}}>{{$computed_value($slot)}}</span>
+@if($html)
+    <span {{$attributes}}>{!! $computed_value($slot) !!}</span>
+@else
+    <span {{$attributes}}>{{$computed_value($slot)}}</span>
+@endif
 
