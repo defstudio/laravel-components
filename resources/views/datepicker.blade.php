@@ -23,7 +23,7 @@ use Illuminate\View\ComponentAttributeBag;
         {{$attributes->merge(['class' => 'form-control'])
                      ->merge(['autocomplete' => 'nope'])
                      ->merge($error_attributes())}}
-        value="{{carbon($computed_value($slot))?->format('Y-m-d')}}">
+        value="{{carbon($computed_value((string)$slot))?->format('Y-m-d')}}">
 
     @isset($append)
         <div class="input-group-append">
