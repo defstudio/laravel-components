@@ -6,5 +6,5 @@ use Illuminate\View\ComponentAttributeBag;
 
 ?>
 
-<span {{$attributes}}>{{carbon($computed_value($slot))?->format($format)}}</span>
+<span {{$attributes}}>{{carbon($computed_value((string) $slot))?->format($format)}}</span>
 
