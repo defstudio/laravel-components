@@ -32,6 +32,15 @@ export default {
             });
         });
     },
+    secondary: function (title, message) {
+        return new Promise((resolve) => {
+            deftools.modal.secondary(title, message, function () {
+                resolve(true);
+            }, function () {
+                resolve(false);
+            });
+        });
+    },
     warning: function (title, message) {
         return new Promise((resolve) => {
             deftools.modal.warning(title, message, function () {

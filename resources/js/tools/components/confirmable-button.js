@@ -18,6 +18,8 @@ $(document).on('click', 'a.confirmable,button[type=button].confirmable,button.fo
             display_confirm_message = deftools.confirm.warning;
         } else if ($button.hasClass('confirmable-primary')) {
             display_confirm_message = deftools.confirm.primary;
+        } else if ($button.hasClass('confirmable-secondary')) {
+            display_confirm_message = deftools.confirm.secondary;
         } else if ($button.hasClass('confirmable-success')) {
             display_confirm_message = deftools.confirm.success;
         }

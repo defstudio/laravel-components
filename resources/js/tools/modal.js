@@ -104,6 +104,9 @@ export default {
     primary: function (title, message, ok_action = null, abort_action = null, options = {}) {
         show_modal('primary', title, message, ok_action, abort_action, options);
     },
+    secondary: function (title, message, ok_action = null, abort_action = null, options = {}) {
+        show_modal('secondary', title, message, ok_action, abort_action, options);
+    },
     danger: function (title, message, ok_action = null, abort_action = null, options = {}) {
         show_modal('danger', title, message, ok_action, abort_action, options);
     },
