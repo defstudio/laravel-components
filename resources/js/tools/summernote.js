@@ -50,7 +50,7 @@ const summernote = {
     }
 };
 
-summernote.setup();
+setTimeout(() => summernote.setup(), 500);
 
 export default summernote
 
