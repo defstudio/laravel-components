@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
@@ -8,14 +12,12 @@ use Illuminate\Support\Str;
 
 class Icon extends Component
 {
-    public string $name;
-    public string $type;
 
-    public function __construct(string $name, string $type='fas')
-    {
-        $this->name = $name;
-        $this->type = $type;
-
+    public function __construct(
+        public string $name,
+        public string $type = 'fas',
+        public string $size = '',
+    ) {
         if (!Str::startsWith($this->name, 'fa-')) {
             $this->name = "fa-{$this->name}";
         }
