@@ -38,7 +38,7 @@ use Illuminate\View\ComponentAttributeBag;
     @push('x-scripts')
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#{{$id}}').DataTable({{$datatable}});
+                $('#{{$id}}').DataTable({!! $datatable !!});
             });
         </script>
     @endpush
