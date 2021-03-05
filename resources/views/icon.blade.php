@@ -10,7 +10,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 
 ?>
-
 <span {{$attributes}}>
-    <i class="{{$type}} {{$name}} {{empty($size?'':"fa.$size")}}"></i>{!! $slot->isEmpty()?'':"&nbsp;$slot"!!}
+    <i class="{{$type}} {{$name}} {{empty($size)?'':"fa-{$size}"}}"></i>{!! $slot->isEmpty()?'':"&nbsp;$slot"!!}
 </span>
