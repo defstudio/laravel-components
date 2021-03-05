@@ -57,17 +57,22 @@ if (!function_exists('dot_collect')) {
 }
 
 if (!function_exists('dd_nth')) {
-    function dd_nth(int $nth, ...$vars)
+    function dd_nth(int $stop_at_index, $dump_all = false, ...$vars)
     {
         $iteration_count = $GLOBALS['dd_iterations'] ?? 0;
         $iteration_count++;
 
-        if ($iteration_count >= $nth) {
+        if ($iteration_count >= $stop_at_index) {
             foreach ($vars as $v) {
                 VarDumper::dump($v);
             }
             exit(1);
         } else {
+            if ($dump_all) {
+                foreach ($vars as $v) {
+                    VarDumper::dump($v);
+                }
+            }
             $GLOBALS['dd_iterations'] = $iteration_count;
         }
     }
