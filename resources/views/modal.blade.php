@@ -10,7 +10,7 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 
-<div id="{{$id}}" class="modal fade" role="dialog">
+<div id="{{$id}}" class="modal fade" role="dialog" {{$backdrop?'':'data-backdrop="static"'}}  data-keyboard="{{$keyboard?'true':'false'}}">
     <div {{$attributes->merge(['class' => 'modal-dialog'])
                       ->merge(['class' => $scrollable?'modal-dialog-scrollable':''])
                       ->merge(['class' => empty($size)?'':"modal-$size"])}}
@@ -23,9 +23,12 @@ use Illuminate\View\ComponentAttributeBag;
             @elseif(!empty($title))
                 <div class="modal-header {{empty($color)?'':"bg-$color"}}">
                     <h4 class="modal-title">{{$title}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ucwords(__('def-components::modals.close'))}}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+                    @if($xClose)
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ucwords(__('def-components::modals.close'))}}">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    @endif
                 </div>
             @endif
 

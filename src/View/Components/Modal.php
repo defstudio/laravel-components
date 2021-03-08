@@ -19,6 +19,9 @@ class Modal extends Component
         public string $size = '',
         public string $title = '',
         public string $color = '',
+        public bool $backdrop = true,
+        public bool $keyboard = true,
+        public bool $xClose = true,
     ) {
     }
 
