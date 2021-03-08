@@ -78,8 +78,8 @@ function show_modal(style, title, message, ok_action = null, abort_action = null
 
     $question_modal.modal({
         show: true,
-        backdrop: true,
-        keyboard: true,
+        backdrop: options.backdrop,
+        keyboard: options.keyboard,
     });
 }
 
