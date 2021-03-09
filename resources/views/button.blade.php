@@ -19,12 +19,11 @@ if (!empty($confirm)) {
     ]);
 }
 
-
 ?>
 
 @if(!empty($dropdown))
     @php($id = $attributes->get('id', 'button-'.\Illuminate\Support\Str::random()))
-    <div class="dropdown">
+    <div class="dropdown {{$containerClasses}}">
         <button type="button"
                 {{$attributes->merge(['class' => 'dropdown-toggle', 'id' => $id])}}
                 data-toggle="dropdown"
