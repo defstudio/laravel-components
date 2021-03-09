@@ -14,9 +14,9 @@ $default_id = "file-selector-".rand(1, 99999999);
 $attributes = $attributes->merge(['class' => 'custom-file-input def-components-file-input', 'style' => 'cursor: pointer;']);
 
 if ($pdf) {
-    $attributes = $attributes->merge(['accepts', 'application/pdf']);
+    $attributes = $attributes->merge(['accepts' => 'application/pdf']);
 } elseif ($xlsx) {
-    $attributes = $attributes->merge(['accepts', 'application/vnd.ms-excel']);
+    $attributes = $attributes->merge(['accepts' => 'application/vnd.ms-excel']);
 }
 ?>
 
