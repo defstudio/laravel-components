@@ -30,7 +30,7 @@ if ($pdf) {
         id="{{$computed_id($default_id)}}"
         type="file"
         name="{{$name()}}"
-        {{$attributes->merge($error_attributes()}}>
+        {{$attributes->merge($error_attributes())}}>
 
     <label for="{{$computed_id($default_id)}}" class="custom-file-label">{{$browseMessage}}</label>
 </div>
