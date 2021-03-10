@@ -24,7 +24,8 @@ $aria_expanded = $collapsed ? 'false' : 'true';
     @if(!empty($header))
         <div class="card-header" id="card-header-{{$id}}">
             <h5 class="mb-0">
-                <span class="d-flex" style="cursor: pointer" {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
+                <span class="d-flex {{$collapsed?'collapsed':''}}" style="cursor: pointer"
+                    {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
                     @empty($icon)
                         {{$header}}
                     @else
