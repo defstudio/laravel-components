@@ -44,8 +44,6 @@ class Card extends Component
         if ($this->collapsed) {
             $this->collapsable = true;
         }
-
-
     }
 
     /**
