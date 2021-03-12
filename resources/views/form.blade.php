@@ -29,6 +29,10 @@ if (!$autocomplete) {
     @if($method!='GET')
         @csrf
     @endif
+    
+    @if(session()->has('_back'))
+            <x-hidden name="_back">{{session('_back')}}</x-hidden>
+    @endif
 
     @if(in_array($method, ['DELETE', 'PATCH', 'PUT']))
         @method($method)
