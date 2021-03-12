@@ -10,7 +10,7 @@ namespace DefStudio\Components\Requests;
 
 class FormRequest extends \Illuminate\Foundation\Http\FormRequest
 {
-    public function validated(string $key = null, mixed $default = null)
+    public function validated(string $key = null, mixed $default = null): mixed
     {
         return data_get(parent::validated(), $key, $default);
     }
