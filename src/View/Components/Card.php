@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
@@ -7,28 +11,27 @@ namespace DefStudio\Components\View\Components;
 
 class Card extends Component
 {
-    public string $id;
-    public string $icon;
-    public string $header;
     public bool $collapsable;
     public bool $collapsed;
 
 
-    public function __construct(string $id = '', string $header = '', string $icon = '', bool $collapsable = false, bool $collapsed = false)
-    {
-        $this->id = $id;
+    public function __construct(
+        public string $id = '',
+        public string $header = '',
+        public string $rightHeader = '',
+        public string $icon = '',
+        bool $collapsable = false,
+        bool $collapsed = false
+    ) {
 
-        $this->header = $header;
-        $this->icon = $icon;
-
-        $this->collapsable = (bool)$collapsable;
-        $this->collapsed = (bool)$collapsed;
+        $this->collapsable = (bool) $collapsable;
+        $this->collapsed = (bool) $collapsed;
 
 
         if (request()->has('x-card')) {
             if (request()->get('x-card') == $this->id) {
                 $this->collapsed = false;
-            } else if ($this->collapsable) {
+            } elseif ($this->collapsable) {
                 $this->collapsed = true;
             }
 

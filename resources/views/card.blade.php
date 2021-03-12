@@ -16,26 +16,34 @@ if (empty($id)) {
 
 $aria_expanded = $collapsed ? 'false' : 'true';
 
+$attributes = $attributes
+    ->merge(['class' => 'card', 'id' => $id])
+    ->merge(['class' => $attributes->get('invalid', '') == 'invalid' ? 'border-danger' : ''])
+
 ?>
 
 
-<div {{$attributes->merge(['class' => 'card', 'id' => $id])
-                  ->merge(['class' => $attributes->get('invalid','')=='invalid'?'border-danger':''])}}>
+<div {{$attributes}}>
     @if(!empty($header))
         <div class="card-header" id="card-header-{{$id}}">
             <h5 class="mb-0">
-                <span class="d-flex {{$collapsed?'collapsed':''}}" style="cursor: pointer"
-                    {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
+                <span class="d-flex {{$collapsed?'collapsed':''}}"
+                      style="cursor: pointer"
+                        {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
+
                     @empty($icon)
                         {{$header}}
                     @else
                         <x-icon :name="$icon">{{$header}}</x-icon>
                     @endempty
 
+                      <div class="ml-auto d-flex">
+                          {{$rightHeader}}
 
-                    @if($collapsable)
-                        <x-icon class="toggle-collapse ml-auto" name="angle-double-down"/>
-                    @endif
+                          @if($collapsable)
+                              <x-icon class="toggle-collapse" name="angle-double-down"/>
+                          @endif
+                      </div>
                 </span>
             </h5>
         </div>
