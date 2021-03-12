@@ -25,11 +25,11 @@ $attributes = $attributes
 
 <div {{$attributes}}>
     @if(!empty($header))
-        <div class="card-header" id="card-header-{{$id}}">
+        <div class="card-header {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
             <h5 class="mb-0">
                 <span class="d-flex {{$collapsed?'collapsed':''}}"
                       style="cursor: pointer"
-                        {{$collapsable?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
+                        {{($active&&$collapsable)?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
 
                     @empty($icon)
                         {{$header}}
@@ -40,7 +40,7 @@ $attributes = $attributes
                       <div class="ml-auto d-flex">
                           {{$rightHeader}}
 
-                          @if($collapsable)
+                          @if($active && $collapsable)
                               <x-icon class="toggle-collapse ml-5" name="angle-double-down"/>
                           @endif
                       </div>

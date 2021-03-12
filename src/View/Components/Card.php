@@ -13,6 +13,7 @@ class Card extends Component
 {
     public bool $collapsable;
     public bool $collapsed;
+    public bool $active;
 
 
     public function __construct(
@@ -20,10 +21,12 @@ class Card extends Component
         public string $header = '',
         public string $rightHeader = '',
         public string $icon = '',
+        bool $active = true,
         bool $collapsable = false,
         bool $collapsed = false
     ) {
 
+        $this->active = (bool) $active;
         $this->collapsable = (bool) $collapsable;
         $this->collapsed = (bool) $collapsed;
 
