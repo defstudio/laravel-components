@@ -41,7 +41,7 @@ $attributes = $attributes
                           {{$rightHeader}}
 
                           @if($collapsable)
-                              <x-icon class="toggle-collapse" name="angle-double-down"/>
+                              <x-icon class="toggle-collapse ml-5" name="angle-double-down"/>
                           @endif
                       </div>
                 </span>
