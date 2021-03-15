@@ -10,7 +10,7 @@ use Illuminate\View\ComponentAttributeBag;
 ?>
 
 
-<div id="{{$id}}" class="modal fade" role="dialog" {{$backdrop?'':'data-backdrop="static"'}}  data-keyboard="{{$keyboard?'true':'false'}}">
+<div id="{{$id}}" class="modal fade" role="dialog" {{$backdrop?'':'data-backdrop=static'}}  data-keyboard="{{$keyboard?'true':'false'}}">
     <div {{$attributes->merge(['class' => 'modal-dialog'])
                       ->merge(['class' => $scrollable?'modal-dialog-scrollable':''])
                       ->merge(['class' => empty($size)?'':"modal-$size"])}}
