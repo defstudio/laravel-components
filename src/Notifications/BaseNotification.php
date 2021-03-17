@@ -1,4 +1,11 @@
 <?php
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+
+/** @noinspection PhpUnusedParameterInspection */
 
 
 namespace DefStudio\Components\Notifications;
@@ -8,31 +15,37 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
+use JetBrains\PhpStorm\Pure;
 
-class BaseNotification extends Notification implements ShouldQueue
+abstract class BaseNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     public string $title;
     public string $message;
-    public string $color;
+    public string $color = 'primary';
     public iterable $actions;
 
 
     public function __construct(
         string $title,
         string $message,
-        string $color,
         iterable $actions = []
-    )
-    {
+    ) {
         $this->title = $title;
         $this->message = $message;
-        $this->color = $color;
         $this->actions = $actions;
     }
 
-    public function via($notifiable)
+    #[Pure] public static function build(
+        string $title,
+        string $message,
+        iterable $actions = []
+    ): static {
+        return new static($title, $message, $actions);
+    }
+
+    public function via($notifiable): array
     {
         return ['database', 'broadcast'];
     }
@@ -59,5 +72,4 @@ class BaseNotification extends Notification implements ShouldQueue
             'actions' => $this->actions,
         ];
     }
-
 }

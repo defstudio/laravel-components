@@ -7,29 +7,7 @@
 
 namespace DefStudio\Components\Notifications;
 
-
-use JetBrains\PhpStorm\Pure;
-
 class Success extends BaseNotification
 {
-    #[Pure] public function __construct(
-        string $title,
-        string $message,
-        iterable $actions = []
-    ) {
-        return parent::__construct(
-            $title,
-            $message,
-            'success',
-            $actions,
-        );
-    }
-
-    #[Pure] public static function build(
-        string $title,
-        string $message,
-        iterable $actions = []
-    ): static {
-        return new static($title, $message, $actions);
-    }
+    public string $color = 'success';
 }
