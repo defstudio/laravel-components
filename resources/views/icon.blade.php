@@ -10,6 +10,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 
 ?>
-<span {{$attributes->merge(['class' => 'd-flex'])}}>
+<span>
     <i class="my-auto {{$type}} {{$name}} {{empty($size)?'':"fa-{$size}"}}"></i><span class="my-auto">{!! $slot->isEmpty()?'':"&nbsp;$slot"!!}</span>
 </span>
