@@ -17,6 +17,7 @@ class Icon extends Component
         public string $name,
         public string $type = 'fas',
         public string $size = '',
+        public bool $spin = false,
     ) {
         if (!Str::startsWith($this->name, 'fa-')) {
             $this->name = "fa-{$this->name}";
