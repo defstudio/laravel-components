@@ -23,6 +23,7 @@ class Card extends Component
         public string $icon = '',
         public string|null $color = null,
         public string|null $borderColor = null,
+        public string $cardBodyClass = '',
         bool $active = true,
         bool $collapsable = false,
         bool $collapsed = false
