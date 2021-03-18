@@ -16,6 +16,7 @@ if (empty($id)) {
 
 $aria_expanded = $collapsed ? 'false' : 'true';
 
+$borderColor ??= '';
 $borderColor = $attributes->get('invalid', '') == 'invalid' ? 'danger' : $borderColor;
 
 $attributes = $attributes
