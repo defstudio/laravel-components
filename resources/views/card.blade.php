@@ -16,16 +16,18 @@ if (empty($id)) {
 
 $aria_expanded = $collapsed ? 'false' : 'true';
 
+$borderColor = $attributes->get('invalid', '') == 'invalid' ? 'danger' : $borderColor;
+
 $attributes = $attributes
     ->merge(['class' => 'card', 'id' => $id])
-    ->merge(['class' => $attributes->get('invalid', '') == 'invalid' ? 'border-danger' : ''])
+    ->merge(['class' => empty($borderColor) ? '' : "border-$borderColor"])
 
 ?>
 
 
 <div {{$attributes}}>
     @if(!empty($header))
-        <div class="card-header {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
+        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
             <h5 class="mb-0">
                 <span class="d-flex {{$collapsed?'collapsed':''}}"
                       style="cursor: pointer"
