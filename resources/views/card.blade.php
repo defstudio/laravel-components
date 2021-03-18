@@ -51,11 +51,13 @@ $attributes = $attributes
         </div>
     @endif
 
-    <div id="card-body-{{$id}}" class="{{$cardBodyClass}} {{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}" {{$collapsable?"aria-labelledby=card-header-$id":""}}>
-        <div class="card-body">
+    <div id="card-body-{{$id}}"
+         style="height: 100%"
+         class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}"
+        {{$collapsable?"aria-labelledby=card-header-$id":""}}>
+        <div class="card-body {{$cardBodyClass}}" style="height: 100%">
             {{$slot}}
         </div>
     </div>
-
 </div>
 
