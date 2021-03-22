@@ -34,7 +34,7 @@ class Button extends Component
         public string $put = '',
         public string $patch = '',
         public string $delete = '',
-        public string $containerClasses = '',
+        public string|null $containerClasses = '',
     ) {
         if (empty($this->confirmColor)) {
             $this->confirmColor = str($this->color)->replace('outline-', '');
