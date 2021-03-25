@@ -29,6 +29,10 @@ class DotCollection extends Collection
             return new static();
         }
 
+        if ($offset == 0) {
+            return new static($this);
+        }
+
         $count = $this->count();
 
         $offset %= $count;
