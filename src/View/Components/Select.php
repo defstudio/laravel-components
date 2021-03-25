@@ -59,8 +59,15 @@ class Select extends Input
         return in_array($option_key, $selected_values);
     }
 
-    public static function options_months()
+    public static function options_months(bool $sort_from_today = false)
     {
-        return Lang::get('def-components::strings.months');
+        $options = dot_collect(Lang::get('def-components::strings.months'));
+
+        if ($sort_from_today) {
+            $current_month = today()->format('m') - 1;
+            $options = $options->rotate($current_month);
+        }
+
+        return $options->toArray();
     }
 }
