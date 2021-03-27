@@ -6,11 +6,21 @@ use Illuminate\View\ComponentAttributeBag;
 
 /** @var string $size */
 /** @var bool $flex */
+
+if (empty($size)) {
+    $size = "col";
+} else {
+    $size = str($size)->split(' ')
+        ->map(fn(string $col_size) => "col-$col_size")
+        ->join(' ');
+
+}
+
 ?>
 
 
 <div {{$attributes
-        ->merge(['class'=>empty($size)?'col':"col-$size"])
+        ->merge(['class'=> $size)
         ->merge(['class'=>$flex?'d-flex':''])
      }}
 >{{$slot}}</div>
