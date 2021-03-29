@@ -10,7 +10,7 @@ use Illuminate\View\ComponentAttributeBag;
 if (empty($size)) {
     $size = "col";
 } else {
-    $size = str($size)->split(' ')
+    $size = str($size)->explode(' ')
         ->map(fn(string $col_size) => "col-$col_size")
         ->join(' ');
 
