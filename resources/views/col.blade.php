@@ -20,7 +20,7 @@ if (empty($size)) {
 
 
 <div {{$attributes
-        ->merge(['class'=> $size)
+        ->merge(['class'=> $size])
         ->merge(['class'=>$flex?'d-flex':''])
      }}
 >{{$slot}}</div>
