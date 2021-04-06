@@ -9,11 +9,18 @@
 
 /** @noinspection PhpUndefinedFieldInspection */
 
+use App\Models\User;
 use DefStudio\Components\Helpers\BladeCompiler;
 use DefStudio\Components\Helpers\DotCollection;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\VarDumper\VarDumper;
 
+if (!function_exists('user')) {
+    function user(): User|null
+    {
+        return Auth::user();
+    }
+}
 
 if (!function_exists('str')) {
     /**
