@@ -69,8 +69,10 @@ class Select extends Input
 
 
         if ($sort_from_today) {
+            $options = $options->mapWithKeys(fn($label, $index) => ["M$index" => $label]);
             $current_month = today()->format('m') - 1;
             $options = $options->rotate($current_month);
+            $options = $options->mapWithKeys(fn($label, $index) => [(string) str($index)->replace('M', '') => $label]);
         }
 
         return $options->toArray();
