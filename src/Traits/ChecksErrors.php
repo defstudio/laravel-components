@@ -10,7 +10,7 @@ trait ChecksErrors
 {
     use InteractsWithRequest;
 
-    public function error_attributes(ViewErrorBag|null $blade_errors): array
+    public function error_attributes(ViewErrorBag $blade_errors): array
     {
         $attributes = [];
 
@@ -37,7 +37,7 @@ trait ChecksErrors
         return $attributes;
     }
 
-    public function has_errors(ViewErrorBag|null $blade_errors): bool
+    public function has_errors(ViewErrorBag $blade_errors): bool
     {
         if (empty($this->name)) {
             return false;
@@ -52,7 +52,7 @@ trait ChecksErrors
         return false;
     }
 
-    public function get_errors(ViewErrorBag|null $blade_errors): ?ViewErrorBag
+    public function get_errors(ViewErrorBag $blade_errors): ?ViewErrorBag
     {
         return $blade_errors;
     }
