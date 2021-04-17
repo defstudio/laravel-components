@@ -26,7 +26,7 @@ use Illuminate\View\ComponentAttributeBag;
         {{isset($max)?"max=$max":''}}
         {{$attributes->merge(['class' => 'form-control'])
                      ->merge(['autocomplete' => 'nope'])
-                     ->merge($error_attributes())}}
+                     ->merge($error_attributes($errors))}}
         value="{{$computed_value($slot)}}">
 
     @isset($append)

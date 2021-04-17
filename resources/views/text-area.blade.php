@@ -18,7 +18,7 @@ use Illuminate\View\ComponentAttributeBag;
     {{$attributes
         ->merge(['class' => 'form-control'])
         ->merge(['class' => is_null($summernote)?'':'summernote'])
-        ->merge($error_attributes())}}
+        ->merge($error_attributes($errors))}}
     name="{{$name()}}"
     id="{{$computed_id()}}"
 

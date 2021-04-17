@@ -22,7 +22,7 @@ use Illuminate\View\ComponentAttributeBag;
         name="{{$name()}}"
         {{$attributes->merge(['class' => 'form-control'])
                      ->merge(['autocomplete' => 'nope'])
-                     ->merge($error_attributes())}}
+                     ->merge($error_attributes($errors))}}
         value="{{$computed_value($slot)}}">
 
     @isset($append)

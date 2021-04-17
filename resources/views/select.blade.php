@@ -22,7 +22,7 @@ use Illuminate\View\ComponentAttributeBag;
     id="{{$computed_id()}}"
     {{$attributes->merge(['class' => 'form-control'])
                  ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
-                 ->merge($error_attributes())}}
+                 ->merge($error_attributes($errors))}}
     {{$multiple?'multiple':''}}>
 
     @if(!empty($unselected))
