@@ -19,6 +19,7 @@ if (!empty($confirm)) {
     ]);
 }
 
+
 ?>
 
 @if(!empty($dropdown))
@@ -32,7 +33,7 @@ if (!empty($confirm)) {
             @empty($icon)
                 {{$slot}}
             @else
-                <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+                <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
             @endempty
         </button>
         <div class="dropdown-menu" aria-labelledby="{{$id}}">
@@ -46,7 +47,7 @@ if (!empty($confirm)) {
             @empty($icon)
                 {{$slot}}
             @else
-                <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+                <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
             @endempty
         </button>
     @else
@@ -55,7 +56,7 @@ if (!empty($confirm)) {
                 @empty($icon)
                     {{$slot}}
                 @else
-                    <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+                    <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
                 @endempty
             </a>
         @else
@@ -69,7 +70,7 @@ if (!empty($confirm)) {
                 @empty($icon)
                     {{$slot}}
                 @else
-                    <x-icon name="{{$icon}}">{{$slot}}</x-icon>
+                    <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
                 @endempty
             </button>
 

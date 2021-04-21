@@ -18,6 +18,7 @@ class Icon extends Component
         public string $type = 'fas',
         public string $size = '',
         public bool $spin = false,
+        public string $wireLoaderSpinner = '',
     ) {
         if (!Str::startsWith($this->name, 'fa-')) {
             $this->name = "fa-{$this->name}";

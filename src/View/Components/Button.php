@@ -35,6 +35,7 @@ class Button extends Component
         public string $patch = '',
         public string $delete = '',
         public string|null $containerClasses = '',
+        public string $wireLoaderSpinner = '',
     ) {
         if (empty($this->confirmColor)) {
             $this->confirmColor = str($this->color)->replace('outline-', '');
