@@ -1,14 +1,21 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\Traits;
 
 
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\ViewErrorBag;
 
 trait ChecksErrors
 {
     use InteractsWithRequest;
+
+    public bool $inlineErrors = true;
 
     public function error_attributes(ViewErrorBag $blade_errors): array
     {
@@ -16,6 +23,13 @@ trait ChecksErrors
 
         if (!$this->has_errors($blade_errors)) {
             return $attributes;
+        }
+
+
+        if ($this->inlineErrors) {
+            return [
+                'class' => 'is-invalid',
+            ];
         }
 
         $errors_html = '';
@@ -35,6 +49,23 @@ trait ChecksErrors
         ];
 
         return $attributes;
+    }
+
+    public function error_snippet(ViewErrorBag $blade_errors)
+    {
+        if (!$this->inlineErrors) {
+            return new HtmlString();
+        }
+
+        $errors_html = '';
+
+
+        foreach ($this->get_errors($blade_errors)->get($this->dotted_field_name()) as $message) {
+            $errors_html .= "<div class='invalid-feedback order-last'>$message</div>";
+        }
+
+
+        return new HtmlString($errors_html);
     }
 
     public function has_errors(ViewErrorBag $blade_errors): bool

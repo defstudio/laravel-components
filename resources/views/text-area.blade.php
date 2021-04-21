@@ -31,3 +31,4 @@ use Illuminate\View\ComponentAttributeBag;
     @if($rows) rows="{{$rows}}" @endif
 
     >{{$computed_value($slot)}}</textarea>
+{{$error_snippet($errors)}}

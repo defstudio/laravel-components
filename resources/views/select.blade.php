@@ -32,6 +32,6 @@ use Illuminate\View\ComponentAttributeBag;
     @foreach($options as $key=>$value)
         <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
     @endforeach
-
 </select>
+{{$error_snippet($errors)}}
 

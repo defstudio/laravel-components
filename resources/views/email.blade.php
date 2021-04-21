@@ -14,24 +14,24 @@ use Illuminate\View\ComponentAttributeBag;
     <label for="{{$computed_id()}}">{{$label}}</label>
 @endunless
 
-<div id="{{$computed_id()}}-input-group" class="input-group">
+@isset($append)
+    <div id="{{$computed_id()}}-input-group" class="input-group">
+        @endisset
+        <input
+            id="{{$computed_id()}}"
+            type="email"
+            name="{{$name()}}"
+            {{$attributes->merge(['class' => 'form-control'])
+                         ->merge(['autocomplete' => 'nope'])
+                         ->merge($error_attributes($errors))}}
+            value="{{$computed_value($slot)}}">
+        {{$error_snippet($errors)}}
 
-    <input
-        id="{{$computed_id()}}"
-        type="email"
-        name="{{$name()}}"
-        {{$attributes->merge(['class' => 'form-control'])
-                     ->merge(['autocomplete' => 'nope'])
-                     ->merge($error_attributes($errors))}}
-        value="{{$computed_value($slot)}}">
-
-    @isset($append)
-        <div class="input-group-append">
-        <span class="input-group-text">
-            {{$append}}
-        </span>
-        </div>
-    @endisset
-
-</div>
-
+        @isset($append)
+            <div class="input-group-append">
+                    <span class="input-group-text">
+                        {{$append}}
+                    </span>
+            </div>
+    </div>
+@endisset
