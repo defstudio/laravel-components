@@ -57,9 +57,20 @@ class DotCollection extends Collection
         return $next->keys()->last();
     }
 
-
     public function previous_key($current_key)
     {
         return $this->reverse()->next_key($current_key);
     }
+
+    public function overlaps(Collection|array $other_collection): bool
+    {
+        $other_collection = dot_collect($other_collection);
+
+        if ($this->count() !== $other_collection->count()) {
+            return false;
+        }
+
+        return $this->diff($other_collection)->isEmpty() && $other_collection->diff($this)->isEmpty();
+    }
+
 }
