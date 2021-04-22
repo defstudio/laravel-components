@@ -8,6 +8,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string $color
  * @var string $confirmColor
  * @var string $method
+ * @var string|bool $wireLoaderSpinner
  */
 
 $attributes = $attributes->merge(['class' => "btn btn-$color"]);
@@ -17,6 +18,11 @@ if (!empty($confirm)) {
         'class'                => "confirmable confirmable-{$confirmColor}",
         'data-confirm-message' => $confirm,
     ]);
+}
+
+
+if ($wireLoaderSpinner === true) {
+    $wireLoaderSpinner = $attributes->get('wire:click', '');
 }
 
 
@@ -31,6 +37,9 @@ if (!empty($confirm)) {
                 aria-haspopup="true"
         >
             @empty($icon)
+                @if($wireLoaderSpinner)
+                    <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                @endif
                 {{$slot}}
             @else
                 <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
@@ -45,6 +54,9 @@ if (!empty($confirm)) {
     @empty($href)
         <button type="{{$type}}" {{$attributes}}>
             @empty($icon)
+                @if($wireLoaderSpinner)
+                    <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="fas my-auto fa-spinner fa-spin"></i>
+                @endif
                 {{$slot}}
             @else
                 <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
@@ -54,6 +66,9 @@ if (!empty($confirm)) {
         @if($method=='GET')
             <a href="{{$href}}" {{$attributes}}>
                 @empty($icon)
+                    @if($wireLoaderSpinner)
+                        <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                    @endif
                     {{$slot}}
                 @else
                     <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
@@ -68,6 +83,9 @@ if (!empty($confirm)) {
 
             <button type="submit" form="button-form-{{$random_id}}" {{$attributes->merge(['class' => empty($confirm)?'':'force-confirm'])}}>
                 @empty($icon)
+                    @if($wireLoaderSpinner)
+                        <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                    @endif
                     {{$slot}}
                 @else
                     <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
