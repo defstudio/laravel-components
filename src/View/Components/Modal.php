@@ -23,6 +23,7 @@ class Modal extends Component
         public bool $backdrop = true,
         public bool $keyboard = true,
         public bool $xClose = true,
+        public bool $livewireDialog = false,
     ) {
     }
 
