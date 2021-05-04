@@ -11,42 +11,45 @@ const summernote = {
         let $summernotes = $(".summernote:not(#templates *):not('.summernote-setup')");
 
         $summernotes.each(function () {
-            let $element = $(this);
-
-            let options = {
-                toolbar: []
-            };
-
-            if ($element.data('enable-style')) {
-                options.toolbar.push(['style', ['style']]);
-            }
-
-            if ($element.data('enable-font')) {
-                options.toolbar.push(['font', ['bold', 'underline', 'clear']]);
-            }
-
-            if ($element.data('enable-color')) {
-                options.toolbar.push(['color', ['color']]);
-            }
-
-            if ($element.data('enable-paragraphs')) {
-                options.toolbar.push(['para', ['ul', 'ol', 'paragraph']]);
-            }
-
-            if ($element.data('enable-tables')) {
-                options.toolbar.push(['table', ['table']]);
-            }
-
-            if ($element.data('enable-insert')) {
-                options.toolbar.push(['insert', ['link', 'picture', 'video']]);
-            }
-
-            options.toolbar.push(['view', ['fullscreen', 'codeview']]);
-
-
-            $element.summernote(options);
-            $element.addClass('summernote-setup');
+            summernote.setup_on_element($(this))
         });
+    },
+
+    setup_on_element: ($element, callbacks = {}) => {
+        let options = {
+            toolbar: []
+        };
+
+        if ($element.data('enable-style')) {
+            options.toolbar.push(['style', ['style']]);
+        }
+
+        if ($element.data('enable-font')) {
+            options.toolbar.push(['font', ['bold', 'underline', 'clear']]);
+        }
+
+        if ($element.data('enable-color')) {
+            options.toolbar.push(['color', ['color']]);
+        }
+
+        if ($element.data('enable-paragraphs')) {
+            options.toolbar.push(['para', ['ul', 'ol', 'paragraph']]);
+        }
+
+        if ($element.data('enable-tables')) {
+            options.toolbar.push(['table', ['table']]);
+        }
+
+        if ($element.data('enable-insert')) {
+            options.toolbar.push(['insert', ['link', 'picture', 'video']]);
+        }
+
+        options.toolbar.push(['view', ['fullscreen', 'codeview']]);
+
+        options.callbacks = callbacks;
+
+        $element.summernote(options);
+        $element.addClass('summernote-setup');
     }
 };
 

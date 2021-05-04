@@ -50,8 +50,11 @@ use Illuminate\View\ComponentAttributeBag;
     @push('x-scripts')
         <script>
             document.addEventListener('livewire:load', () => {
-            @this.on('show', () => $('#{{$id}}').modal('show-dialog'));
-            @this.on('hide', () => $('#{{$id}}').modal('hide-dialog'));
+            @this.on('show-dialog', () => {
+                console.debug('show dialog');
+                $('#{{$id}}').modal('show');
+            });
+            @this.on('hide-dialog', () => $('#{{$id}}').modal('hide'));
             })
         </script>
     @endpush
