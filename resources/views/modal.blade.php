@@ -44,3 +44,15 @@ use Illuminate\View\ComponentAttributeBag;
         </div>
     </div>
 </div>
+
+
+@if($livewireDialog)
+    @push('x-scripts')
+        <script>
+            document.addEventListener('livewire:load', () => {
+            @this.on('show', () => $('#{{$id}}').modal('show-dialog'));
+            @this.on('hide', () => $('#{{$id}}').modal('hide-dialog'));
+            })
+        </script>
+    @endpush
+@endif
