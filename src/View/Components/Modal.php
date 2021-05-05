@@ -19,7 +19,6 @@ class Modal extends Component
         public string $size = '',
         public string $title = '',
         public string $color = '',
-        public string $header = '',
         public bool $show = false,
         public bool $backdrop = true,
         public bool $keyboard = true,
