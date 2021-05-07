@@ -1,0 +1,162 @@
+/*!
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#spinner {
+    display: flex;
+    flex-direction: column;
+    background: #000000cc;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99999999999998;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#spinner.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#spinner .spin-content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+#spinner .spin-content .spinnable {
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: rgba(0, 0, 0, 0);
+    animation: spinner 0.6s linear infinite;
+}
+
+#spinner .spin-content .message {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ccc;
+    font-size: 1.5rem;
+}
+
+.toggable-section.hidden {
+    display: none;
+}
+
+.card-header [data-toggle=collapse] .toggle-collapse {
+    transform: rotate(180deg);
+    transition: all 0.5s ease-out;
+}
+
+.card-header [data-toggle=collapse].collapsed .toggle-collapse {
+    transform: rotate(0deg);
+}
+
+.zoomable .reduce-01 {
+    zoom: 0.1;
+}
+
+.zoomable .reduce-02 {
+    zoom: 0.2;
+}
+
+.zoomable .reduce-03 {
+    zoom: 0.3;
+}
+
+.zoomable .reduce-04 {
+    zoom: 0.4;
+}
+
+.zoomable .reduce-05 {
+    zoom: 0.5;
+}
+
+.zoomable .reduce-06 {
+    zoom: 0.6;
+}
+
+.zoomable .reduce-07 {
+    zoom: 0.7;
+}
+
+.zoomable .reduce-08 {
+    zoom: 0.8;
+}
+
+.zoomable .apply-zoom::after {
+    content: " Zoom";
+}
+
+.zoomable.zoomed {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    padding: 20px;
+    background-color: #ffffffdb;
+    overflow-y: auto;
+}
+
+.zoomable.zoomed .reduce-01 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-02 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-03 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-04 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-05 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-06 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-07 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .reduce-08 {
+    zoom: unset;
+}
+
+.zoomable.zoomed .apply-zoom::after {
+    content: " Conferma";
+}
+
+.zoomable .input-group .input-group-text {
+    padding: 0;
+}
+
+.fa-spin {
+    animation: fa-spin 1s infinite linear;
+}
+
+/*# sourceMappingURL=styles.css.map */
