@@ -13,7 +13,7 @@ if (empty($id)) {
 
 ?>
 
-@if(empty($permission) || \Illuminate\Support\Facades\Gate::any($permission))
+@if(empty($permissions) || \Illuminate\Support\Facades\Gate::any($permissions))
     <li {{$attributes
                 ->merge(['class' => "nav-item"])
                 ->merge(['class' => isset($dropdown)?'dropdown':''])
