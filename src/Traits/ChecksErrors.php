@@ -39,7 +39,7 @@ trait ChecksErrors
         }
 
 
-        $attributes = [
+        return [
             'class'          => 'is-invalid',
             'data-toggle'    => 'popover',
             'data-trigger'   => 'hover',
@@ -47,11 +47,9 @@ trait ChecksErrors
             'data-content'   => $errors_html,
             'data-placement' => 'top',
         ];
-
-        return $attributes;
     }
 
-    public function error_snippet(ViewErrorBag $blade_errors)
+    public function error_snippet(ViewErrorBag $blade_errors): HtmlString
     {
         if (!$this->inlineErrors) {
             return new HtmlString();
@@ -61,6 +59,9 @@ trait ChecksErrors
 
 
         foreach ($this->get_errors($blade_errors)->get($this->dotted_field_name()) as $message) {
+            if ($message == '&nbsp;') {
+                continue;
+            }
             $errors_html .= "<div class='invalid-feedback order-last'>$message</div>";
         }
 
