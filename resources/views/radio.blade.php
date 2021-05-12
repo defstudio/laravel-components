@@ -26,7 +26,7 @@ $radio_id = $computed_id()."-".$original_value();
         id="{{$radio_id}}"
         name="{{$name()}}"
         value="{{$original_value()}}"
-        {{$attributes->merge(['class' => "custom-control-input"])}}
+        {{$attributes->merge(['class' => "custom-control-input"])->merge($error_attributes($errors))}}
         {{$is_checked()?'checked':''}}
         {{$readonly?'disabled':''}}
     />

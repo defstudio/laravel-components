@@ -8,6 +8,7 @@
 namespace DefStudio\Components\View\Components;
 
 
+use DefStudio\Components\Traits\ChecksErrors;
 use DefStudio\Components\Traits\HasId;
 use DefStudio\Components\Traits\HasName;
 use DefStudio\Components\Traits\HasValue;
@@ -18,6 +19,7 @@ class Radio extends Component
     use HasName;
     use HasValue;
     use HasId;
+    use ChecksErrors;
 
     public string $containerClass;
     public string $custom_class = 'custom-radio';
