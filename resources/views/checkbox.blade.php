@@ -36,13 +36,14 @@ if ($is_array()) {
         id="{{$checkbox_id}}"
         name="{{$name()}}"
         value="{{$value_checked}}"
-        {{$attributes->merge(['class' => "custom-control-input"])}}
+        {{$attributes->merge(['class' => "custom-control-input"])->merge($error_attributes($errors))}}
         {{$is_checked()?'checked':''}}
 
         {{$readonly?'disabled':''}}
     />
     <label for="{{$checkbox_id}}" class="custom-control-label my-auto" style="cursor:pointer;">{{$label??$slot}}</label>
 </div>
+
 
 
 

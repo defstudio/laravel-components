@@ -1,9 +1,14 @@
 <?php
-
+/*
+ * Copyright (C) 2021. Def Studio
+ *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
+ */
 
 namespace DefStudio\Components\View\Components;
 
 
+use DefStudio\Components\Traits\ChecksErrors;
 use DefStudio\Components\Traits\HasId;
 use DefStudio\Components\Traits\HasName;
 use DefStudio\Components\Traits\HasValue;
@@ -17,6 +22,7 @@ class Checkbox extends Component
     use HasName;
     use HasValue;
     use HasId;
+    use ChecksErrors;
 
     public string $containerClass;
     public string $custom_class = 'custom-checkbox';
@@ -39,8 +45,7 @@ class Checkbox extends Component
         string $modelField = 'id',
         bool $readonly = false,
         string $containerClass = ''
-    )
-    {
+    ) {
         $this->modelField = $modelField;
         $this->name = $name;
         $this->label = $label;
