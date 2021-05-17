@@ -49,6 +49,12 @@ use Illuminate\View\ComponentAttributeBag;
                     @this.set('{{$livewireField}}', contents, true, false);
                     }
                 });
+
+            @this.on('set-editor-value', (field, value) => {
+                if (field === '{{$livewireField}}') {
+                    $('#{{$computed_id()}}').summernote('code', value);
+                }
+            });
             });
         </script>
     @endpush
