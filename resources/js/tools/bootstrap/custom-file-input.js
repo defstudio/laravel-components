@@ -6,7 +6,8 @@ $(document).on("change", '.def-components-file-input', function () {
         original_text = $file_input.siblings(".custom-file-label").html();
         $file_input.data('original_text', original_text);
     }
-    let fileName = $file_input.val().split("\\").pop();
+
+    let fileName = $.map($file_input.prop('files'), file_data => file_data.name).join(', ');
 
     if (fileName === "") {
         $file_input.siblings(".custom-file-label").removeClass("selected").html(original_text);
