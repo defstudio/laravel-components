@@ -30,7 +30,7 @@ $attributes = $attributes
     @if(!empty($header))
         <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
             <h5 class="mb-0">
-                <span class="d-flex {{$collapsed?'collapsed':''}}"
+                <div class="d-flex {{$collapsed?'collapsed':''}}"
                       style="cursor: pointer"
                         {{($active&&$collapsable)?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
 
@@ -47,7 +47,7 @@ $attributes = $attributes
                               <x-icon class="toggle-collapse ml-3 d-flex" name="angle-double-down"/>
                           @endif
                       </div>
-                </span>
+                </div>
             </h5>
         </div>
     @endif
