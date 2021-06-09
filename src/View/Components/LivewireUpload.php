@@ -4,7 +4,7 @@
 namespace DefStudio\Components\View\Components;
 
 
-class Col extends Component
+class LivewireUpload extends Component
 {
     public function __construct(
         public string $name,
