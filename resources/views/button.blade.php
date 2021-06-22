@@ -38,7 +38,7 @@ if ($wireLoaderSpinner === true) {
         >
             @empty($icon)
                 @if($wireLoaderSpinner)
-                    <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                    <i wire:loading @if($wireLoaderSpinner!='all') wire:target="{{$wireLoaderSpinner}}" @endif class="my-auto fa-spinner fa-spin"></i>
                 @endif
                 {{$slot}}
             @else
@@ -55,7 +55,7 @@ if ($wireLoaderSpinner === true) {
         <button type="{{$type}}" {{$attributes}}>
             @empty($icon)
                 @if($wireLoaderSpinner)
-                    <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="fas my-auto fa-spinner fa-spin"></i>
+                    <i wire:loading @if($wireLoaderSpinner!='all') wire:target="{{$wireLoaderSpinner}}" @endif class="fas my-auto fa-spinner fa-spin"></i>
                 @endif
                 {{$slot}}
             @else
@@ -67,7 +67,7 @@ if ($wireLoaderSpinner === true) {
             <a href="{{$href}}" {{$attributes}}>
                 @empty($icon)
                     @if($wireLoaderSpinner)
-                        <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                        <i wire:loading @if($wireLoaderSpinner!='all') wire:target="{{$wireLoaderSpinner}}" @endif class="my-auto fa-spinner fa-spin"></i>
                     @endif
                     {{$slot}}
                 @else
@@ -84,7 +84,7 @@ if ($wireLoaderSpinner === true) {
             <button type="submit" form="button-form-{{$random_id}}" {{$attributes->merge(['class' => empty($confirm)?'':'force-confirm'])}}>
                 @empty($icon)
                     @if($wireLoaderSpinner)
-                        <i wire:loading wire:target="{{$wireLoaderSpinner}}" class="my-auto fa-spinner fa-spin"></i>
+                        <i wire:loading @if($wireLoaderSpinner!='all') wire:target="{{$wireLoaderSpinner}}" @endif class="my-auto fa-spinner fa-spin"></i>
                     @endif
                     {{$slot}}
                 @else
