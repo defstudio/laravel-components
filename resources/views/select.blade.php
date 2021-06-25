@@ -40,6 +40,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
         {{$error_snippet($errors)}}
         @if($multiple && !empty($wire_model))
     </div>
+    {{$error_snippet($errors, true)}}
 @endif
 
 

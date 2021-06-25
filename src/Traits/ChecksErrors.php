@@ -49,7 +49,7 @@ trait ChecksErrors
         ];
     }
 
-    public function error_snippet(ViewErrorBag $blade_errors): HtmlString
+    public function error_snippet(ViewErrorBag $blade_errors, bool $force_show = false): HtmlString
     {
         if (!$this->inlineErrors) {
             return new HtmlString();
@@ -62,7 +62,12 @@ trait ChecksErrors
             if ($message == '&nbsp;') {
                 continue;
             }
-            $errors_html .= "<div class='invalid-feedback order-last'>$message</div>";
+
+            if ($force_show) {
+                $errors_html .= "<div class='invalid-feedback order-last d-block'>$message</div>";
+            } else {
+                $errors_html .= "<div class='invalid-feedback order-last'>$message</div>";
+            }
         }
 
 
