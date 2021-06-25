@@ -37,10 +37,10 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
                 <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
             @endforeach
         </select>
-        {{$error_snippet($errors)}}
         @if($multiple && !empty($wire_model))
     </div>
 @endif
+{{$error_snippet($errors)}}
 
 
 @push('x-scripts')
