@@ -41,7 +41,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 
 @if(!empty($livewireField))
-    @push('scripts')
+    @push('x-scripts')
         <script>
             document.addEventListener('livewire:load', function () {
                 deftools.summernote.setup_on_element($('#{{$computed_id()}}'), {
