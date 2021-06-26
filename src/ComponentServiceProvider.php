@@ -27,6 +27,7 @@ use DefStudio\Components\View\Components\FloatNumber;
 use DefStudio\Components\View\Components\Form;
 use DefStudio\Components\View\Components\Hidden;
 use DefStudio\Components\View\Components\Icon;
+use DefStudio\Components\View\Components\InputGroup;
 use DefStudio\Components\View\Components\LaravelMessages;
 use DefStudio\Components\View\Components\LivewireUpload;
 use DefStudio\Components\View\Components\Modal;
@@ -81,6 +82,7 @@ class ComponentServiceProvider extends ServiceProvider
             FloatNumber::class,
             Hidden::class,
             Icon::class,
+            InputGroup::class,
             Modal::class,
             Multiselect::class,
             LaravelMessages::class,

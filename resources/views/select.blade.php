@@ -46,9 +46,9 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 
                 @isset($append)
                     <div class="input-group-append">
-                    <span class="input-group-text">
-                        {{$append}}
-                    </span>
+                        <span class="input-group-text">
+                            {{$append}}
+                        </span>
                     </div>
             </div>
         @endisset
