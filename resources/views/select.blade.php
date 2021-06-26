@@ -21,23 +21,38 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 @if($multiple && !empty($wire_model))
     <div wire:ignore>
         @endif
-        <select
-            name="{{$name()}}"
-            id="{{$computed_id()}}"
-            {{$attributes->merge(['class' => 'form-control'])
-                         ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
-                         ->merge($error_attributes($errors))}}
-            {{$multiple?'multiple':''}}>
 
-            @if(!empty($unselected))
-                <option value="">{{$unselected}}</option>
-            @endif
+        @if(isset($append))
+            <div id="{{$computed_id()}}-input-group" class="input-group">
+                @endisset
 
-            @foreach($options as $key=>$value)
-                <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
-            @endforeach
-        </select>
-        {{$error_snippet($errors)}}
+                <select
+                    name="{{$name()}}"
+                    id="{{$computed_id()}}"
+                    {{$attributes->merge(['class' => 'form-control'])
+                                 ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
+                                 ->merge($error_attributes($errors))}}
+                    {{$multiple?'multiple':''}}>
+
+                    @if(!empty($unselected))
+                        <option value="">{{$unselected}}</option>
+                    @endif
+
+                    @foreach($options as $key=>$value)
+                        <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
+                    @endforeach
+                </select>
+                {{$error_snippet($errors)}}
+
+                @isset($append)
+                    <div class="input-group-append">
+                    <span class="input-group-text">
+                        {{$append}}
+                    </span>
+                    </div>
+            </div>
+        @endisset
+
         @if($multiple && !empty($wire_model))
     </div>
     {{$error_snippet($errors, true)}}
