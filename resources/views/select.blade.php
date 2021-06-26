@@ -25,21 +25,29 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
         <x-input-group :content-id="$computed_id()" :append="$append ?? null" :prepend="$prepend ?? null">
             <select
                 name="{{$name()}}"
-                    id="{{$computed_id()}}"
-                    {{$attributes->merge(['class' => 'form-control'])
-                                 ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
-                                 ->merge($error_attributes($errors))}}
-                    {{$multiple?'multiple':''}}>
+                id="{{$computed_id()}}"
+                {{$attributes->merge(['class' => 'form-control'])
+                             ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
+                             ->merge($error_attributes($errors))}}
+                {{$multiple?'multiple':''}}>
 
-                    @if(!empty($unselected))
-                        <option value="">{{$unselected}}</option>
-                    @endif
+                @if(!empty($unselected))
+                    <option value="">{{$unselected}}</option>
+                @endif
 
-                    @foreach($options as $key=>$value)
+                @foreach($options as $key=>$value)
+                    @if(is_array($value))
+                        <optgroup label="{{$key}}">
+                            @foreach($value as $sub_key => $sub_value)
+                                <option value="{{$sub_key}}" {{$is_selected($sub_key)?'selected':''}}>{{$sub_value}}</option>
+                            @endforeach
+                        </optgroup>
+                    @else
                         <option value="{{$key}}" {{$is_selected($key)?'selected':''}}>{{$value}}</option>
-                    @endforeach
-                </select>
-                {{$error_snippet($errors)}}
+                    @endif
+                @endforeach
+            </select>
+            {{$error_snippet($errors)}}
         </x-input-group>
 
         @if($multiple && !empty($wire_model))
