@@ -11,11 +11,10 @@ class InputGroup extends Component
 {
     public function __construct(
         public string $contentId,
-        public HtmlString|null $append,
-        public HtmlString|null $prepend,
+        public string|HtmlString|null $append,
+        public string|HtmlString|null $prepend,
     )
     {
-
     }
 
     public function render(): View

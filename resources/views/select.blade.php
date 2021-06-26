@@ -9,7 +9,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var string|null $size
  */
 
-$wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'), $attributes->get('wire:model.lazy'))
+$wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer', $attributes->get('wire:model.lazy')))
 
 ?>
 
@@ -57,15 +57,17 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 
 
 @push('x-scripts')
-    <script>
-        //@formatter:off
-        document.addEventListener('livewire:load', function () {
-            $('#{{$computed_id()}}').on('changed.bs.select', function () {
-                const $this = $(this)
-                let key = '{{$wire_model}}';
-            @this.set(key, $this.val());
-            })
-        });
-        //@formatter:on
-    </script>
+    @if($multiple && !empty($wire_model))
+        <script>
+            //@formatter:off
+            document.addEventListener('livewire:load', function () {
+                $('#{{$computed_id()}}').on('changed.bs.select', function () {
+                    const $this = $(this)
+                    let key = '{{$wire_model}}';
+                @this.set(key, $this.val());
+                })
+            });
+            //@formatter:on
+        </script>
+    @endif
 @endpush
