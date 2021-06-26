@@ -9,7 +9,7 @@ use Illuminate\View\ComponentAttributeBag;
  * @var bool $xlsx
  */
 
-$default_id = "file-selector-".rand(1, 99999999);
+$default_id = "file-selector-" . rand(1, 99999999);
 
 $attributes = $attributes->merge(['class' => 'custom-file-input def-components-file-input', 'style' => 'cursor: pointer;']);
 
@@ -25,14 +25,16 @@ if ($pdf) {
     <label for="{{$computed_id($default_id)}}">{{$label}}</label>
 @endunless
 
-<div id="{{$computed_id($default_id)}}-custom-file_container" class="custom-file ">
-    <input
-        id="{{$computed_id($default_id)}}"
-        type="file"
-        name="{{$name()}}"
-        {{$attributes->merge($error_attributes($errors))}}>
-    {{$error_snippet($errors)}}
 
-    <label for="{{$computed_id($default_id)}}" class="custom-file-label">{{$browseMessage}}</label>
-</div>
+<x-input-group :content-id="$computed_id($default_id)" :append="$append ?? null" :prepend="$prepend ?? null">
+    <div id="{{$computed_id($default_id)}}-custom-file_container" class="custom-file ">
+        <input
+            id="{{$computed_id($default_id)}}"
+            type="file"
+            name="{{$name()}}"
+            {{$attributes->merge($error_attributes($errors))}}>
+        {{$error_snippet($errors)}}
 
+        <label for="{{$computed_id($default_id)}}" class="custom-file-label">{{$browseMessage}}</label>
+    </div>
+</x-input-group>

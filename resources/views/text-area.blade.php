@@ -17,24 +17,28 @@ use Illuminate\View\ComponentAttributeBag;
 @if(!empty($livewireField))
     <div wire:ignore wire:key="{{$computed_id()}}_container">
         @endif
-        <textarea
-            {{$attributes
-                ->merge(['class' => 'form-control'])
-                ->merge(['class' => is_null($summernote)||!empty($livewireField)?'':'summernote'])
-                ->merge($error_attributes($errors))}}
-            name="{{$name()}}"
-            id="{{$computed_id()}}"
 
-            @foreach($summernote??[] as $summernote_feature)
-            data-enable-{{$summernote_feature}}="true"
-            @endforeach
+        <x-input-group :content-id="$computed_id()" :append="$append ?? null" :prepend="$prepend ?? null">
+            <textarea
+                {{$attributes
+                    ->merge(['class' => 'form-control'])
+                    ->merge(['class' => is_null($summernote)||!empty($livewireField)?'':'summernote'])
+                    ->merge($error_attributes($errors))}}
+                name="{{$name()}}"
+                id="{{$computed_id()}}"
 
-            @if($cols) cols="{{$cols}}" @endif
+                @foreach($summernote??[] as $summernote_feature)
+                data-enable-{{$summernote_feature}}="true"
+                @endforeach
 
-            @if($rows) rows="{{$rows}}" @endif
+                @if($cols) cols="{{$cols}}" @endif
 
-    >{{$computed_value($slot)}}</textarea>
-        {{$error_snippet($errors)}}
+                @if($rows) rows="{{$rows}}" @endif
+
+            >{{$computed_value($slot)}}</textarea>
+            {{$error_snippet($errors)}}
+        </x-input-group>
+
         @if(!empty($livewireField))
     </div>
 @endif
