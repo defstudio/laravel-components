@@ -73,4 +73,20 @@ class DotCollection extends Collection
         return $this->diff($other_collection)->isEmpty() && $other_collection->diff($this)->isEmpty();
     }
 
+    public function stddev(string $key = null): float|int
+    {
+        $count = $this->count();
+
+        if ($count == 0) {
+            return 0;
+        }
+
+        $values = (isset($key) ? $this->pluck($key) : $this)->values();
+
+        $mean = $values->average();
+        $deviations = $values->map(fn($value) => ($value - $mean) ** 2);
+
+        return sqrt($deviations->sum() / $count);
+    }
+
 }
