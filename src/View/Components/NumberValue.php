@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 
 class NumberValue extends Input
 {
+    protected $value = '';
+
     public function __construct(
         public string $um = '',
         public int $precision = 2,
