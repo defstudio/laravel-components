@@ -38,6 +38,7 @@ use DefStudio\Components\View\Components\NavbarDropdownItem;
 use DefStudio\Components\View\Components\NavbarItem;
 use DefStudio\Components\View\Components\NavbarNav;
 use DefStudio\Components\View\Components\Number;
+use DefStudio\Components\View\Components\NumberValue;
 use DefStudio\Components\View\Components\Password;
 use DefStudio\Components\View\Components\Percent;
 use DefStudio\Components\View\Components\Radio;
@@ -93,6 +94,7 @@ class ComponentServiceProvider extends ServiceProvider
             NavbarItem::class,
             NavbarDropdownItem::class,
             Number::class,
+            NumberValue::class,
             Password::class,
             Percent::class,
             Radio::class,
