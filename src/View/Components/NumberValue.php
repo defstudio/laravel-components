@@ -8,9 +8,8 @@ use Illuminate\Contracts\View\View;
 
 class NumberValue extends Input
 {
-    protected $value = '';
-
     public function __construct(
+        public string $name = '',
         public string $um = '',
         public int $precision = 2,
         public string $decimalSeparator = ',',
@@ -21,6 +20,6 @@ class NumberValue extends Input
 
     public function render(): View
     {
-        return view('def-components::currency');
+        return view('def-components::number-value');
     }
 }
