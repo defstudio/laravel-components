@@ -4,8 +4,20 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
+
+const multiselect = {
+    setup: () => {
+        $('select[multiple]:not(.selectpicker-enabled)').each(function () {
+            const $select = $(this);
+            $select.selectpicker();
+            $select.addClass('selectpicker-enabled');
+        });
+    }
+}
+
+
 $(document).ready(function () {
-    $('select[multiple]').selectpicker();
+    multiselect.setup();
 
     $(document).on('change', '.custom-select.order-by-selection', function () {
         const $selector = $(this);
@@ -16,5 +28,7 @@ $(document).ready(function () {
             $selected_option.remove();
             $selector.prepend($selected_option);
         }
-    })
+    });
 });
+
+export default multiselect;

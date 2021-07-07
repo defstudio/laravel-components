@@ -25,6 +25,7 @@ window.deftools = {
     message: require('./tools/message').default,
     templates: require('./tools/templates').default,
     summernote: require('./tools/summernote').default,
+    multiselect: require('./tools/multiselect').default,
     form: require('./tools/form').default,
 }
 
