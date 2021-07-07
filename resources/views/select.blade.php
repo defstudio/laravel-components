@@ -19,7 +19,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 @endunless
 
 @if($multiple && !empty($wire_model))
-    <div wire:ignore>
+    <div wire:ignore wire:key="{{$wire_model}}-container">
         @endif
 
         <x-input-group :content-id="$computed_id()" :append="$append ?? null" :prepend="$prepend ?? null">
