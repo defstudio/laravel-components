@@ -64,7 +64,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
                 $('#{{$computed_id()}}').on('changed.bs.select', function () {
                     const $this = $(this)
                     let key = '{{$wire_model}}';
-                @this.set(key, $this.val());
+                    @this.set(key, $this.val());
                 })
             });
             //@formatter:on
