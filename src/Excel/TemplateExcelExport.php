@@ -13,10 +13,11 @@ namespace DefStudio\Components\Excel;
 
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Excel;
 
-class TemplateExcelExport implements WithMultipleSheets, Responsable
+class TemplateExcelExport implements WithMultipleSheets, Responsable, ShouldAutoSize
 {
     use Exportable;
 
