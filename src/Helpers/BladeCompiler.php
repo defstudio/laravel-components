@@ -16,7 +16,7 @@ use Throwable;
 
 class BladeCompiler
 {
-    public function render($content, $data): bool|string
+    public function render($content, $data): string
     {
         if (View::exists($content)) {
             return View::make($content, $data)->render();
@@ -42,6 +42,12 @@ class BladeCompiler
             throw new Exception($e);
         }
 
-        return ob_get_clean();
+        $html = ob_get_clean();
+
+        if (!$html) {
+            $html = '';
+        }
+
+        return $html;
     }
 }
