@@ -86,6 +86,9 @@ class DotCollection extends Collection
         $mean = $values->average();
         $deviations = $values->map(fn ($value) => ($value - $mean) ** 2);
 
+        if ($count <= 0) {
+            return 0;
+        }
 
         return sqrt($deviations->sum() / $count);
     }
@@ -102,6 +105,10 @@ class DotCollection extends Collection
 
         $mean = $values->average();
         $deviations = $values->map(fn ($value) => ($value - $mean) ** 2);
+
+        if ($count - 1 <= 0) {
+            return 0;
+        }
 
         return sqrt($deviations->sum() / ($count - 1));
     }
