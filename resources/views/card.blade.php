@@ -21,14 +21,14 @@ $borderColor = $attributes->get('invalid', '') == 'invalid' ? 'danger' : $border
 
 $attributes = $attributes
     ->merge(['class' => 'card', 'id' => $id])
-    ->merge(['class' => empty($borderColor) ? '' : "border-$borderColor"]);
+    ->merge(['class' => empty($borderColor) ? '' : "border-$borderColor"])
 
 ?>
 
 
-<div {{$attributes}} wire:ignore.self>
+<div {{$attributes}}>
     @if(!empty($header))
-        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}" wire:ignore.self>
+        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
             <h5 class="mb-0">
                 <div class="d-flex {{$collapsed?'collapsed':''}}"
                      style="cursor: pointer"
@@ -40,13 +40,13 @@ $attributes = $attributes
                         <x-icon :name="$icon">{{$header}}</x-icon>
                     @endempty
 
-                      <div class="ml-auto d-flex">
-                          {{$rightHeader}}
+                    <div class="ml-auto d-flex">
+                        {{$rightHeader}}
 
                           @if($active && $collapsable)
                               <x-icon class="toggle-collapse ml-3 d-flex" name="angle-double-down"/>
-                          @endif
-                      </div>
+                        @endif
+                    </div>
                 </div>
             </h5>
         </div>
@@ -55,9 +55,7 @@ $attributes = $attributes
     <div id="card-body-{{$id}}"
          style="height: 100%"
          class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}"
-         {{$collapsable?"aria-labelledby=card-header-$id":""}}
-         wire:ignore.self
-    >
+        {{$collapsable?"aria-labelledby=card-header-$id":""}}>
         <div class="card-body {{$cardBodyClass}}" style="height: 100%">
             {{$slot}}
         </div>
