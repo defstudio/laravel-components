@@ -30,7 +30,7 @@ if ($is_array()) {
     <input type="hidden" name="{{$name()}}" value="{{$value_checked}}">
 @endif
 
-<div class="custom-control {{!empty($label??$slot->isNotEmpty()) && !$inline    ?'d-flex':''}} {{$custom_class}} {{$containerClass}} {{$inline?'custom-control-inline':''}}">
+<div class="custom-control {{!empty($label??$slot->isNotEmpty()) && !$inline?'d-flex':''}} {{$custom_class}} {{$containerClass}} {{$inline?'custom-control-inline':''}}">
     <input
         type="checkbox"
         id="{{$checkbox_id}}"

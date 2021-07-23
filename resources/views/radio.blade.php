@@ -20,7 +20,7 @@ $radio_id = $computed_id()."-".$original_value();
     <input type="hidden" name="{{$name()}}" value="{{$original_value()}}">
 @endif
 
-<div class="custom-control {{!empty($label??$slot->isNotEmpty())?'d-flex':''}} {{$custom_class}} {{$containerClass}} {{$inline?'custom-control-inline':''}}">
+<div class="custom-control {{!empty($label??$slot->isNotEmpty()) && !$inline?'d-flex':''}} {{$custom_class}} {{$containerClass}} {{$inline?'custom-control-inline':''}}">
     <input
         type="radio"
         id="{{$radio_id}}"
