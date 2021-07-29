@@ -5,7 +5,7 @@
 
         @if(!empty($prepend))
             <div class="input-group-prepend">
-                @if(str($prepend)->contains('<'))
+                @if(str($prepend)->contains('button') && str($prepend)->contains('<'))
                     {{$prepend}}
                 @else
                     <span class="input-group-text">
@@ -19,7 +19,7 @@
 
         @if(!empty($append))
             <div class="input-group-append">
-                @if(str($append)->contains('<'))
+                @if(str($append)->contains('button') && str($append)->contains('<'))
                     {{$append}}
                 @else
                     <span class="input-group-text">
