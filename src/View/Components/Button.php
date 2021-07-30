@@ -7,10 +7,8 @@
 
 namespace DefStudio\Components\View\Components;
 
-
 class Button extends Component
 {
-
     public const TYPE_SUBMIT = 'submit';
     public const TYPE_BUTTON = 'button';
 
@@ -36,6 +34,7 @@ class Button extends Component
         public string $delete = '',
         public string|null $containerClasses = '',
         public string|bool $wireLoaderSpinner = '',
+        public array $popover = [],
     ) {
         if (empty($this->confirmColor)) {
             $this->confirmColor = str($this->color)->replace('outline-', '');
@@ -45,20 +44,19 @@ class Button extends Component
 
     private function compute_href(): void
     {
-
         if ($this->get) {
             $this->href = $this->get;
             $this->method = self::METHOD_GET;
-        } else if ($this->post) {
+        } elseif ($this->post) {
             $this->href = $this->post;
             $this->method = self::METHOD_POST;
-        } else if ($this->put) {
+        } elseif ($this->put) {
             $this->href = $this->put;
             $this->method = self::METHOD_PUT;
-        } else if ($this->patch) {
+        } elseif ($this->patch) {
             $this->href = $this->patch;
             $this->method = self::METHOD_PATCH;
-        } else if ($this->delete) {
+        } elseif ($this->delete) {
             $this->href = $this->delete;
             $this->method = self::METHOD_DELETE;
         } else {

@@ -20,6 +20,14 @@ if (!empty($confirm)) {
     ]);
 }
 
+if (!empty($popover)) {
+    $attributes = $attributes->merge([
+        'data-toggle'  => 'popover',
+        'title'        => $popover['title'] ?? '',
+        'data-content' => $popover['content'] ?? ''
+    ]);
+}
+
 
 if ($wireLoaderSpinner === true) {
     $wireLoaderSpinner = $attributes->get('wire:click', '');
