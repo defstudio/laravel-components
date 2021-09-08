@@ -26,7 +26,7 @@ if (!function_exists('str')) {
     /**
      * Get a new stringable object from the given string.
      *
-     * @param  string|\Illuminate\Support\Stringable  $string  $string
+     * @param string|\Illuminate\Support\Stringable $string $string
      *
      * @return \Illuminate\Support\Stringable
      */
@@ -40,9 +40,9 @@ if (!function_exists('back')) {
     /**
      * Create a new redirect response to the previous location.
      *
-     * @param  int  $status
-     * @param  array  $headers
-     * @param  mixed  $fallback
+     * @param int $status
+     * @param array $headers
+     * @param mixed $fallback
      *
      * @return RedirectResponse
      */
@@ -58,7 +58,8 @@ if (!function_exists('back')) {
 if (!function_exists('dot_collect')) {
     function dot_collect(
         $value = null
-    ): DotCollection {
+    ): DotCollection
+    {
         return DotCollection::make($value);
     }
 }
@@ -111,5 +112,33 @@ if (!function_exists('array_unarrow')) {
             data_set($array, str($key)->replace('->', '.'), $value);
         }
         return $array;
+    }
+}
+
+if (!function_exists('t')) {
+    function t(string $key = null, array $replace = [], string $locale = null): string
+    {
+        return __($key, $replace, $locale);
+    }
+}
+
+if (!function_exists('T')) {
+    function T(string $key = null, array $replace = [], string $locale = null): string
+    {
+        return ucfirst(__($key, $replace, $locale));
+    }
+}
+
+if (!function_exists('TT')) {
+    function TT(string $key = null, array $replace = [], string $locale = null): string
+    {
+        return ucwords(__($key, $replace, $locale));
+    }
+}
+
+if (!function_exists('TTT')) {
+    function TTT(string $key = null, array $replace = [], string $locale = null): string
+    {
+        return strtoupper(__($key, $replace, $locale));
     }
 }
