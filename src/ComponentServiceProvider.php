@@ -17,6 +17,7 @@ use DefStudio\Components\View\Components\CheckboxSwitch;
 use DefStudio\Components\View\Components\Col;
 use DefStudio\Components\View\Components\Context;
 use DefStudio\Components\View\Components\Currency;
+use DefStudio\Components\View\Components\DateBox;
 use DefStudio\Components\View\Components\Datepicker;
 use DefStudio\Components\View\Components\DateValue;
 use DefStudio\Components\View\Components\Editor;
@@ -75,6 +76,7 @@ class ComponentServiceProvider extends ServiceProvider
             Currency::class,
             Datepicker::class,
             DateValue::class,
+            DateBox::class,
             Email::class,
             Editor::class,
             Fieldset::class,
