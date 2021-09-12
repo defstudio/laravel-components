@@ -145,18 +145,20 @@
 
 //</editor-fold>
 
-
+//<editor-fold desc="Spin">
 .fa-spin {
     animation: fa-spin 1s infinite linear;
 }
+//</editor-fold>
 
-
+//<editor-fold desc="DropdownSelect">
 .dropdown.bootstrap-select {
     .dropdown-toggle {
         border: 1px solid #ced4da;
         background-color: #ffffff;
     }
 }
+//</editor-fold>
 
 //<editor-fold desc="DateBox">
 .def-components-date-box{
