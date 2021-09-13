@@ -109,7 +109,7 @@ if (!function_exists('array_unarrow')) {
     {
         $array = [];
         foreach ($arrow_array as $key => $value) {
-            data_set($array, str($key)->replace('->', '.'), $value);
+            data_set($array, str($key)->lower()->replace('->', '.')->replace('→', '.'), $value);
         }
         return $array;
     }
