@@ -149,6 +149,7 @@
 .fa-spin {
     animation: fa-spin 1s infinite linear;
 }
+
 //</editor-fold>
 
 //<editor-fold desc="DropdownSelect">
@@ -158,10 +159,11 @@
         background-color: #ffffff;
     }
 }
+
 //</editor-fold>
 
 //<editor-fold desc="DateBox">
-.def-components-date-box{
+.def-components-date-box {
     width: fit-content;
     margin: 0 3px 0 2px;
     text-align: center;
@@ -172,27 +174,53 @@
     border-radius: 3px;
     box-shadow: 2px 2px 2px -2px black;
 
-    .def-components-day-box{
+    .def-components-day-box {
         font-size: 95%;
         font-weight: bold;
         color: #757797;
-        padding-top: 3px 5px;
+        padding: 3px 5px;
         background-color: #E9F3FF;
+
+
     }
 
-    .def-components-month-box{
+    .def-components-month-box {
         font-size: 60%;
         text-transform: uppercase;
         background-color: #B11;
         color: white;
         padding: 3px 5px;
+
+        &.def-small {
+            padding: 0px 5px;
+        }
     }
 
-    .def-components-year-box{
+    .def-components-year-box {
         font-size: 10px;
         background-color: #e0dddd;
         padding: 3px 5px;
-        font-weight: bold
+        font-weight: bold;
+
+        &.def-small {
+            padding: 0px 5px;
+        }
+    }
+
+    &.def-small {
+
+        .def-components-day-box {
+            padding: 0px 5px;
+        }
+
+        .def-components-month-box {
+            padding: 0px 5px;
+        }
+
+        .def-components-year-box {
+            padding: 0px 5px;
+        }
     }
 }
+
 //</editor-fold>

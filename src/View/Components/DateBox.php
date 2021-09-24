@@ -13,7 +13,8 @@ use Illuminate\Contracts\View\View;
 class DateBox extends Component
 {
     public function __construct(
-        public Carbon $date
+        public Carbon $date,
+        public bool $small = false,
     ) {
     }
 
