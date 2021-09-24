@@ -180,8 +180,6 @@
         color: #757797;
         padding: 3px 5px;
         background-color: #E9F3FF;
-
-
     }
 
     .def-components-month-box {
@@ -190,10 +188,6 @@
         background-color: #B11;
         color: white;
         padding: 3px 5px;
-
-        &.def-small {
-            padding: 0px 5px;
-        }
     }
 
     .def-components-year-box {
@@ -201,24 +195,20 @@
         background-color: #e0dddd;
         padding: 3px 5px;
         font-weight: bold;
-
-        &.def-small {
-            padding: 0px 5px;
-        }
     }
 
     &.def-small {
 
         .def-components-day-box {
-            padding: 0px 5px;
+            padding: 0 5px;
         }
 
         .def-components-month-box {
-            padding: 0px 5px;
+            padding: 0 5px;
         }
 
         .def-components-year-box {
-            padding: 0px 5px;
+            padding: 0 5px;
         }
     }
 }
