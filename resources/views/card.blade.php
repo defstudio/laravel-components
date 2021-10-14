@@ -28,7 +28,7 @@ $attributes = $attributes
 
 <div {{$attributes}}>
     @if(!empty($header))
-        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}">
+        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}" style="{{$small? 'padding: 0.5rem 0.75rem;': ''}}">
             <h5 class="mb-0">
                 <div class="d-flex {{$collapsed?'collapsed':''}}"
                      style="cursor: pointer"
@@ -43,8 +43,8 @@ $attributes = $attributes
                     <div class="ml-auto d-flex">
                         {{$rightHeader}}
 
-                          @if($active && $collapsable)
-                              <x-icon class="toggle-collapse ml-3 d-flex" name="angle-double-down"/>
+                        @if($active && $collapsable)
+                            <x-icon class="toggle-collapse ml-3 d-flex" name="angle-double-down"/>
                         @endif
                     </div>
                 </div>
@@ -56,7 +56,7 @@ $attributes = $attributes
          style="height: 100%"
          class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}"
         {{$collapsable?"aria-labelledby=card-header-$id":""}}>
-        <div class="card-body {{$cardBodyClass}}" style="height: 100%">
+        <div class="card-body {{$cardBodyClass}}" style="height: 100%; {{$small? 'padding: 0.75rem;': ''}}">
             {{$slot}}
         </div>
     </div>

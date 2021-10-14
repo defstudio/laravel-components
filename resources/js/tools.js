@@ -13,7 +13,6 @@ require('./tools/echo');
 require('./tools/password');
 require('./tools/components');
 require('./tools/bootstrap');
-require('./tools/vue');
 
 
 window.deftools = {

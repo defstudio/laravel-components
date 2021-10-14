@@ -14,6 +14,7 @@ class Card extends Component
     public bool $collapsable;
     public bool $collapsed;
     public bool $active;
+    public bool $small;
 
 
     public function __construct(
@@ -26,12 +27,14 @@ class Card extends Component
         public string $cardBodyClass = '',
         bool $active = true,
         bool $collapsable = false,
-        bool $collapsed = false
+        bool $collapsed = false,
+        bool $small = false,
     ) {
 
         $this->active = (bool) $active;
         $this->collapsable = (bool) $collapsable;
         $this->collapsed = (bool) $collapsed;
+        $this->small = (bool) $small;
 
 
         if (request()->has('x-card')) {
