@@ -8,7 +8,6 @@ use Illuminate\View\ComponentAttributeBag;
 
 
 ?>
-
-@if(empty($permission) || \Illuminate\Support\Facades\Gate::any($permission))
+@if(empty($permissions) || \Illuminate\Support\Facades\Gate::any($permissions))
     <a href="{{$url}}" {{$attributes->merge(['class' => 'dropdown-item'])}}>{{$slot}}</a>
 @endif
