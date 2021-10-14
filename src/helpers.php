@@ -30,7 +30,7 @@ if (!function_exists('str')) {
      *
      * @return \Illuminate\Support\Stringable
      */
-    function str(null|string|\Illuminate\Support\Stringable $string): \Illuminate\Support\Stringable
+    function str(null|int|string|\Illuminate\Support\Stringable $string): \Illuminate\Support\Stringable
     {
         return \Illuminate\Support\Str::of($string ?? '');
     }
