@@ -47,19 +47,27 @@ use Illuminate\View\ComponentAttributeBag;
 @if(!empty($livewireField))
     @push('x-scripts')
         <script>
-            document.addEventListener('livewire:load', function () {
+            if (window.livewire) {
+                text_area_init();
+            } else {
+                document.addEventListener('livewire:load', text_area_init)
+            }
+
+            //@formatter:off
+            function text_area_init(){
                 deftools.summernote.setup_on_element($('#{{$computed_id()}}'), {
                     onChange: function (contents) {
-                    @this.set('{{$livewireField}}', contents, true, false);
+                        @this.set('{{$livewireField}}', contents, true, false);
                     }
                 });
 
-            @this.on('set-editor-value', (field, value) => {
-                if (field === '{{$livewireField}}') {
-                    $('#{{$computed_id()}}').summernote('code', value);
-                }
-            });
-            });
+                @this.on('set-editor-value', (field, value) => {
+                    if (field === '{{$livewireField}}') {
+                        $('#{{$computed_id()}}').summernote('code', value);
+                    }
+                });
+            }
+            //@formatter:on
         </script>
     @endpush
 @endif
