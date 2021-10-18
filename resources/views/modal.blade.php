@@ -49,12 +49,32 @@ use Illuminate\View\ComponentAttributeBag;
 @if($livewireDialog)
     @push('x-scripts')
         <script>
-            document.addEventListener('livewire:load', () => {
-            @this.on('open-dialog', () => $('#{{$id}}').modal('show'));
-            @this.on('show-dialog', () => $('#{{$id}}').modal('show'));
-            @this.on('hide-dialog', () => $('#{{$id}}').modal('hide'));
-            @this.on('close-dialog', () => $('#{{$id}}').modal('hide'));
-            })
+            console.debug('modal setup');
+
+            if (window.livewire) {
+                modal_init();
+            } else {
+                document.addEventListener('livewire:load', modal_init)
+            }
+
+            //@formatter:off
+            function modal_init() {
+                console.debug('modal init');
+            @this.on('open-dialog', () => {
+                $('#{{$id}}').modal('show');
+            });
+            @this.on('show-dialog', () => {
+                console.debug('open dialog');
+                $('#{{$id}}').modal('show')
+            });
+            @this.on('hide-dialog', () => {
+                $('#{{$id}}').modal('hide')
+            });
+            @this.on('close-dialog', () => {
+                $('#{{$id}}').modal('hide')
+            });
+            }
+            //@formatter:on
         </script>
     @endpush
 @endif
