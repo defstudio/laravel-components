@@ -25,7 +25,7 @@ abstract class BaseNotification extends Notification implements ShouldQueue
     public string $message;
     public string $color = 'primary';
     public iterable $actions;
-    public string $uuid;
+    public string|null $uuid;
 
     public function __construct(
         string $title,
