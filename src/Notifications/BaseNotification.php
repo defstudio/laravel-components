@@ -25,24 +25,27 @@ abstract class BaseNotification extends Notification implements ShouldQueue
     public string $message;
     public string $color = 'primary';
     public iterable $actions;
-
+    public string $uuid;
 
     public function __construct(
         string $title,
         string $message,
-        iterable $actions = []
+        iterable $actions = [],
+        string $uuid = null,
     ) {
         $this->title = $title;
         $this->message = $message;
         $this->actions = $actions;
+        $this->uuid = $uuid;
     }
 
     #[Pure] public static function build(
         string $title,
         string $message,
-        iterable $actions = []
+        iterable $actions = [],
+        string $uuid = null,
     ): static {
-        return new static($title, $message, $actions);
+        return new static($title, $message, $actions, $uuid);
     }
 
     public function via($notifiable): array
@@ -50,11 +53,12 @@ abstract class BaseNotification extends Notification implements ShouldQueue
         return ['database', 'broadcast'];
     }
 
-    public function toBroadcast($notifiable): BroadcastMessage
+    #[Pure] public function toBroadcast($notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
             'def_components_notification' => true,
             'data'                        => [
+                'uuid'    => $this->uuid,
                 'color'   => $this->color,
                 'title'   => $this->title,
                 'message' => $this->message,
@@ -66,6 +70,7 @@ abstract class BaseNotification extends Notification implements ShouldQueue
     public function toArray($notifiable): array
     {
         return [
+            'uuid'    => $this->uuid,
             'color'   => $this->color,
             'title'   => $this->title,
             'message' => $this->message,
