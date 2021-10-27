@@ -41,7 +41,7 @@ if ($is_array()) {
 
         {{$readonly?'disabled':''}}
     />
-    <label for="{{$checkbox_id}}" class="custom-control-label my-auto" style="cursor:pointer;">{{$label??$slot}}</label>
+    <label for="{{$checkbox_id}}" class="custom-control-label my-auto" style="cursor:pointer;">{!! $label??$slot !!}</label>
 </div>
 
 
