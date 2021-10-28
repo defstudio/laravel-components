@@ -58,8 +58,7 @@ if (!function_exists('back')) {
 if (!function_exists('dot_collect')) {
     function dot_collect(
         $value = null
-    ): DotCollection
-    {
+    ): DotCollection {
         return DotCollection::make($value);
     }
 }
@@ -140,5 +139,14 @@ if (!function_exists('TTT')) {
     function TTT(string $key = null, array $replace = [], string $locale = null): string
     {
         return strtoupper(__($key, $replace, $locale));
+    }
+}
+
+if (!function_exists('field_name_to_dot_notation')) {
+    function field_name_to_dot_notation(string $field_name): string
+    {
+        $field_name = preg_replace('/\[(.+)]/U', '.$1', $field_name);
+        $field_name = preg_replace('/\[]/U', '', $field_name);
+        return $field_name;
     }
 }

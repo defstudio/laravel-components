@@ -7,7 +7,6 @@
 
 namespace DefStudio\Components\Traits;
 
-
 trait HasName
 {
     use InteractsWithContext;
@@ -36,7 +35,7 @@ trait HasName
 
         $tokenized_name = str("{$prefix}->{$name}")
             ->explode('->')
-            ->map(fn($token) => "[$token]")
+            ->map(fn ($token) => "[$token]")
             ->join('');
 
         return str($tokenized_name)->replaceFirst('[', '')->replaceFirst(']', '');
@@ -44,14 +43,7 @@ trait HasName
 
     public function dotted_field_name(): string
     {
-        return $this->array_format_to_dot_notation($this->name());
-    }
-
-    private function array_format_to_dot_notation(string $name): string
-    {
-        $name = preg_replace('/\[(.+)]/U', '.$1', $name);
-        $name = preg_replace('/\[]/U', '', $name);
-        return $name;
+        return field_name_to_dot_notation($this->name());
     }
 
     private function array_format_to_arrow_notation(string $name): string
@@ -68,6 +60,6 @@ trait HasName
 
     private function array_format_to_dash_notation(string $name): string
     {
-        return str_replace('.', '_', $this->array_format_to_dot_notation($name));
+        return str_replace('.', '_', field_name_to_dot_notation($name));
     }
 }
