@@ -7,6 +7,8 @@
 
 namespace DefStudio\Components\Traits;
 
+use Illuminate\Support\Stringable;
+
 trait HasName
 {
     use InteractsWithContext;
@@ -30,6 +32,8 @@ trait HasName
             return $this->name;
         }
 
+        $is_array_field = str($this->name)->endsWith('[]');
+
         $prefix = $this->array_format_to_arrow_notation($prefix);
         $name = $this->array_format_to_arrow_notation($this->name ?? '');
 
@@ -38,7 +42,10 @@ trait HasName
             ->map(fn ($token) => "[$token]")
             ->join('');
 
-        return str($tokenized_name)->replaceFirst('[', '')->replaceFirst(']', '');
+        return str($tokenized_name)
+            ->replaceFirst('[', '')
+            ->replaceFirst(']', '')
+            ->when($is_array_field, fn (Stringable $str) => $str->append('[]'));
     }
 
     public function dotted_field_name(): string
