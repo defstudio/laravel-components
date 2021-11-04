@@ -10,7 +10,7 @@ class Percent extends Input
     public ?float $max;
     public ?float $min;
     public $append = '%';
-    public ?int $step;
+    public string|int|float $step;
 
     public function __construct(
         string $name,
@@ -18,7 +18,7 @@ class Percent extends Input
         string $id = '',
         float $max = 100,
         float $min = 0,
-        int $step = 0
+        string|int|float $step = 1
     ) {
         $this->id = $id;
         $this->name = $name;
