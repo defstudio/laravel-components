@@ -8,6 +8,7 @@
 namespace DefStudio\Components\Helpers;
 
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
@@ -22,6 +23,12 @@ class DotCollection extends Collection
     {
         return data_get($this->items, $key, value($default));
     }
+
+    public function has($key): bool
+    {
+        return Arr::has($this->items, $key);
+    }
+
 
     public function rotate(int $offset = 1): static
     {
