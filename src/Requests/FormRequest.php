@@ -11,15 +11,13 @@ namespace DefStudio\Components\Requests;
 class FormRequest extends \Illuminate\Foundation\Http\FormRequest
 {
     /**
-     * Get the attributes and values that were validated.
-     * Note: This dockblock forces output type to mixed during phpstan analysis
+     * Get the validated data from the request.
      *
      * @param  string|null  $key
-     * @param  mixed|null  $default
-     *
+     * @param  string|array|null  $default
      * @return mixed
      */
-    public function validated(string $key = null, mixed $default = null): mixed
+    public function validated($key = null, $default = null)
     {
         return data_get(parent::validated(), $key, $default);
     }
