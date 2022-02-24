@@ -16,7 +16,7 @@ use Throwable;
 
 class BladeCompiler
 {
-    public function render($content, $data): string
+    public function render($content, $data, $compact = false): string
     {
         if (View::exists($content)) {
             return View::make($content, $data)->render();
@@ -46,6 +46,11 @@ class BladeCompiler
 
         if (!$html) {
             $html = '';
+        }
+
+        if($compact){
+            $html = preg_replace('/\n/', ' ', $html);
+            $html = preg_replace('/\s+/', ' ', $html);
         }
 
         return $html;
