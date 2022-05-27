@@ -16,7 +16,7 @@ use Throwable;
 
 class BladeCompiler
 {
-    public function render($content, $data, $compact = false): string
+    public function render($content, $data = [], $compact = false): string
     {
         if (View::exists($content)) {
             return View::make($content, $data)->render();
