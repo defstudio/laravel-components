@@ -150,3 +150,15 @@ if (!function_exists('field_name_to_dot_notation')) {
         return $field_name;
     }
 }
+
+if (!function_exists('dot_notation_to_field_name')) {
+    function dot_notation_to_field_name(string $dot_notation): string
+    {
+        return str(collect(str($dot_notation)
+            ->explode('.'))
+            ->map(fn(string $part) => "[$part]")
+            ->join(''))
+            ->replaceFirst('[', '')
+            ->replaceFirst(']', '');
+    }
+}
