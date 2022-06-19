@@ -4,6 +4,8 @@
  *  Authors: Fabio Ivona <fabio.ivona@defstudio.it> & Daniele Romeo <danieleromeo@defstudio.it>
  */
 
+@use "sass:math";
+
 //<editor-fold desc="Axios Spinner">
 @keyframes spinner {
     to {
@@ -101,7 +103,7 @@
 
     @for $step from 1 to 9 {
         .reduce-0#{$step} {
-            zoom: $step/10;
+            zoom: math.div($step, 10);
         }
     }
 
