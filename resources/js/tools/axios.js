@@ -69,13 +69,16 @@ window.axios.handle = (error, $form = null, messages = {}) => {
 
                         let $input = $($form[0].elements[normalized_field]);
 
-                        let $feedback = $input.find('~.invalid-feedback');
-                        if ($feedback.length === 0) {
-                            $feedback = $("<div class='invalid-feedback'></div>");
-                            $input.after($feedback);
+                        if(!$input.hasClass("hide-validation-message")){
+                            let $feedback = $input.find('~.invalid-feedback');
+                            if ($feedback.length === 0) {
+                                $feedback = $("<div class='invalid-feedback'></div>");
+                                $input.after($feedback);
+                            }
+
+                            $feedback.html(reasons.join("<br>"));
                         }
 
-                        $feedback.html(reasons.join("<br>"));
                         $input.addClass('is-invalid');
 
                         $input.trigger('def::invalid_field');
