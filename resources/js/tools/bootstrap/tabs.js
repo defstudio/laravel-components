@@ -11,13 +11,13 @@ $(document).ready(function () {
         let $tab = $(this);
         let $tabs = $tab.closest('.remember-selected-tab');
 
-        window.localStorage.setItem($tabs.attr('id') + "_active_tab", $tab.attr('href'));
+        window.localStorage.setItem(`${window.location.href}_${$tabs.attr('id')}_active_tab`, $tab.attr('href'));
     });
 
     $tabs_to_be_remembered.each(function () {
         let $tabs = $(this);
 
-        let active_tab = window.localStorage.getItem($tabs.attr('id') + "_active_tab");
+        let active_tab = window.localStorage.getItem(`${window.location.href}_${$tabs.attr('id')}_active_tab`);
         if (active_tab) {
             $tabs.find('a[href="' + active_tab + '"]').tab('show');
         }
