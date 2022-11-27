@@ -79,6 +79,11 @@ window.axios.handle = (error, $form = null, messages = {}) => {
                             $feedback.html(reasons.join("<br>"));
                         }
 
+                        if($input.attr('type') === 'file'){
+                            $input.val('');
+                            $input.change();
+                        }
+
                         $input.addClass('is-invalid');
 
                         $input.trigger('def::invalid_field');
