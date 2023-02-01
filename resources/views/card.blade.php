@@ -26,11 +26,11 @@ $attributes = $attributes
 ?>
 
 
-<div {{$attributes}}>
+<div wire:ignore.self {{$attributes}}>
     @if(!empty($header))
-        <div class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}" style="{{$small? 'padding: 0.5rem 0.75rem;': ''}}">
-            <h5 class="mb-0">
-                <div class="d-flex {{$collapsed?'collapsed':''}}"
+        <div wire:ignore.self class="card-header {{empty($color)?'':"bg-$color"}} {{$active?'':'text-secondary'}}" id="card-header-{{$id}}" style="{{$small? 'padding: 0.5rem 0.75rem;': ''}}">
+            <h5 wire:ignore.self class="mb-0">
+                <div wire:ignore.self class="d-flex {{$collapsed?'collapsed':''}}"
                      style="cursor: pointer"
                     {{($active&&$collapsable)?"data-toggle=collapse data-target=#card-body-$id aria-expanded=$aria_expanded aria-controls=card-body-$id":""}}>
 
@@ -40,7 +40,7 @@ $attributes = $attributes
                         <x-icon :name="$icon">{{$header}}</x-icon>
                     @endempty
 
-                    <div class="ml-auto d-flex">
+                    <div wire:ignore.self class="ml-auto d-flex">
                         {{$rightHeader}}
 
                         @if($active && $collapsable)
@@ -52,11 +52,11 @@ $attributes = $attributes
         </div>
     @endif
 
-    <div id="card-body-{{$id}}"
+    <div wire:ignore.self id="card-body-{{$id}}"
          style="height: 100%"
          class="{{$collapsable?"collapse":""}} {{$collapsed?"":"show"}}"
         {{$collapsable?"aria-labelledby=card-header-$id":""}}>
-        <div class="card-body {{$cardBodyClass}}" style="height: 100%; {{$small? 'padding: 0.75rem;': ''}}">
+        <div wire:ignore.self class="card-body {{$cardBodyClass}}" style="height: 100%; {{$small? 'padding: 0.75rem;': ''}}">
             {{$slot}}
         </div>
     </div>
