@@ -36,7 +36,6 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
                     @if($inline)
                         style="width: unset;"
                     @endif
-                    style="width: unset;"
             >
                 
                 
