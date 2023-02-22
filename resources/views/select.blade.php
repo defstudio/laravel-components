@@ -21,20 +21,29 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 @if($multiple && !empty($wire_model))
     <div wire:ignore wire:key="{{$wire_model}}-container">
         @endif
-
+        @dump($inline)
         <x-input-group :content-id="$computed_id()" :append="$append ?? null" :prepend="$prepend ?? null">
             <select
-                name="{{$name()}}"
-                id="{{$computed_id()}}"
-                {{$attributes->merge(['class' => 'form-control'])
-                             ->merge(['class' => 'custom-select' . (empty($size)?'':"-$size")])
-                             ->merge($error_attributes($errors))}}
-                {{$multiple?'multiple':''}}>
-
+                    name="{{$name()}}"
+                    id="{{$computed_id()}}"
+                    {{$attributes->class([
+                                        'form-control',
+                                        'custom-select' . (empty($size)?'':"-$size"),
+                                    ])
+                                 ->merge($error_attributes($errors))}}
+                    {{$multiple?'multiple':''}}
+                    
+                    @if($inline)
+                        style="width: unset;"
+                    @endif
+                    style="width: unset;"
+            >
+                
+                
                 @if(!empty($unselected))
                     <option value="">{{$unselected}}</option>
                 @endif
-
+                
                 @foreach($options as $key=>$value)
                     @if(is_array($value))
                         <optgroup label="{{$key}}">
@@ -49,7 +58,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
             </select>
             {{$error_snippet($errors)}}
         </x-input-group>
-
+        
         @if($multiple && !empty($wire_model))
     </div>
     {{$error_snippet($errors, true)}}
@@ -64,7 +73,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
                 $('#{{$computed_id()}}').on('changed.bs.select', function () {
                     const $this = $(this)
                     let key = '{{$wire_model}}';
-                    @this.set(key, $this.val());
+                @this.set(key, $this.val());
                 })
             });
             //@formatter:on

@@ -17,6 +17,7 @@ class Select extends Input
     public string $unselected;
     public iterable $options;
     public string $label;
+    public bool $inline;
     public ?string $size;
     public bool $multiple;
 
@@ -32,7 +33,8 @@ class Select extends Input
         string $size = null,
         bool $multiple = false,
         string $unselected = '',
-        $selected = ''
+        $selected = '',
+        bool $inline = false
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -42,6 +44,7 @@ class Select extends Input
         $this->multiple = $multiple;
         $this->selected = $selected;
         $this->unselected = $unselected;
+        $this->inline = $inline;
     }
 
     /**
