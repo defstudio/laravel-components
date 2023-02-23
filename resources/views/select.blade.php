@@ -21,7 +21,7 @@ $wire_model = $attributes->get('wire:model', $attributes->get('wire:model.defer'
 @if($multiple && !empty($wire_model))
     <div wire:ignore wire:key="{{$wire_model}}-container">
         @endif
-        @dump($inline)
+
         <x-input-group :content-id="$computed_id()" :append="$append ?? null" :prepend="$prepend ?? null">
             <select
                     name="{{$name()}}"
