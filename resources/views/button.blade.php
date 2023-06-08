@@ -53,7 +53,7 @@ if ($wireLoaderSpinner === true) {
                 <x-icon name="{{$icon}}" :wireLoaderSpinner="$wireLoaderSpinner">{{$slot}}</x-icon>
             @endempty
         </button>
-        <div class="dropdown-menu" aria-labelledby="{{$id}}">
+        <div class="dropdown-menu" style="min-width: 100%;"  aria-labelledby="{{$id}}">
             {{$dropdown}}
         </div>
     </div>
