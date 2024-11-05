@@ -28,8 +28,9 @@ $(document).ready(function () {
 
         $(this).submit(function () {
             if (form_ok) return true;
-
-
+            
+            const $form = $(this);
+            
             const $submit_button = $(document.activeElement);
 
             const submit_value = $submit_button.attr('value');
@@ -39,10 +40,6 @@ $(document).ready(function () {
                 $form.trigger('def::form-submitted');
                 $form.submit();
             }
-
-
-            const $form = $(this);
-
 
             if ($submit_button.hasClass('confirmable')) {
                 const message = $submit_button.data('confirm-message');
