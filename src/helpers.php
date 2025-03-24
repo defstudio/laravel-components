@@ -115,28 +115,28 @@ if (!function_exists('array_unarrow')) {
 }
 
 if (!function_exists('t')) {
-    function t(string $key = null, array $replace = [], string $locale = null): string
+    function t(?string $key = null, array $replace = [], ?string $locale = null): string
     {
         return __($key, $replace, $locale);
     }
 }
 
 if (!function_exists('T')) {
-    function T(string $key = null, array $replace = [], string $locale = null): string
+    function T(?string $key = null, array $replace = [], ?string $locale = null): string
     {
         return ucfirst(__($key, $replace, $locale));
     }
 }
 
 if (!function_exists('TT')) {
-    function TT(string $key = null, array $replace = [], string $locale = null): string
+    function TT(?string $key = null, array $replace = [], ?string $locale = null): string
     {
         return ucwords(__($key, $replace, $locale));
     }
 }
 
 if (!function_exists('TTT')) {
-    function TTT(string $key = null, array $replace = [], string $locale = null): string
+    function TTT(?string $key = null, array $replace = [], ?string $locale = null): string
     {
         return strtoupper(__($key, $replace, $locale));
     }
